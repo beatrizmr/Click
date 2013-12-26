@@ -1,0 +1,31 @@
+<html>
+	<body>
+	<div id="div">
+	</div>
+	<input type="button" id="boton" value="boton">
+	</input>
+	
+	<script>
+	var content = document.getElementById('div');
+		document.getElementById('boton').onclick = function() {
+		var url = "http://moncadaisla.es/ajax.php";
+		var params = "lorem=ipsum&name=binny";
+		var http = new XMLHttpRequest();
+		http.open("GET", url+"?"+params, true);
+		http.onreadystatechange = function() {//Call a function when the state changes.
+			if(http.readyState == 4 && http.status == 200) {
+				content.innerHTML = http.responseText;
+			}
+		}
+		http.send(null);
+	}
+	</script>
+	
+	<form action="http://moncadaisla.es/ajax.php" method="get">
+		<input type="text" name="loren"/>
+		<input type="hidden" name="name" value="bea"/>
+		<input type="submit"/>
+	</form>
+	
+	</body>
+</html>

@@ -1,0 +1,412 @@
+
+/*Nueva paleta:(azul)0ebfb2 (marron)402f18 (verde)8cbf3b (crudo)dee3e5 (salmon)f74855*/
+
+#controlSize{
+	width: 101px;
+	margin-right: -38px;
+	margin-top:3px;
+	z-index: -1;	
+	-webkit-transform: rotate(-20deg);
+  	-moz-transform: rotate(-20deg);
+  	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}
+
+.icons{
+	height: 45px;
+    width: 45px;  
+}
+
+.nameapp{
+	color:white;
+}
+
+.gira{
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	rotation: 90deg;
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+}
+
+#cameraContainer input{
+	filter: alpha(opacity=0);
+   	opacity: 0;
+   	width: 73%;
+	z-index: 501;
+	margin-left: -44px;	
+}
+
+#cameraContainer{
+	width: 45px;
+	float: left;
+}
+
+#takePicture{
+	color:#006988;
+	z-index: -55;
+	background-color: #89CD44;
+	-moz-border-radius: 0px 25px 0px 25px;
+	-webkit-border-radius: 0px 25px 0px 25px;   
+}
+
+#main-article{
+	z-index: -2 !important;
+	background-image: url("../img/gplaypattern.png");
+}
+
+header{
+	z-index: 9 !important;
+}
+
+
+#inputPhotoProfile{
+	width: 28%;
+	z-index: 501;
+	margin-left: -31%;
+	opacity: 0;
+}
+
+#fotoPerfil{
+	border-style: solid;
+	border-color: #03b1ff;
+	border-width: 1px;
+	width: 30%;
+	margin-top:5%;
+	margin-left:10%;
+	overflow: hidden;
+	-moz-border-radius: 100px 100px 100px 25px;
+	-webkit-border-radius: 100px 100px 100px 25px;   
+}
+
+#containerPhotoPerfil{
+	padding: 1%;
+}
+
+#iconDown{
+	text-align: center;
+}
+
+#type{
+	
+}
+
+#fotoPerfil img{
+	width: 100%;
+	-moz-border-radius: 100%;
+	-webkit-border-radius: 100%;
+}
+ 
+#changePic{
+	z-index: -229;
+	margin-left: 10%;
+	width: 30%;
+	margin-top: 1%;
+}
+
+.addMember{
+	background-color: transparent!important;
+	margin-top: 9%;
+	height: 12% !important;
+	border-style: solid;
+	border-color: #03b1ff;
+	border-width: 1px;
+	-moz-border-radius: 0px 25px 0px 25px;
+	-webkit-border-radius: 100px 100px 100px 25px;
+}
+
+.Initialform{
+	padding-top: 33%;
+	padding-left: 6%;
+	padding-right: 6%;
+}
+
+#registView fieldset{
+	margin-top:3%;
+}
+
+.greenText{
+	color:#89CD44;
+}
+
+#ftime{
+	margin-top: 21%;
+}
+
+#newAccButt{
+	margin-top:3%;
+}
+
+#pic{
+	width: 100%;
+	height: 100%;
+	-moz-border-radius: 100%;
+	-webkit-border-radius: 100%;
+}
+
+.picMember{ 
+	width: 21%;
+	margin-left: 64%;
+}
+
+.dateMemb{
+	margin-top: 5%;
+}
+
+.findmemap img{
+	height: 100%;
+	width: 100%;
+}
+
+.findmemap{
+	width: 79%;
+	margin-left: 14%;
+	margin-top: -45%;
+	margin-bottom: 13%;
+}
+
+.findspan{
+
+}
+
+.leftspace{
+	margin-left: 10%;
+}
+
+.leftInfo{
+	width: 26%;
+	float: left;
+	margin-left: 19%;
+	margin-top: 10%;
+
+}
+
+.info{
+	float: left;
+	margin-right: 0;
+	margin-top: 2%;
+	margin-left: 12%;
+	width: 49%;
+}
+
+.info p{
+	border-style: solid;
+	border-bottom-width: 1px;
+	margin-bottom: 5%;
+}
+
+
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  width: 120%;
+}
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+}
+
+.picMember img{
+	height: 100%;
+	width: 100%;
+}
+
+.contenidoMember{
+	margin-top: -10%;
+	padding-top: 15%;
+}
+
+.infoMember{
+	padding-left: 6%;
+	padding-right: 14%;
+	margin-top: 5%;
+}
+
+.memberType{
+	font-family: 'Princess Sofia', cursive !important;
+	margin-top: 7%;
+	margin-left: 82%;
+	font-size: 3em;
+}
+
+
+.numMember{
+	float: left;
+}
+
+.ulGal{
+	height: 20%;
+	margin-top: -9%;
+}
+
+.ulFri{
+	height: 55%;
+
+}
+
+.ulFri li{
+	padding: 0px!important;
+
+}
+
+.nota{
+	background-image: url("../img/nota.png"); 
+	background-repeat:no-repeat;
+	padding-top: 0%;
+	padding-bottom: 27%;
+	margin-top: 6%;
+	background-position: center;
+}
+
+
+
+.Grupotimeline{
+
+}
+
+.GroupPictures img{
+	margin-right: -1.5%;
+	height: 36% !important;
+	z-index: 5 !important;
+	background-image: url("../img/nuevoMarco.png");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	padding-left: 1.5%;
+	padding-right: 1.5%;
+	padding-top:9%;
+	padding-bottom:9%;
+}
+
+#ajusteBottom{
+	width: 100%;
+	height: 24s%;	
+	z-index:-1;
+}
+
+#titulo{
+	font-family: 'Unkempt', cursive;
+	/*color: #AF147F;*/
+	font-size:190%;
+	margin-top: 8%;
+	text-align: center;
+}
+#members{
+	/*background-image: url("../img/brushed.png");
+	background-image: url("../img/back_pattern.png");
+	background-image: url("../img/billie_holiday.png");
+	background-image: url("../img/dimension.png");
+	background-image: url("../img/escheresque.png");
+	background-image: url("../img/escheresque_ste.png");
+	background-image: url("../img/fabric_of_squares_gray.png");
+	background-image: url("../img/light_noise_diagonal.png");*/
+	background-image: url("../img/gplaypattern.png");
+}
+
+#editGrView{
+	background-image: url("../img/gplaypattern.png");
+}
+
+#main{
+	background-image: url("../img/gplaypattern.png");
+}
+
+.imgTlineComment{
+	margin-left: 7%;
+	-moz-border-radius: 100% 100% 100% 0%;
+	-webkit-border-radius: 100% 100% 100% 0%;
+	padding: 5%;
+}
+
+.colorGroup{
+	-webkit-box-shadow: inset 4px 0;
+	-moz-box-shadow: inset 4px 0;
+	-ms-box-shadow: inset 4px 0;
+	-o-box-shadow: inset 4px 0;
+	box-shadow: inset 4px 0;
+}
+
+#difuminador{
+	background-color: #999;
+	filter: alpha(opacity=10);
+   	opacity: 10;
+	z-index: -3014;
+	margin:0 auto 0 auto;
+	margin-top: -91px;
+	width: 314px;
+	height: 91px;
+	-webkit-box-shadow: -3px 0px 36px #999;
+  	-moz-box-shadow: -3px 0px 36px #999;
+  	box-shadow: -3px 0px 36px #999;
+}
+.containerGroups{
+	height: 54%;
+}
+
+#divMap{
+	height: 60px;
+	width: 60px;
+	border: solid 1px #ccc;
+}
+
+
+.spaceicon{
+	margin-top: -4%;
+}
+
+#lista{
+	z-index: 9999999999999;
+	height: 75%;
+}
+
+#colorinput{
+	position: absolute;
+	z-index: 80;
+	margin-left: 86%;
+	margin-top: -9%;
+	opacity: 0;
+}
+
+#txtComment{
+	z-index: -80;
+}
+
+#ulTimeline{
+	height: 68%;
+}
+
+.divFei{
+	float: left;
+	margin-top: -4%;
+}
+
+.paddingAside{
+	padding-left: 6%;
+	padding-right: 6%;
+}
+
+.editAside{
+	style:none;
+}
+
+.addGrAside{
+	margin-top:-21%;
+}
+
+
+#logginData{
+	margin-top:20%;
+}
+
+#userData{
+	margin-bottom:20%;
+}
+
+#selectedColor {
+	border-color: red !important;
+	border-bottom: 2px;
+	border-style: solid;
+}

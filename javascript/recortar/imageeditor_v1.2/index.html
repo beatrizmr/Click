@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>Image Editor</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<style type="text/css">@import "static/ImageEditor.css";</style>
+	<script type="text/javascript" src="static/PageInfo.js"></script>
+	<script type="text/javascript" src="static/ImageEditor.js"></script>
+	<script type="text/javascript">
+		if (window.opener){
+			window.moveTo(0, 0);
+			window.resizeTo(screen.width, screen.height - 28);
+			window.focus();
+		}
+		window.onload = ImageEditor.init;
+	</script>
+</head>
+<body>
+
+	<a href="{{logout_url}}" class="logout">Logout</a>
+	<div id="image-editor">
+		<div class="toolbar">
+			<form action="/uploadImage" enctype="multipart/form-data" method="post">
+				<input type="file" id="img" name="img" />
+				<input type="submit" id="upload" name="upload" value="Edit" />
+			</form>
+			<span class="spacer"> || </span>
+			<button onclick="javascript:location.href='/saveImage';">Save to Disk</button>
+			<span class="spacer"> || </span>
+			<button onclick="ImageEditor.im_feeling_lucky()">I'm Feeling Lucky</button>
+			<span class="spacer"> || </span>
+			w:<input id="txt-width" type="text" size="3" maxlength="4" />
+			h:<input id="txt-height" type="text" size="3" maxlength="4" />
+			<button onclick="ImageEditor.resize();">Resize</button>
+			<span class="spacer"> || </span>
+			<button onclick="ImageEditor.rotate(270)">90&deg;CCW</button>
+			<button onclick="ImageEditor.rotate(90)">90&deg;CW</button>
+			<span class="spacer"> || </span>
+			<button onclick="ImageEditor.crop()">Crop</button>
+			<span id="crop-size"></span>
+		</div>
+		<div id="image">Select an image to upload</div>
+		<img id="loader-image" />
+	</div>
+
+</body>
+</html>

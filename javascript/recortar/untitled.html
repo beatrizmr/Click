@@ -1,0 +1,59 @@
+<html>
+   
+<head>
+    <title> Demo </title>
+
+    <style type="text/css">
+    	body {
+    		height: 100%;
+    	}
+    	#pic {
+    		width: 150px;
+    		height: 250px;
+    	}
+    </style>
+
+<script type="text/javascript">
+function cropImage(id) {
+
+    var canvas = document.getElementById(id);
+    var context = canvas.getContext("2d");
+    var imageObj = new Image();
+    var pixelRatio = window.devicePixelRatio;
+    context.scale(pixelRatio, pixelRatio);
+
+    imageObj.onload = function() {
+        var sourceX = 0;
+        var sourceY = 0;
+        var destX = 0;
+        var destY = 0;
+
+        if (canvas.width > canvas.height) {
+            var stretchRatio = ( imageObj.width / canvas.width );
+            var sourceWidth = Math.floor(imageObj.width);
+            var sourceHeight = Math.floor(canvas.height*stretchRatio);
+            sourceY = Math.floor((imageObj.height - sourceHeight)/2);
+        } else {
+            var stretchRatio = ( imageObj.height / canvas.height );
+            var sourceWidth = Math.floor(canvas.width*stretchRatio);
+            var sourceHeight = Math.floor(imageObj.height);
+            sourceX = Math.floor((imageObj.width - sourceWidth)/2);
+        }
+        var destWidth = Math.floor(canvas.width / pixelRatio);
+        var destHeight = Math.floor(canvas.height / pixelRatio);		
+
+        context.drawImage(imageObj, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight);
+    };
+    imageObj.src = 'http://i5.photobucket.com/albums/y192/legserrano/House.jpg';
+}
+</script>
+
+</head>
+
+<body onload="cropImage('pic');">
+
+<canvas id="pic" width="150" height="250"></canvas>
+
+
+
+</body></html>

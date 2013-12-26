@@ -1,0 +1,463 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"po",
+				"position"
+			],
+			[
+				"bacgroun",
+				"background-position"
+			],
+			[
+				"bac",
+				"background-repeat"
+			],
+			[
+				"posi",
+				"background-position"
+			],
+			[
+				"remov",
+				"removeM"
+			],
+			[
+				"border-co",
+				"border-color"
+			],
+			[
+				"text-a",
+				"text-align"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/beatriz/ging/vish/app/assets/javascripts/application.js",
+		"/home/beatriz/ging/vish/app/assets/javascripts/vish.wall.js",
+		"/home/beatriz/ging/vish_editor/public/vishEditor/contentflow.css",
+		"/home/beatriz/ging/vish_editor/public/vishEditor/framed_api_broadcastExample.html",
+		"/home/beatriz/ging/vish_editor/public/vishEditor/muestra.html",
+		"/home/beatriz/Escritorio/vishEditor/contentflow.css",
+		"/home/beatriz/Escritorio/vishEditor/framed_api_broadcastExample.html",
+		"/home/beatriz/Dropbox/beca/Bea/vish_editor/public/vishEditor/framed_api_broadcastExample.html",
+		"/home/beatriz/Dropbox/beca/Bea/vish_editor/public/vishEditor/stylesheets/scenario.css",
+		"/home/beatriz/Dropbox/beca/Bea/vish_editor/public/vishEditor/contentflow.css",
+		"/home/beatriz/ging/ContentFlow/index.html",
+		"/home/beatriz/Dropbox/beca/Bea/VirtualLabs/public/vishEditor/framed_api_broadcastExample.html",
+		"/home/beatriz/ging/VirtualLabs/ContentFlow/index.html",
+		"/home/beatriz/ging/vish/app/views/messages/new.js.erb",
+		"/home/beatriz/ging/VirtualLabs/public/vishEditor/js/VISH.SlideManager.js",
+		"/home/beatriz/ging/VirtualLabs/public/vishEditor/js/VISH.Samples.js",
+		"/home/beatriz/ging/VirtualLabs/public/vishEditor/js/VISH.Renderer.js",
+		"/home/beatriz/ging/VirtualLabs/public/vishEditor/js/VISH.Presentation.js",
+		"/home/beatriz/ging/VirtualLabs/public/vishEditor/js/VISH.Object.js",
+		"/home/beatriz/ging/VirtualLabs/public/vishEditor/configuration/configuration_example.js",
+		"/home/beatriz/ging/VirtualLabs/public/vishEditor/js/VISH.Constant.js",
+		"/home/beatriz/ging/VirtualLabs/public/vishEditor/framed_api_broadcastExample.html",
+		"/home/beatriz/ging/VirtualLabs/ContentFlow/contentflow.css",
+		"/home/beatriz/ging/ContentFlow/contentflow.css",
+		"/home/beatriz/ging/vish/app/views/messages/new.html.erb",
+		"/home/beatriz/ging/vish/app/views/messages/_message.html.erb",
+		"/home/beatriz/ging/vish/app/controllers/application_controller.rb",
+		"/home/beatriz/ging/vish/app/controllers/tags_controller.rb",
+		"/home/beatriz/ging/vish/app/views/messages/_form.html.erb",
+		"/home/beatriz/ging/vish/app/views/conversations/_conversation_full.html.erb",
+		"/home/beatriz/ging/vish/app/assets/stylesheets/application.css.scss",
+		"/home/beatriz/ging/vish_editor/public/vishEditor/js/VISH.Renderer.js",
+		"/home/beatriz/ging/vish_editor/public/vishEditor/js/VISH.Samples.js",
+		"/home/beatriz/ging/vish_editor/public/vishEditor/viewer.html",
+		"/home/beatriz/ging/vish_editor/public/vishEditor/framed_viewer.html",
+		"/home/beatriz/ging/vish_editor/public/vishEditor/VirtualLabs/public/vishEditor/js/VISH.Slides.js",
+		"/home/beatriz/ging/vish_editor/public/vishEditor/js/varLabs.js",
+		"/home/beatriz/Dropbox/beca/Alvaro/vish_editor/public/vishEditor/viewer.html",
+		"/home/beatriz/ging/vish_editor/public/vishEditor/VirtualLabs/public/vishEditor/js/VISH.Samples.js",
+		"/home/beatriz/ging/vish_editor/public/vishEditor/VirtualLabs/public/vishEditor/js/VISH.Samples.API.js",
+		"/home/beatriz/ging/vish_editor/public/vishEditor/js/VISH.Samples.API.js",
+		"/home/beatriz/ging/vish_editor/public/vishEditor/youtube_example.html",
+		"/home/beatriz/ging/vish/app/views/officedocs/_officedoc.html.erb",
+		"/home/beatriz/ging/vish/app/views/pictures/_picture.html.erb",
+		"/home/beatriz/ging/vish/app/views/common_documents/_home.html.erb",
+		"/home/beatriz/ging/vish/app/assets/javascripts/vish.officedoc.js",
+		"/home/beatriz/ging/vish_editor/public/javascripts/bootstrap.js",
+		"/home/beatriz/ging/vish_editor/public/javascripts/bootstrap-modal.js",
+		"/home/beatriz/ging/vish_editor/public/javascripts/jquery-1.7.2.min.js",
+		"/home/beatriz/ging/vish_editor/public/javascripts/share.js",
+		"/home/beatriz/ging/vish_editor/public/javascripts/view.aboutus.js",
+		"/home/beatriz/ging/vish_editor/public/javascripts/view.home.js",
+		"/home/beatriz/ging/vish_editor/public/javascripts/view.index.js",
+		"/home/beatriz/ging/vish_editor/public/javascripts/VISHWS.CORE.js",
+		"/home/beatriz/ging/vish_editor/public/javascripts/VISHWS.js",
+		"/home/beatriz/ging/vish_editor/public/javascripts/VISHWS.VALIDATION.js",
+		"/home/beatriz/ging/vish/app/views/common_documents/_document_info.html.erb",
+		"/home/beatriz/ging/vish/app/views/common_documents/_zero_screen.html.erb",
+		"/home/beatriz/ging/vish_editor/public/vishEditor/configuration/configuration.js",
+		"/home/beatriz/ging/vish/app/views/common_documents/_filter.html.erb",
+		"/home/beatriz/ging/vish/app/views/common_documents/_edit_form.html.erb",
+		"/home/beatriz/ging/vish/app/views/common_documents/_fav_zero_screen.html.erb",
+		"/home/beatriz/ging/vish/app/views/common_documents/_filter_results.html.erb",
+		"/home/beatriz/ging/vish/app/views/common_documents/_headers.html.erb",
+		"/home/beatriz/ging/vish/app/views/common_documents/_aside.html.erb",
+		"/home/beatriz/ging/Pruebas/pruebas.json",
+		"/home/beatriz/ging/application.js",
+		"/home/beatriz/ging/vish/app/views/common_documents/_home_filter.html.erb",
+		"/home/beatriz/ging/vish/app/views/common_documents/_index.html.erb",
+		"/home/beatriz/ging/vish/app/views/common_documents/modernizr.custom.72111.js.erb",
+		"/home/beatriz/ging/vish/app/views/common_documents/_my_zero_screen.html.erb",
+		"/home/beatriz/ging/vish/app/views/common_documents/_profile.html.erb",
+		"/home/beatriz/ging/vish/app/views/common_documents/_repo.html.erb",
+		"/home/beatriz/ging/vish/app/views/common_documents/_show.html.erb",
+		"/home/beatriz/ging/vish/app/views/common_documents/repository/resource_delete.erb",
+		"/home/beatriz/ging/vish/app/views/documents/create.js.erb",
+		"/home/beatriz/ging/vish/app/views/documents/destroy.js.erb",
+		"/home/beatriz/ging/vish/app/views/documents/_document.html.erb",
+		"/home/beatriz/ging/vish/app/views/documents/_document.mobile.erb",
+		"/home/beatriz/ging/vish/app/views/documents/_document_focus_search.html.erb",
+		"/home/beatriz/ging/vish/app/views/documents/_document_focus_search.mobile.erb",
+		"/home/beatriz/ging/vish/app/views/documents/_document_global_search.html.erb",
+		"/home/beatriz/ging/vish/app/views/documents/_document_global_search.mobile.erb",
+		"/home/beatriz/ging/vish/app/views/documents/_document_show.html.erb",
+		"/home/beatriz/ging/vish/app/views/documents/_document_with_details.html.erb",
+		"/home/beatriz/ging/vish/app/views/documents/index.html.erb",
+		"/home/beatriz/ging/vish/app/views/documents/new.html.erb",
+		"/home/beatriz/ging/vish/app/views/documents/_new_activity.html.erb",
+		"/home/beatriz/ging/vish/app/views/documents/_new_activity_fields.html.erb",
+		"/home/beatriz/ging/vish/app/views/documents/search.html.erb",
+		"/home/beatriz/ging/vish/app/views/activity_objects/_activity_object.html.erb",
+		"/home/beatriz/ging/vish/app/views/activity_objects/_activity_object.mobile.erb",
+		"/home/beatriz/ging/vish/app/helpers/activities_helper.rb",
+		"/home/beatriz/ging/vish/app/views/activities/_activity.mobile.erb",
+		"/home/beatriz/ging/vish/app/views/activities/_addresource.html.erb",
+		"/home/beatriz/ging/vish/app/views/activities/_child.html.erb",
+		"/home/beatriz/ging/vish/app/views/activities/_child.mobile.erb",
+		"/home/beatriz/ging/vish/app/views/activities/_comments.html.erb",
+		"/home/beatriz/ging/vish/app/views/activities/_index.html.erb",
+		"/home/beatriz/ging/vish/app/views/activities/_index.mobile.erb",
+		"/home/beatriz/ging/vish/app/views/activities/_new.html.erb",
+		"/home/beatriz/ging/vish/app/views/activities/_new.mobile.erb",
+		"/home/beatriz/ging/vish/app/views/activities/_options.html.erb",
+		"/home/beatriz/ging/vish/app/views/activities/_profile.html.erb",
+		"/home/beatriz/ging/vish/app/views/activities/_profile.mobile.erb",
+		"/home/beatriz/ging/vish/app/views/activities/_repository.html.erb",
+		"/home/beatriz/ging/vish/app/views/activities/_root.html.erb",
+		"/home/beatriz/ging/vish/app/views/activities/_root.mobile.erb",
+		"/home/beatriz/ging/vish/app/views/activities/_wall.html.erb",
+		"/home/beatriz/ging/vish/app/views/activities/_wall.mobile.erb",
+		"/home/beatriz/ging/vish/app/views/activities/_wall_me.html.erb",
+		"/home/beatriz/ging/vish/app/views/activities/_wall_me.mobile.erb",
+		"/home/beatriz/ging/vish/app/views/activities/_zero_screen.html.erb",
+		"/home/beatriz/ging/vish/app/views/activities/_zero_screen.mobile.erb",
+		"/home/beatriz/ging/vish/app/views/modals/embed.js.erb",
+		"/home/beatriz/ging/vish/app/views/modals/document.js.erb",
+		"/home/beatriz/ging/vish/app/views/modals/actor.js.erb",
+		"/home/beatriz/ging/vish/app/views/modals/link.js.erb",
+		"/home/beatriz/ging/vish/config/database.yml",
+		"/home/beatriz/ging/app/assets/stylesheets/application.css.scss",
+		"/home/beatriz/ging/vish/config/database.yml.example",
+		"/home/beatriz/ging/--> inicial",
+		"/home/beatriz/ging/vish/app/views/home/index.html.erb",
+		"/home/beatriz/ging/vish/db/schema.rb",
+		"/home/beatriz/ging/aehlke-tag-it-d64a794/examples.html",
+		"/home/beatriz/ging/vish/app/views/profiles/_tags.html.erb",
+		"/home/beatriz/ging/vish/app/views/excursions/_vish_editor.full.erb",
+		"/home/beatriz/ging/vish/vendor/assets/javascript/tagit.js"
+	],
+	"find":
+	{
+		"height": 38.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"init",
+			"pu",
+			"pus",
+			"bod",
+			"left",
+			".item.active",
+			"element",
+			".ContentFlow .flow .item",
+			"element",
+			"contentflow",
+			"elemen",
+			"body",
+			"black",
+			"canvas",
+			".flow{",
+			"flow",
+			"style",
+			"height",
+			"4",
+			"436",
+			"portrait",
+			"	\n",
+			"recipients",
+			"recipients\n\n\nrecipients",
+			"areaid",
+			"areaid\nareaid\n",
+			"areaid",
+			"areaid\nareaid",
+			"theme",
+			"aldo",
+			"viewer",
+			"activity",
+			"\nmody\nmod",
+			"mo\n\nin",
+			"resiz",
+			"an",
+			"anch",
+			"redim",
+			"removeM",
+			"style",
+			"ajuste",
+			"style",
+			"-7",
+			"Mody",
+			"]);",
+			"footar",
+			"}\n",
+			"();\"></",
+			"             ",
+			"resize",
+			"truncate_name",
+			"return",
+			"getModal",
+			"resize",
+			"modal",
+			"rep",
+			"90",
+			"resize",
+			"tag",
+			"validate",
+			"inici",
+			" \n",
+			"%>,\");",
+			"document",
+			" \n",
+			"contact",
+			"contactos",
+			"recipi",
+			"recipient",
+			"_recipients",
+			"subjec",
+			"subje",
+			"box",
+			"tagBox",
+			"tagit-input",
+			"recipien",
+			"contacts",
+			" $(",
+			"Actor",
+			"actors",
+			"excursion",
+			"contacts",
+			"name",
+			"contactname",
+			"tag",
+			"count",
+			"conunt",
+			"tag",
+			"tagList",
+			"contacts",
+			"tags",
+			"current",
+			"tags",
+			"actos",
+			"tag",
+			"contact",
+			"tag",
+			"tagit",
+			"tagin",
+			"src",
+			"video",
+			"play",
+			";\n",
+			"420px",
+			"img",
+			"im",
+			"fea",
+			"width",
+			"with",
+			"featu",
+			"footer",
+			"hr",
+			"container",
+			"footersticky",
+			"text",
+			"push",
+			"text",
+			"width",
+			"container",
+			"footer",
+			"space_double_center",
+			"body-height",
+			"center",
+			"float",
+			"main",
+			"right",
+			"<%=",
+			"activity."
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 253.0,
+	"status_bar_visible": true
+}

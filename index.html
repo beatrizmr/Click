@@ -1,0 +1,529 @@
+<!doctype html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <title>Photo testing</title>
+    <meta name="description" content=""/>
+    <meta name="author" content="Beatriz Martinez Rubio"/>
+    <meta name="HandheldFriendly" content="True"/>
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta http-equiv="cleartype" content="on"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
+
+    <!-- iPhone -->
+    <link href="http://cdn.tapquo.com/lungo/icon-57.png" sizes="57x57" rel="apple-touch-icon"/>
+    <link href="http://cdn.tapquo.com/lungo/startup-image-320x460.png" media="(device-width: 320px) and (device-height: 480px)
+             and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image"/>
+
+    <!-- iPhone (Retina) -->
+    <link href="http://cdn.tapquo.com/lungo/icon-114.png" sizes="114x114" rel="apple-touch-icon"/>
+    <link href="http://cdn.tapquo.com/lungo/startup-image-640x920.png" media="(device-width: 320px) and (device-height: 480px)
+             and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"/>
+
+    <!-- iPhone 5 -->
+    <link href="http://cdn.tapquo.com/lungo/startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px)
+             and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"/>
+
+    <!-- iPad -->
+    <link href="http://cdn.tapquo.com/lungo/icon-72.png" sizes="72x72" rel="apple-touch-icon"/>
+    <link href="http://cdn.tapquo.com/lungo/startup-image-768x1004.png" media="(device-width: 768px) and (device-height: 1024px)
+             and (orientation: portrait)
+             and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image"/>
+    <link href="http://cdn.tapquo.com/lungo/startup-image-748x1024.png" media="(device-width: 768px) and (device-height: 1024px)
+             and (orientation: landscape)
+             and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image"/>
+
+    <!-- iPad (Retina) -->
+    <link href="http://cdn.tapquo.com/lungo/icon-144.png" sizes="144x144" rel="apple-touch-icon"/>
+    <link href="http://cdn.tapquo.com/lungo/startup-image-1536x2008.png" media="(device-width: 768px) and (device-height: 1024px)
+             and (orientation: portrait)
+             and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"/>
+    <link href="http://cdn.tapquo.com/lungo/startup-image-1496x2048.png" media="(device-width: 768px) and (device-height: 1024px)
+             and (orientation: landscape)
+             and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"/>
+
+    <!-- Main Stylesheet -->
+   <link href='https://fonts.googleapis.com/css?family=Princess+Sofia' rel='stylesheet' type='text/css'/> 
+    <link rel="stylesheet" href="style/lungo.css"/>
+    <link rel="stylesheet" href="style/lungo.icon.css"/>
+    <link rel="stylesheet" href="style/lungo.theme.css"/>
+    <link rel="stylesheet" href="style/takePicture.css"/>
+    <link href='http://fonts.googleapis.com/css?family=Unkempt' rel='stylesheet' type='text/css'/>
+</head>
+
+<body class="app">
+    <section id="main_section" data-transition="slide" class="show">
+        <article class="active main">
+            <div class="form Initialform">
+                <div class="greenText">
+                    <small>You have an account:</small>
+                </div>
+                <fieldset class="radius-top" data-icon="user">
+                    <input type="text" placeholder="Your username" id="txt-signup-name" value/>
+                </fieldset>
+                <fieldset class="radius-bottom shadow" data-icon="lock">
+                    <input type="password" placeholder="Your password" id="txt-signup-password" value/>
+                </fieldset>
+                <br />
+                <button class="anchor" data-icon="lock" data-label="Login"></button>
+                <div id="ftime" class="greenText">
+                    <small>First time:</small>
+                </div>
+                <button data-view-section="perfil" id="linkDropbox" class="secondary anchor" data-label="Need link to dropbox"  data-icon="ok-sign" ></button>
+                <button id="newAccButt" data-view-section="registro" class="secondary anchor" data-icon="ok-sign" disabled="true" >Create an account</button>
+            </div>
+            <button data-view-section="main" id="trampa" class="secondary anchor" data-icon="chevron-left" data-label="Go perfil (trampa)"></button>
+        </article>
+    </section>
+
+    <section id="registro">
+        <article class="main">
+            <div class="form Initialform" id="registView">
+                <div id="userData">
+                    <fieldset class="radius-top" data-icon="user">
+                        <input type="text" placeholder="Name" id="txt-signupName" value/>
+                    </fieldset>
+                    <fieldset class="radius-top" data-icon="user">
+                        <input type="text" placeholder="Last name" id="txt-signupLastname" value/>
+                    </fieldset>
+                </div>
+
+                <fieldset class="radius-top" data-icon="user">
+                    <input type="text" placeholder="mail address" id="txt-signupLastname" value/>
+                </fieldset>
+
+                <div id="logginData">
+                    <fieldset class="radius-top" data-icon="user">
+                        <input type="text" placeholder="Username" id="txt-signupUserName" value/>
+                    </fieldset>
+                    <fieldset class="radius-bottom shadow" data-icon="lock">
+                        <input type="password" placeholder="Password" id="txt-signupPssword" value/>
+                    </fieldset>
+                </div>
+
+                <br />
+                <button class="anchor"  id="crearUsuario" data-icon="lock" data-label="Create"></button>
+            </div>
+        </article>
+    </section>
+    
+    <section id="main" data-transition="slide" data-pull="normal">        
+        <header>
+            <nav>
+                <a href="#" data-view-aside="features" data-icon="menu"></a>
+            </nav>
+            <a href="#" data-view-article="main" class="title centered nameapp"> Click! </a>
+            <nav class="on-right" id="controlSize">
+                <div id="cameraContainer" class="icons">
+                    <input id="fotoExif" type="file" accept="image/*" capture="camera"/>                         
+                    <a href="#" class="icons" id="takePicture" data-icon="camera"></a>                                            
+                </div>
+            </nav>
+        </header>
+
+        <article id="main" class="list scroll">
+            <div id="containerPhotoPerfil">                      
+                <div id= "fotoPerfil">
+                    <canvas id="pic" width="90" height="90"></canvas>
+                </div>
+            </div>            
+            <button id = "changePic" class="small" data-icon="edit" data-label="Edit"></button>
+            <input id="inputPhotoProfile" type="file" accept="image/*" />
+            <div id="lista" class="active list indented" >
+                    <li class="contrast">
+                        <small id="iconDown" data-icon= "chevron-down">What's new?</small>
+                    </li>
+                <div id="ulTimeline" class="scroll">
+                <ul>
+                    <li class="thumb big colorGroup">
+                        <img class="imgTlineComment"/>
+                        <div>
+                            <div class="timeTlineCommet on-right text tiny">Sent at </div>
+                            <strong class="commentPerson">name</strong>
+                            <span class="commentDate text tiny opacity">fecha</span>
+                            <small>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, aliquam, nisi commodi blanditiis.
+                            </small>
+                        </div>
+                    </li>                 
+                </ul> 
+                </div>           
+            </div>
+            <form id="type">
+                <fieldset id="selectedColor" class="radius-top" data-icon="group">
+                    <input type="text" placeholder="" id="txtComment" value/>
+                    <input id="colorinput" type="color" value=''/>
+                </fieldset>
+            </form>
+        </article>
+
+        <!-- <article id="ejGrupo-article">
+            <div  class="nombreGrupo">                
+                <p id="titulo">Viaje VPE 2013 </p>           
+            </div>
+            <div class="containerGroups active block">
+                <div class="friends">
+                        <div class="scroll ulFri">                            
+                            <button class="icons addMember" data-icon= "user" disabled="true"/></br>add</button>
+                            <img src = "img/usuario1.jpg"/>
+                            <img src = "img/usuario2.jpg"/>
+                            <img src = "img/usuario3.jpg"/>
+                            <img src = "img/usuario4.jpg"/>
+                            <img src = "img/perfill.jpg"/>
+                            <img src = "img/usuario1.jpg"/>
+                            <img src = "img/usuario2.jpg"/>
+                            <img src = "img/usuario3.jpg"/>
+                            <img src = "img/usuario4.jpg"/>
+                        </div>
+                </div>
+                <div class="Grupotimeline scroll list indented">
+                    <ul>
+                        <li class="thumb big colorGroup">
+                            <img class="imgTlineComment">
+                            <div>
+                                <div class="timeTlineCommet on-right text tiny">Sent at </div>
+                                <strong class="commentPerson">name</strong>
+                                <span class="commentDate text tiny opacity">fecha</span>
+                                <small>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, aliquam, nisi commodi blanditiis.
+                                </small>
+                            </div>
+                        </li>  
+                        <li class="thumb big colorGroup">
+                            <img class="imgTlineComment">
+                            <div>
+                                <div class="timeTlineCommet on-right text tiny">Sent at </div>
+                                <strong class="commentPerson">name</strong>
+                                <span class="commentDate text tiny opacity">fecha</span>
+                                <small>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, aliquam, nisi commodi blanditiis.
+                                </small>
+                            </div>
+                        </li> 
+                        <li class="thumb big colorGroup">
+                            <img class="imgTlineComment">
+                            <div>
+                                <div class="timeTlineCommet on-right text tiny">Sent at </div>
+                                <strong class="commentPerson">name</strong>
+                                <span class="commentDate text tiny opacity">fecha</span>
+                                <small>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, aliquam, nisi commodi blanditiis.
+                                </small>
+                            </div>
+                        </li> 
+                        <li class="thumb big colorGroup">
+                            <img class="imgTlineComment">
+                            <div>
+                                <div class="timeTlineCommet on-right text tiny">Sent at </div>
+                                <strong class="commentPerson">name</strong>
+                                <span class="commentDate text tiny opacity">fecha</span>
+                                <small>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, aliquam, nisi commodi blanditiis.
+                                </small>
+                            </div>
+                        </li>                
+                    </ul> 
+                </div>  
+            </div>            
+            <div class="active block" >
+                <div class="GroupPictures">
+                    <div class="horizontal scroll ulGal" id="Grouppictures">
+                        <img src="galeriaPrueba/3.jpg" />
+                        <img src="galeriaPrueba/2.jpg" />
+                        <img src="galeriaPrueba/8.jpg" />
+                        <img src="galeriaPrueba/1.jpg" />
+                        <img src="galeriaPrueba/4.jpg" />
+                        <img src="galeriaPrueba/5.jpg" />
+                        <img src="galeriaPrueba/6.jpg" />
+                        <img src="galeriaPrueba/7.jpg" />
+                    </div>
+                </div>
+            </div>
+            <div id="ajusteBottom">
+            </div>
+            
+        </article> -->
+
+        <article id="exifTest-article" class="list scroll">            
+             <div id="datosSensores" class="list indented scroll">
+                <ul>
+                    <li>
+                        <strong>Localizacion:</strong>
+                    </li>
+                    <li>
+                        Longitude: <span id="outLongitude">0</span>
+                    </li>
+                    <li>
+                        Latitude: <span id="outLatitude">0</span>
+                    </li>
+                    <li>
+                        <strong>Orientacion:</strong>
+                    </li>
+                    <li>
+                        alpha: <span id="doDirection">0</span>
+                    </li>
+                    <li>
+                        <strong>Inclinacion:</strong>
+                    </li>
+                    <li>
+                        beta: <span id="doTiltFB">0</span>
+                    </li>
+                    <li>
+                        gamma: <span id="doTiltLR">0</span>             
+                    </li>
+                </ul>
+            </div>
+            <input type="color"/>
+            <div id="cm-example" style="width:200px;height:200px;border-color:1px solid red;"></div>
+        </article>
+
+        <article id="editGrView">
+            
+        </article>
+    </section>
+
+    <section id= "groupSection" data-transition="slide">
+        <header>
+            <nav>
+                <a href="#" data-view-aside="features" data-icon="menu"></a>
+            </nav>
+            <a class="title centered nameapp">Viaje VPE 2013</a>
+            <nav class="on-right" id="controlSize">
+                <div id="cameraContainer" class="icons">
+                    <input id="fotoExif" type="file" accept="image/*" capture="camera">                         
+                    <a href="#" class="icons" id="takePicture" data-icon="camera"></a>                                            
+                </div>
+            </nav>
+        </header>
+        <nav data-control="groupbar" data-article="profile map members pictures">
+            <a href="#" data-view-article="profile" data-icon="checkmark" data-label="Profile" class="active"></a>
+            <a href="#" data-view-article="map" data-icon="checkmark" data-label="Map"></a>
+            <a href="#" data-view-article="members" data-icon="checkmark" data-label="Members"></a>
+            <a href="#" data-view-article="pictures" data-icon="checkmark" data-label="Pictures"></a>
+        </nav>
+        <article id="profile" class="active">
+            <div class="containerGroups active block">
+                <div class="Grupotimeline scroll list indented">
+                    <ul>
+                        <li class="thumb big colorGroup">
+                            <img class="imgTlineComment">
+                            <div>
+                                <div class="timeTlineCommet on-right text tiny">Sent at </div>
+                                <strong class="commentPerson">name</strong>
+                                <span class="commentDate text tiny opacity">fecha</span>
+                                <small>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, aliquam, nisi commodi blanditiis.
+                                </small>
+                            </div>
+                        </li>  
+                        <li class="thumb big colorGroup">
+                            <img class="imgTlineComment">
+                            <div>
+                                <div class="timeTlineCommet on-right text tiny">Sent at </div>
+                                <strong class="commentPerson">name</strong>
+                                <span class="commentDate text tiny opacity">fecha</span>
+                                <small>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, aliquam, nisi commodi blanditiis.
+                                </small>
+                            </div>
+                        </li> 
+                        <li class="thumb big colorGroup">
+                            <img class="imgTlineComment">
+                            <div>
+                                <div class="timeTlineCommet on-right text tiny">Sent at </div>
+                                <strong class="commentPerson">name</strong>
+                                <span class="commentDate text tiny opacity">fecha</span>
+                                <small>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, aliquam, nisi commodi blanditiis.
+                                </small>
+                            </div>
+                        </li> 
+                        <li class="thumb big colorGroup">
+                            <img class="imgTlineComment">
+                            <div>
+                                <div class="timeTlineCommet on-right text tiny">Sent at </div>
+                                <strong class="commentPerson">name</strong>
+                                <span class="commentDate text tiny opacity">fecha</span>
+                                <small>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, aliquam, nisi commodi blanditiis.
+                                </small>
+                            </div>
+                        </li>                
+                    </ul> 
+                </div>  
+            </div>            
+            <div class="active block" >
+                <div class="GroupPictures">
+                    <div class="horizontal scroll ulGal" id="Grouppictures">
+                        <img src="galeriaPrueba/3.jpg" />
+                        <img src="galeriaPrueba/2.jpg" />
+                        <img src="galeriaPrueba/8.jpg" />
+                        <img src="galeriaPrueba/1.jpg" />
+                        <img src="galeriaPrueba/4.jpg" />
+                        <img src="galeriaPrueba/5.jpg" />
+                        <img src="galeriaPrueba/6.jpg" />
+                        <img src="galeriaPrueba/7.jpg" />
+                    </div>
+                </div>
+            </div>
+            <div id="ajusteBottom">
+            </div>            
+        </article>
+        <article id="map">
+            <p>AQUÍ EL MAPITA</p>
+        </article>
+        <article id="members">
+                <div class="horizontal scroll ulFri">
+                    <div class="nota">
+                        <div class="contenidoMember">
+                            <div class="leftInfo">
+                                <div class="findmemap">                                    
+                                    <img src = "https://dl.dropboxusercontent.com/u/15587505/pfc/img/findmeIcon.png"/>
+                                </div>
+                                <div class="rating">
+                                    <span>&#9734;</span><span>&#9734;</span><span>&#9734;</span><span>&#9734;</span><span>&#9734;</span>
+                                </div>
+                            </div>
+                            <div class="picMember">
+                                <img src = "img/usuario1.jpg"/>
+                            </div>
+                            <div class="infoMember">
+                                <div class="info">  
+                                    <p>                                  
+                                        <span class="commentPerson strong greenText">Name:</span>
+                                        <span class="opacity leftspace">Beuki</span>
+                                    </p>
+                                    <p>
+                                        <span class="commentPerson strong greenText">Shared:</span>
+                                        <span class="small opacity leftspace" data-icon="picture">6</span>
+                                    </p>
+                                    <p>
+                                        <span class="commentPerson strong greenText">Post:</span>
+                                        <span class="small opacity leftspace" data-icon="file-alt">6</span>
+                                    </p>
+                                </div>
+                                <div class="memberType">
+                                    6
+                                </div>
+                                <div class=" on-right text dateMemb tiny opacity">Member since 02/05/2013</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nota">
+                        <div class="contenidoMember">
+                            <div class="leftInfo">
+                                <div class="findmemap">                                    
+                                    <img src = "https://dl.dropboxusercontent.com/u/15587505/pfc/img/findmeIcon.png"/>
+                                </div>
+                                <div class="rating">
+                                    <span>&#9734;</span><span>&#9734;</span><span>&#9734;</span><span>&#9734;</span><span>&#9734;</span>
+                                </div>
+                            </div>
+                            <div class="picMember">
+                                <img src = "img/usuario1.jpg"/>
+                            </div>
+                            <div class="infoMember">
+                                <div class="info">  
+                                    <p>                                  
+                                        <span class="commentPerson strong greenText">Name:</span>
+                                        <span class="opacity leftspace">Beuki</span>
+                                    </p>
+                                    <p>
+                                        <span class="commentPerson strong greenText">Shared:</span>
+                                        <span class="small opacity leftspace" data-icon="picture">6</span>
+                                    </p>
+                                    <p>
+                                        <span class="commentPerson strong greenText">Post:</span>
+                                        <span class="small opacity leftspace" data-icon="file-alt">6</span>
+                                    </p>
+                                </div>
+                                <div class="memberType">
+                                    6
+                                </div>
+                                <div class=" on-right text dateMemb tiny opacity">Member since 02/05/2013</div>
+                            </div>
+                        </div>
+                    </div> <!-- nota --> 
+                    <div>
+                        <p>caraculetelocaaaaaaaaaaaaaaaaaaaaaaaaaaaazaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    </div>    
+                    <div>
+                        <p>caraculete</p>
+                    </div> 
+                    <div>
+                        <p>caraculete</p>
+                    </div> 
+                    <div>
+                        <p>caraculete</p>
+                    </div>         
+                    <!-- <button class="icons addMember" data-icon= "user" disabled="true"/></br>add</button>
+                    <img src = "img/usuario1.jpg"/> -->
+                </div>
+        </article>
+        <article id="pictures">
+            <p>AQUÍ UN CAROUSEL DE FOTOS GRANDES</p>
+        </article>
+    </section>
+
+
+    <aside id="features" data-transition="left">
+        <header class="paddingAside" data-icon="group" data-title="Groups">
+            <nav>
+                <a href="#" data-view-article="editGrView" data-icon="sign" class="on-right addGrAside"></a>
+            </nav>
+        </header>
+
+        <article class="active scroll list">
+            <ul>
+                <li>
+                    <span class="spaceicon icon edit"></span>
+                    <a data-view-section="groupSection">
+                        <strong class="divFei left">Ejemplo grupo</strong>
+                    </a>                                  
+                </li>
+                 <li>
+                    <span class="spaceicon icon edit"></span>
+                    <a data-view-article="exifTest-article">
+                        <strong class="divFei left">exif test</strong>
+                    </a>                                  
+                </li>
+                 <li>
+                    <span class="spaceicon icon edit"></span>
+                    <a data-view-section="main_section">
+                        <strong class="divFei left">loggin</strong>
+                    </a>                                  
+                </li>
+            </ul>
+        </article>
+    </aside>
+    
+
+      
+    <script src="phonegap.js"></script>
+    <!-- Lungo - Dependencies -->
+    <script src="javascript/quo/quo.js"></script>
+    <script src="javascript/lungo/lungo.js"></script>
+
+    <script type="text/javascript" src="javascript/binaryajax.js"></script>
+    <script type="text/javascript" src="javascript/exif.js" ></script>
+    <script type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>
+    <script src="https://www.dropbox.com/static/api/dropbox-datastores-1.0-latest.js" type="text/javascript"></script>
+    <!--<script type="text/javascript" src="javascript/dropbox-datastores-1.0.0.js"></script>-->
+    <script src="javascript/takePicture.js"></script>    
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>  
+    
+    <!-- Lungo - Sandbox App -->
+    <script>
+        
+        Lungo.init({
+            name: 'example'
+        });
+
+    </script>
+
+</body>
+</html>
