@@ -1,6 +1,12 @@
 
 /*Nueva paleta:(azul)0ebfb2 (marron)402f18 (verde)8cbf3b (crudo)dee3e5 (salmon)f74855*/
 
+#usrName{
+	margin-left: 62%;
+	margin-top: 7%;
+	float: left;
+}
+
 #controlSize{
 	width: 101px;
 	margin-right: -38px;

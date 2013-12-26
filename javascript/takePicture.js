@@ -317,6 +317,43 @@ Lungo.dom('#section2').on('hold', function(event){
 
 
 
+
+	document.getElementById('loginButton').onclick = function() {
+		//TODO Faltan comprobaciones
+		var userName = document.getElementById('txt-signup-name').value;
+		var userPassword = document.getElementById('txt-signup-password').value;
+
+		loginUser(userName, userPassword);
+
+		
+	}
+
+	var click = new Click();
+	function loginUser(login, password){
+		var url = "http://pfc.martinezrubio.com.es/click/login.php"
+		var data = {data: JSON.stringify({login: login, password: password})};
+		var parseResponse = function(result){
+			if(result.status == "200"){
+				click.setToken(result.token);
+				Lungo.Router.section("main");
+				}
+			else{
+				Lungo.Notification.show(
+					"ban-circle",                //Icon
+					"Login incorrecto",       //Title
+					3,                      //Seconds
+					null       				//Callback function
+				);
+
+			}
+		}
+		Lungo.Service.post(url, data, parseResponse, "json");
+}
+
+
+
+
+
 //Timeline Comments 
 	var f = new Date();
 	var perfilTlinePic = document.getElementsByClassName('imgTlineComment')[0];
