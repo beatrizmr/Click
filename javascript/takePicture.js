@@ -1,4 +1,13 @@
 
+var click = new Click();
+
+
+// Funciones al cargar secciones
+
+Lungo.dom('#main').on('load', function(event){
+    click.bindData("data-click");
+});
+
 
 
 //SELECT AND CHOOSE A PROFILE PICTURE, CROP AND REDIM THAT IMAGE
@@ -328,14 +337,21 @@ Lungo.dom('#section2').on('hold', function(event){
 		
 	}
 
-	var click = new Click();
+	
 	function loginUser(login, password){
 		var url = "http://pfc.martinezrubio.com.es/click/login.php"
 		var data = {data: JSON.stringify({login: login, password: password})};
 		var parseResponse = function(result){
 			if(result.status == "200"){
-				click.setToken(result.token);
+				click.setToken(result.token);				
 				Lungo.Router.section("main");
+				Lungo.Notification.show(
+					"check",                //Icon
+					"Welcome",       //Title
+					3,                      //Seconds
+					null       				//Callback function
+				);
+
 				}
 			else{
 				Lungo.Notification.show(
