@@ -2,9 +2,7 @@
 /*Nueva paleta:(azul)0ebfb2 (marron)402f18 (verde)8cbf3b (crudo)dee3e5 (salmon)f74855*/
 
 #usrName{
-	margin-left: 62%;
-	margin-top: 7%;
-	float: left;
+
 }
 
 #controlSize{
@@ -76,6 +74,7 @@ header{
 	border-color: #03b1ff;
 	border-width: 1px;
 	width: 30%;
+	height: 128px;
 	margin-top:5%;
 	margin-left:10%;
 	overflow: hidden;
@@ -83,8 +82,24 @@ header{
 	-webkit-border-radius: 100px 100px 100px 25px;   
 }
 
+#profileUserData{
+	float: right;
+	width: 50%;
+	margin-top: 5%;
+}
+
+#fotoPerfil2{
+	width: 30%;
+}
+
+#fotoPerfil2 img{
+	width: 110%;
+	margin-left: 15%;
+}
+
 #containerPhotoPerfil{
 	padding: 1%;
+	height: 19%;
 }
 
 #iconDown{
@@ -103,7 +118,7 @@ header{
  
 #changePic{
 	z-index: -229;
-	margin-left: 10%;
+	margin-left: 7%;
 	width: 30%;
 	margin-top: 1%;
 }
@@ -366,6 +381,7 @@ header{
 #lista{
 	z-index: 9999999999999;
 	height: 75%;
+	margin-top: 1%;
 }
 
 #colorinput{
