@@ -1,5 +1,29 @@
 
 /*Nueva paleta:(azul)0ebfb2 (marron)402f18 (verde)8cbf3b (crudo)dee3e5 (salmon)f74855*/
+.contenedorcito{
+	height: 24%;
+	background-color: black;
+}
+
+.divli{
+	float: right;
+	background-image: url("../img/gplaypattern.png");
+	height: 100px;
+	width: 100px;
+}
+
+#uno{
+	background-color: red;
+}
+#dos{
+	background-color: green;
+}
+#tres{
+	background-color: blue;
+}
+#cuatro{
+	background-color: orange;
+}
 
 #usrName{
 
