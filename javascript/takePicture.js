@@ -392,7 +392,7 @@ Lungo.dom('#section2').on('hold', function(event){
 	 	var Timelineul=document.getElementsByTagName('ul')[0];
 
 	 	comentario = construirComentario("pmoncada", commentText, "http://cdn.tapquo.com/lungo/icon-144.png", groupColor);
-	 	Timelineul.insertAdjacentHTML("afterbegin", comentario);
+	 	Timelineul.insertAdjacentHTML("beforeend", comentario);
 	 	document.getElementById('txtComment').value = "";
 	}
 
