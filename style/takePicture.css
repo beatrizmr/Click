@@ -132,7 +132,7 @@ header{
 }
 
 #type{
-	
+	margin-top: -11%;
 }
 
 #fotoPerfil img{
@@ -290,7 +290,6 @@ header{
 }
 
 .ulFri{
-	height: 55%;
 }
 
 .ulFri li{
@@ -310,7 +309,7 @@ header{
 
 
 .Grupotimeline{
-
+	height: 85%;
 }
 
 .GroupPictures img{
@@ -404,7 +403,7 @@ header{
 
 #lista{
 	z-index: 9999999999999;
-	height: 75%;
+	height: 63%;
 	margin-top: 1%;
 }
 
