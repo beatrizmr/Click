@@ -251,93 +251,6 @@
             </form>
         </article>
 
-        <!-- <article id="ejGrupo-article">
-            <div  class="nombreGrupo">                
-                <p id="titulo">Viaje VPE 2013 </p>           
-            </div>
-            <div class="containerGroups active block">
-                <div class="friends">
-                        <div class="scroll ulFri">                            
-                            <button class="icons addMember" data-icon= "user" disabled="true"/></br>add</button>
-                            <img src = "img/usuario1.jpg"/>
-                            <img src = "img/usuario2.jpg"/>
-                            <img src = "img/usuario3.jpg"/>
-                            <img src = "img/usuario4.jpg"/>
-                            <img src = "img/perfill.jpg"/>
-                            <img src = "img/usuario1.jpg"/>
-                            <img src = "img/usuario2.jpg"/>
-                            <img src = "img/usuario3.jpg"/>
-                            <img src = "img/usuario4.jpg"/>
-                        </div>
-                </div>
-                <div class="Grupotimeline scroll list indented">
-                    <ul>
-                        <li class="thumb big colorGroup">
-                            <img class="imgTlineComment">
-                            <div>
-                                <div class="timeTlineCommet on-right text tiny">Sent at </div>
-                                <strong class="commentPerson">name</strong>
-                                <span class="commentDate text tiny opacity">fecha</span>
-                                <small>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, aliquam, nisi commodi blanditiis.
-                                </small>
-                            </div>
-                        </li>  
-                        <li class="thumb big colorGroup">
-                            <img class="imgTlineComment">
-                            <div>
-                                <div class="timeTlineCommet on-right text tiny">Sent at </div>
-                                <strong class="commentPerson">name</strong>
-                                <span class="commentDate text tiny opacity">fecha</span>
-                                <small>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, aliquam, nisi commodi blanditiis.
-                                </small>
-                            </div>
-                        </li> 
-                        <li class="thumb big colorGroup">
-                            <img class="imgTlineComment">
-                            <div>
-                                <div class="timeTlineCommet on-right text tiny">Sent at </div>
-                                <strong class="commentPerson">name</strong>
-                                <span class="commentDate text tiny opacity">fecha</span>
-                                <small>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, aliquam, nisi commodi blanditiis.
-                                </small>
-                            </div>
-                        </li> 
-                        <li class="thumb big colorGroup">
-                            <img class="imgTlineComment">
-                            <div>
-                                <div class="timeTlineCommet on-right text tiny">Sent at </div>
-                                <strong class="commentPerson">name</strong>
-                                <span class="commentDate text tiny opacity">fecha</span>
-                                <small>
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, aliquam, nisi commodi blanditiis.
-                                </small>
-                            </div>
-                        </li>                
-                    </ul> 
-                </div>  
-            </div>            
-            <div class="active block" >
-                <div class="GroupPictures">
-                    <div class="horizontal scroll ulGal" id="Grouppictures">
-                        <img src="galeriaPrueba/3.jpg" />
-                        <img src="galeriaPrueba/2.jpg" />
-                        <img src="galeriaPrueba/8.jpg" />
-                        <img src="galeriaPrueba/1.jpg" />
-                        <img src="galeriaPrueba/4.jpg" />
-                        <img src="galeriaPrueba/5.jpg" />
-                        <img src="galeriaPrueba/6.jpg" />
-                        <img src="galeriaPrueba/7.jpg" />
-                    </div>
-                </div>
-            </div>
-            <div id="ajusteBottom">
-            </div>
-            
-        </article> -->
-
         <article id="exifTest-article" class="list scroll">            
              <div id="datosSensores" class="list indented scroll">
                 <ul>
@@ -374,6 +287,12 @@
         <article id="editGrView">
             
         </article>
+        <article id="createGrView">
+            
+        </article>
+        <article id="contactsView">
+            
+        </article>        
     </section>
 
     <section id= "groupSection" data-transition="slide">
@@ -572,7 +491,7 @@
             <ul>
                 <li>
                     <span class="spaceicon icon sign"></span>
-                    <a data-view-section="main_section">
+                    <a data-view-article="createGrView">
                         <strong class="divFei left">New group</strong>
                     </a>                                  
                 </li>
@@ -595,8 +514,11 @@
                     </a>                                  
                 </li>                
             </ul>
-            <div class="groupsPart" data-icon="user">
+            <div data-view-section="main" class="groupsPart" data-icon="user">
                 <span class="groupsPartText">PROFILE</span>
+            </div>
+            <div data-view-article="contactsView" id="contactsLink" class="groupsPart" data-icon="book">
+                <span class="groupsPartText">CONTACTOS</span>
             </div>
         </article>
     </aside>

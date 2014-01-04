@@ -366,6 +366,18 @@ header{
 	background-image: url("../img/gplaypattern.png");
 }
 
+#createGrView{
+	background-image: url("../img/gplaypattern.png");
+}
+
+#contactsView{
+	background-image: url("../img/gplaypattern.png");
+}
+
+#contactsLink{
+	margin-top: 2%;
+}
+
 #main{
 	background-image: url("../img/gplaypattern.png");
 }
