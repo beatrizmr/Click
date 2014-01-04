@@ -7,6 +7,14 @@
 	background-color: black;
 }
 
+#groupsPart{
+	margin-left: 5%;
+}
+
+.groupsPart{
+	background-color: #2a2a2a!important;
+}
+
 .divli{
 	float: right;
 	height: 100px;
