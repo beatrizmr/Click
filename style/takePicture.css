@@ -7,8 +7,12 @@
 	background-color: black;
 }
 
-#groupsPart{
+.groupsPartText{
 	margin-left: 5%;
+}
+
+.spaceSpan{
+	margin-left: 3%;
 }
 
 .groupsPart{
