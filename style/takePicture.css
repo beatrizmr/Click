@@ -56,7 +56,12 @@
 
 .hrefcolor{
 	z-index: -95;
-	margin-top: 2%;
+	margin-top: 2%;	
+}
+
+#hrefcolor{
+	color: #999!important; 
+	background-color: #dadada!important;
 }
 
 .colorInputGr{

@@ -421,7 +421,7 @@ Lungo.dom('#section2').on('hold', function(event){
 		return old.replace(/rgb\(.*\)/gi,color);
 	}
 
-	//Elegir un grupo a cuyos miembros te diriges al que escribir en la timeline
+	//Choose the group whose members you write to in the generic timeline
 
 	function selectColor (){
 		var colorSelected = document.getElementById('colorinput').value;
@@ -434,6 +434,13 @@ Lungo.dom('#section2').on('hold', function(event){
 	
 
 
+	//Choose the color of the group that is being created
+	function colorG (){
+		var colorSelec = document.getElementById('colorInputGr').value;
+		document.getElementById('hrefcolor').setAttribute('style', "color: "+colorSelec+" !important");
+	}
+
+	document.getElementById("colorInputGr").addEventListener("change", function(){colorG()}, false);
 		
 
 
