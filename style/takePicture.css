@@ -1,5 +1,72 @@
 
 /*Nueva paleta:(azul)0ebfb2 (marron)402f18 (verde)8cbf3b (crudo)dee3e5 (salmon)f74855*/
+.nameGroup{
+	
+}
+
+.NameMemGR{
+	padding-top: 8%;
+	margin-left: 45%;
+}
+
+.contactState{
+	margin-top: 3%;
+	margin-left: 6%;
+}
+
+.memCrGr{
+	width: 93%;
+	height: 51%;
+	margin-top: 3%;
+	margin-left: 7%;
+}
+
+.memCrGr li{
+	height: 5em;
+	background-color: red;
+}
+
+.contactName{
+	margin-left: 6%;
+	margin-top: 8%;
+}
+
+.membersForGr{
+
+}
+
+.formularioCrGr{
+	height: 91%;
+}
+
+.imgCrGr{
+	background-color: red;
+	width: 10%;
+	height: 7%;
+}
+
+.imgMemberCreGr{
+
+}
+
+.picColorGr{
+	z-index: -99999999!important;
+	margin-bottom: 12%;
+}
+
+.hrefcolor{
+	z-index: -95;
+	margin-top: 2%;
+}
+
+.colorInputGr{
+	width: 94%;
+	z-index: 99!important;
+	margin-top: 5%;
+	position: absolute;
+	opacity: 0;
+}
+
 .contenedorcito{
 	height: 24%;
 	margin-left: -62%!important;
@@ -318,6 +385,9 @@ header{
 	background-position: center;
 }
 
+.contactLi li{
+	padding: 2% !important;
+}
 
 
 .Grupotimeline{
@@ -366,11 +436,21 @@ header{
 	background-image: url("../img/gplaypattern.png");
 }
 
-#createGrView{
-	background-image: url("../img/gplaypattern.png");
+.createGrView{
+	overflow: hidden;
 }
 
-#contactsView{
+.createNg{
+	color: #0095c1!important;
+	margin-left: 3%;
+	margin-top: 2%;
+}
+
+.checkContact{
+	box-shadow: none !important;
+}
+
+.contactsView{
 	background-image: url("../img/gplaypattern.png");
 }
 
