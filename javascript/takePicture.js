@@ -443,16 +443,40 @@ Lungo.dom('#section2').on('hold', function(event){
 	document.getElementById("colorInputGr").addEventListener("change", function(){colorG()}, false);
 		
 
-	//Next and previous pictures in carrousel
+//Next and previous pictures in carrousel
 	function nextPic (){
 		document.getElementById('picturesContainer').setAttribute('style', "background-image: url('galeriaPrueba/8.jpg')");
 	}
 
-	document.getElementById("next").addEventListener("click", function(){nextPic()}, false);
-
-
-	document.getElementById("previous").onclick = function(){
+	function prevPic (){
 		document.getElementById('picturesContainer').setAttribute('style', "background-image: url('galeriaPrueba/4.jpg')");
 	}
 
+	document.getElementById("next").addEventListener("click", function(){nextPic()}, false);
+	//document.getElementById("picturesContainer").addEventListener("swipeLeft", function(){nextPic()}, false);  //NO FUNCIONA SWIPE
+	document.getElementById("previous").addEventListener("click", function(){prevPic()}, false);
+	//document.getElementById("picturesContainer").addEventListener("swipeRight", function(){prevPic()}, false); //NO FUNCIONA SWIPE
 
+
+
+//zoom pictures
+	s = 100;
+	function zom (){
+		alert("acercar");
+		alert("s vale"+s);
+		s = s+100;
+		alert("s vale"+s);
+		document.getElementById('picturesContainer').setAttribute('style', "background-size:"+s+"%");
+	}
+	function far (){
+		alert("alejar");
+		s = s*0.5;
+		document.getElementById('picturesContainer').setAttribute('style', "background-size:"+s+"%");
+	}
+	
+
+	document.getElementById("pictures").addEventListener("pich", function(){far()}, false);  //aleja bien
+	document.getElementById("pictures").addEventListener("pinchOut", function(){zom()}, false); //aleja antes de acercar  NO FUNCIONA BIEN
+
+	
+	
