@@ -431,7 +431,7 @@ Lungo.dom('#section2').on('hold', function(event){
 	}
 
 	document.getElementById("colorinput").addEventListener("change", function(){selectColor()}, false);
-	
+
 
 
 	//Choose the color of the group that is being created
@@ -443,5 +443,16 @@ Lungo.dom('#section2').on('hold', function(event){
 	document.getElementById("colorInputGr").addEventListener("change", function(){colorG()}, false);
 		
 
+	//Next and previous pictures in carrousel
+	function nextPic (){
+		document.getElementById('picturesContainer').setAttribute('style', "background-image: url('galeriaPrueba/8.jpg')");
+	}
+
+	document.getElementById("next").addEventListener("click", function(){nextPic()}, false);
+
+
+	document.getElementById("previous").onclick = function(){
+		document.getElementById('picturesContainer').setAttribute('style', "background-image: url('galeriaPrueba/4.jpg')");
+	}
 
 

@@ -49,6 +49,26 @@
 
 }
 
+#previous{
+	opacity: 0.5;
+	margin-left: 3%;
+}
+
+#next{
+	opacity: 0.5;
+	margin-left: 68%;
+	margin-top: 3%;
+}
+
+#picturesContainer{
+	width: 100%;
+	height: 84%;
+	background-image: url("../galeriaPrueba/1.jpg");	
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
 .picColorGr{
 	z-index: -99999999!important;
 	margin-bottom: 12%;
