@@ -116,7 +116,7 @@
             <nav>
                 <a href="#" data-view-aside="features" data-icon="menu"></a>
             </nav>
-            <a href="#" data-view-article="main" class="title centered nameapp"> Click! </a>
+            <a href="#" data-view-article="profile" class="title centered nameapp"> Click! </a>
             <nav class="on-right" id="controlSize">
                 <div id="cameraContainer" class="icons">
                     <input id="fotoExif" type="file" accept="image/*" capture="camera"/>                         
@@ -125,7 +125,7 @@
             </nav>
         </header>
 
-        <article id="main" class="list">
+        <article id="profile" class="list active">
             <div id="profileUserData">
                   <div id="usrName" data-click="name">
                     <p>Beuki</p>
@@ -288,7 +288,7 @@
             <div> VISTA EDIT GROUPS
             </div>
         </article>
-        <article class="createGrView indented scroll active" id="form-indented">
+        <article id="createGrView" class="indented scroll" id="form-indented">
             <a href="#" class="createNg button small margin-bottom" disabled="true" data-icon="ok" data-label="Create"></a>
             <div class="form formularioCrGr">
                 <fieldset class="radius shadow nameGroup" data-icon="group">
@@ -370,7 +370,7 @@
                 </div>
             </div>
         </article>
-        <article class="contactsView">
+        <article id="contactsView">
             <div> VISTA CONTACTOS
             </div>
         </article>        
@@ -564,38 +564,29 @@
     <aside id="features" data-transition="left">
         <header data-title="Beuki">
         </header>
-
-        <article class="active scroll indented list">
+		<nav class="on-right">
+				<a href="#" class="buttons" data-icon="settings"><span class="icon settings"></span></a>
+		</nav>
+        <article class="active scroll list">
             <div class="groupsPart" data-icon="group">
                 <span class="groupsPartText">GROUPS</span>
             </div>
+			
             <ul>
-                <li>
-                    <span class="spaceicon icon sign"></span>
-                    <a data-view-article="createGrView">
-                        <strong class="divFei left">New group</strong>
-                    </a>                                  
+                <li data-view-article="createGrView" data-icon="sign">
+                    <strong>New group</strong>                           
                 </li>
-                <li>
-                    <span class="spaceicon icon edit"></span>
-                    <a data-view-section="groupSection">
-                        <strong class="divFei left">Ejemplo grupo</strong>
-                    </a>                                  
+				 <li data-view-section="groupSection" data-icon="edit">
+                    <strong>Ejemplo grupo</strong>                           
                 </li>
-                 <li>
-                    <span class="spaceicon icon edit"></span>
-                    <a data-view-article="exifTest-article">
-                        <strong class="divFei left">exif test</strong>
-                    </a>                                  
+				<li data-view-article="exifTest-article" data-icon="edit">
+                    <strong>exif test</strong>                           
                 </li>
-                 <li>
-                    <span class="spaceicon icon edit"></span>
-                    <a data-view-section="main_section">
-                        <strong class="divFei left">loggin</strong>
-                    </a>                                  
-                </li>                
+				<li data-view-section="main_section" data-icon="edit">
+                    <strong>loggin</strong>                           
+                </li>              
             </ul>
-            <div data-view-section="main" class="groupsPart" data-icon="user">
+            <div data-view-article="profile" class="groupsPart" data-icon="user">
                 <span class="groupsPartText">PROFILE</span>
             </div>
             <div data-view-article="contactsView" id="contactsLink" class="groupsPart" data-icon="book">
