@@ -56,6 +56,9 @@
 </head>
 
 <body class="app">
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////// MAIN_SECTION  ///////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
     <section id="main_section" data-transition="slide" class="show">
         <article class="active main">
             <div class="form Initialform">
@@ -80,6 +83,9 @@
         </article>
     </section>
 
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////// REGISTRO  ///////////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
     <section id="registro">
         <article class="main">
             <div class="form Initialform" id="registView">
@@ -110,7 +116,10 @@
             </div>
         </article>
     </section>
-    
+
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////// MAIN  ///////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->    
     <section id="main" data-transition="slide" data-pull="normal">        
         <header>
             <nav>
@@ -125,6 +134,7 @@
             </nav>
         </header>
 
+        <!--/////////////////////////////////////////// profile  ////////////////////////////////////////////////////////////-->
         <article id="profile" class="list active">
             <div id="profileUserData">
                   <div id="usrName" data-click="name">
@@ -251,6 +261,7 @@
             </form>
         </article>
 
+        <!--/////////////////////////////////////////// exifTest-article  ////////////////////////////////////////////////////////////-->
         <article id="exifTest-article" class="list scroll">            
              <div id="datosSensores" class="list indented scroll">
                 <ul>
@@ -284,10 +295,13 @@
             <div id="cm-example" style="width:200px;height:200px;border-color:1px solid red;"></div>
         </article>
 
+        <!--/////////////////////////////////////////// editGrView  ////////////////////////////////////////////////////////////-->
         <article id="editGrView">
             <div> VISTA EDIT GROUPS
             </div>
         </article>
+
+        <!--/////////////////////////////////////////// createGrVew  ////////////////////////////////////////////////////////////-->
         <article id="createGrView" class="indented scroll" id="form-indented">
             <a href="#" class="createNg button small margin-bottom" disabled="true" data-icon="ok" data-label="Create"></a>
             <div class="form formularioCrGr">
@@ -370,12 +384,100 @@
                 </div>
             </div>
         </article>
+
+        <!--/////////////////////////////////////////// contactsView  ////////////////////////////////////////////////////////////-->
         <article id="contactsView">
-            <div> VISTA CONTACTOS
+            <div id="contactsContainer">
+                <div class="contactLi indented scroll list">
+                    <ul>
+                        <li class="thumb">
+                            <img class="contactIMG" src="img/fotoPerfilDefecto.jpg" />
+                            <div>                                
+                                <strong class="contactName">Beatriz Martinez</strong>
+                                <small class="contactState">beuki</small>
+                                <div class="on-right tiny sname">21 de feb a las 23:06</div>
+                            </div>
+                        </li>
+                        <li class="thumb">
+                            <img class="contactIMG" src="img/usuario3.jpg" />
+                            <div>                                
+                                <strong class="contactName">Pablo Moncada</strong>
+                                <small class="contactState">monkalabaci</small>
+                                <div class="on-right tiny sname">ayer a las 23:06</div>
+                            </div>
+                        </li>
+                        <li class="thumb">
+                            <img class="contactIMG" src="img/usuario4.jpg" />
+                            <div>                                
+                                <strong class="contactName">David Perez</strong>
+                                <small class="contactState">oyuelitos</small>
+                                <div class="on-right tiny sname">hoy a las 23:06</div>
+                            </div>
+                        </li>
+                        <li class="thumb">
+                            <img class="contactIMG" src="img/fotoPerfilDefecto.jpg" />
+                            <div>                                
+                                <strong class="contactName">Jota jotita</strong>
+                                <small class="contactState">sadomaso</small>
+                                <div class="on-right tiny sname">21 de feb a las 23:06</div>
+                            </div>
+                        </li>
+                        <li class="thumb">
+                            <img class="contactIMG" src="img/fotoPerfilDefecto.jpg" />
+                            <div>                                
+                                <strong class="contactName">Papi Chulote</strong>
+                                <small class="contactState">papichulo</small>
+                                <div class="on-right tiny sname">21 de feb a las 23:06</div>
+                            </div>
+                        </li>
+                        <li class="thumb">
+                            <img class="contactIMG" src="img/fotoPerfilDefecto.jpg" />
+                            <div>                                
+                                <strong class="contactName">Beatriz Martinez</strong>
+                                <small class="contactState">beuki</small>
+                                <div class="on-right tiny sname">21 de feb a las 23:06</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <button href="#" data-view-menu="options" id="addCon" class="secondary anchor" data-icon="plus" disabled="true" data-label="Add"></button>
             </div>
-        </article>        
+            <nav id="options" class="form navSearch" data-control="menu">
+                <fieldset data-icon="search" class="anchor fieldsetSearch">
+                    <input id="searchNav" type="search" placeholder="Search...">
+                </fieldset>
+                <div class="scroll list" id="navContacts">
+                    <ul>                        
+                        <li class="liNav thumb">
+                            <img class="contactIMG" src="img/fotoPerfilDefecto.jpg" />
+                            <div class ="textNav">                                
+                                <strong class="nameNav">Beatriz Martinez</strong>
+                                <small class="nameNav">beuki</small>
+                            </div>
+                        </li>
+                        <li class="liNav thumb">
+                            <img class="contactIMG" src="img/usuario3.jpg" />
+                            <div class ="textNav">                                
+                                <strong class="nameNav">Pablo Moncada</strong>
+                                <small class="nameNav">monkalabaci</small>
+                            </div>
+                        </li>
+                        <li class="liNav thumb">
+                            <img class="contactIMG" src="img/usuario4.jpg" />
+                            <div class ="textNav">                                
+                                <strong class="nameNav">David Perez</strong>
+                                <small class="nameNav">oyuelitos</small>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </article>
     </section>
 
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////// GROUPSECTION  ///////////////////////////////////////////////////////////////////////////////////////////////////-->
+    <!--////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
     <section id= "groupSection" data-transition="slide">
         <header>
             <nav>
@@ -395,6 +497,8 @@
             <a href="#" data-view-article="members" data-icon="checkmark" data-label="Members"></a>
             <a href="#" data-view-article="pictures" data-icon="checkmark" data-label="Pictures"></a>
         </nav>
+
+        <!--/////////////////////////////////////////// profile  ////////////////////////////////////////////////////////////-->
         <article id="profile" class="active">
             <div class="containerGroups active block">
                 <div class="Grupotimeline scroll list indented">
@@ -446,7 +550,7 @@
                     </ul> 
                 </div>  
             </div>            
-            <div class="active block" >
+            <div class="block" >
                 <div class="GroupPictures">
                     <div class="horizontal scroll ulGal" id="Grouppictures">
                         <img src="galeriaPrueba/3.jpg" />
@@ -463,6 +567,8 @@
             <div id="ajusteBottom">
             </div>            
         </article>
+
+        <!--/////////////////////////////////////////// map  ////////////////////////////////////////////////////////////-->
         <article id="map">
             <div class="horizontal scroll contenedorcito">
                 <div class = "divli" id="uno">
@@ -479,6 +585,8 @@
                 </div>
             </div>
         </article>
+
+        <!--/////////////////////////////////////////// members  ////////////////////////////////////////////////////////////-->
         <article id="members" class="scroll">
             <div class="ulFri">
                 <div class="nota">
@@ -555,6 +663,8 @@
                 <img src = "img/usuario1.jpg"/> -->
             </div>
         </article>
+
+        <!--/////////////////////////////////////////// pictures  ////////////////////////////////////////////////////////////-->
         <article id="pictures">
             <div id="picturesContainer">
                 <button id = "previous" class="small" data-icon="chevron-left"></button>
@@ -576,13 +686,13 @@
             </div>
 			
             <ul>
-                <li data-view-article="createGrView" data-icon="sign">
+                <li onClick="javascript:showArticle('main','createGrView')" data-icon="sign">
                     <strong>New group</strong>                           
                 </li>
 				 <li data-view-section="groupSection" data-icon="edit">
                     <strong>Ejemplo grupo</strong>                           
                 </li>
-				<li data-view-article="exifTest-article" data-icon="edit">
+				<li onClick="javascript:showArticle('main','exifTest-article')" data-icon="edit">
                     <strong>exif test</strong>                           
                 </li>
 				<li data-view-section="main_section" data-icon="edit">

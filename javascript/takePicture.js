@@ -480,3 +480,42 @@ Lungo.dom('#section2').on('hold', function(event){
 
 	
 	
+function showArticle(section, article){
+
+	//Patch bug Lungo, hay que quitar antes el class active de cualquier articulo de la seccion a la que queremos ir
+
+	sec = document.getElementById(section);
+	ch = sec.children;
+
+	for(i=0; i<ch.length; i++){
+       if(ch[i].id == article)
+               ch[i].classList.add("active");
+       else
+               ch[i].classList.remove("active");
+	}
+
+	Lungo.Router.section(section);
+
+}
+
+
+
+
+var searchNav = document.getElementById('searchNav');
+searchNav.onkeyup = function () {
+    var filter = searchNav.value.toUpperCase();
+    var lisNav = document.getElementsByClassName('liNav');
+    for (var i = 0; i < lisNav.length; i++) {
+        var name = lisNav[i].getElementsByClassName('nameNav')[0].innerHTML;
+        if (name.toUpperCase().indexOf(filter) == 0){ 
+        	//alert("coincide"+i);
+        	//lisNav[i].style.display = 'list-item';
+        	lisNav[i].classList.remove('hide');    	
+        }else{
+        	//alert("no coincide"+i);
+            //lisNav[i].style.display = 'none';
+            lisNav[i].classList.add('hide');
+
+        }
+    }
+}

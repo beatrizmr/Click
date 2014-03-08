@@ -69,6 +69,26 @@
 	background-position: center;
 }
 
+#navContacts li{
+	padding: 1%;
+}
+
+.fieldsetSearch{
+}
+
+.navSearch{
+	height: 100%;
+}
+
+.textNav{
+	margin-left: 5%;
+	text-align: left;
+}
+
+.sname{
+	margin-right: 2%;
+}
+
 .picColorGr{
 	z-index: -99999999!important;
 	margin-bottom: 12%;
@@ -109,25 +129,6 @@
 
 .groupsPart{
 	background-color: #2a2a2a!important;
-}
-
-.divli{
-	float: right;
-	height: 100px;
-	width: 100px;
-}
-
-#uno{
-	background-color: red;
-}
-#dos{
-	background-color: green;
-}
-#tres{
-	background-color: blue;
-}
-#cuatro{
-	background-color: orange;
 }
 
 #usrName{
@@ -383,6 +384,10 @@ header{
 	font-size: 3em;
 }
 
+#addCon{
+	position: fixed;
+	bottom: 1%;
+}
 
 .numMember{
 	float: left;
@@ -412,8 +417,20 @@ header{
 
 .contactLi li{
 	padding: 2% !important;
+	height: 70%;
 }
 
+.contactLi{
+	height: 89%;
+}
+
+#divAddCon{
+	height: 11%;
+}
+
+#contactsContainer{
+	height: 91%;
+}
 
 .Grupotimeline{
 	height: 85%;
@@ -583,4 +600,8 @@ header{
 	border-color: red !important;
 	border-bottom: 2px;
 	border-style: solid;
+}
+
+.hide{
+	display: none !important;
 }
