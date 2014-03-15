@@ -1,5 +1,7 @@
 
 var click = new Click();
+var db = new DropboxClick();
+
 
 
 // Funciones al cargar secciones
@@ -146,59 +148,6 @@ Lungo.dom('#main').on('load', function(event){
 	}
 
 
-//Localizacion longitude y latitude
-	function getLocation(){
-		if (navigator.geolocation){
-	    	navigator.geolocation.getCurrentPosition(showPosition,showError);
-	    }else{
-	    	document.getElementById("outLatitude").innerHTML="Geolocation is not supported by this browser.";
-	    }
-	}
-
-	var divMap=document.getElementById('divMap');
-	var divCoordenadas=document.getElementById('divCoordenadas');
-
-	function showPosition(position){
-		var ilongitud = position.coords.longitude;
-		var ilatitud = position.coords.latitude;
-		document.getElementById("outLatitude").innerHTML = ilatitud;
-		document.getElementById("outLongitude").innerHTML = ilongitud;
-
-
-		//Open Street Maps
-	    var cloudmade = new CM.Tiles.CloudMade.Web({key: '139f1f8c45e84baf8ce557b4f82687a0'});
-	    var map = new CM.Map('cm-example', cloudmade);
-	    var myMarkerLatLng = new CM.LatLng(ilongitud, ilatitud);
-		var myMarker = new CM.Marker(myMarkerLatLng, {
-			title: "Me encuentro aquí"
-		});    
-		map.setCenter(myMarkerLatLng, 15);
-		map.addOverlay(myMarker);
-	}
-
-	
-
-	function showError(error){
-		switch(error.code){
-			case error.POSITION_UNAVAILABLE:
-	     		x.innerHTML="Your position information is not available"
-	      		break;
-	    	case error.PERMISSION_DENIED:
-	      		x.innerHTML="User denied the request for Geolocation."
-	      		break;
-	    	case error.POSITION_UNAVAILABLE:
-	      		x.innerHTML="Location information is unavailable."
-	      		break;
-	    	case error.TIMEOUT:
-	      		x.innerHTML="The request to get user location timed out."
-	     		break;
-	    	case error.UNKNOWN_ERROR:
-	     		x.innerHTML="An unknown error occurred."
-	      		break;
-	    }
-	}
-
-
 // Hacer cuadrados los elementos 
  Element.prototype.getElementWidth = function() {
  	   if (typeof this.clip !== "undefined") {
@@ -318,7 +267,7 @@ Lungo.dom('#section2').on('hold', function(event){
 	document.getElementById('crearUsuario').onclick = function() {
 		//faltan mil comprobaciones...........
 		if(document.getElementById('txt-signupUserName').value.length > 0){
-			insertUser(document.getElementById('txt-signupName').value, document.getElementById('txt-signupLastname').value, document.getElementById('txt-signupUserName').value, document.getElementById('txt-signupPssword').value);
+			click.newUser(document.getElementById('txt-signupUserName').value, document.getElementById('txt-signupName').value, document.getElementById('txt-signupLastname').value, document.getElementById('txt-signupEmail').value, document.getElementById('txt-signupPssword').value);
 			
 		}
 		return false;
@@ -343,7 +292,8 @@ Lungo.dom('#section2').on('hold', function(event){
 		var data = {data: JSON.stringify({login: login, password: password})};
 		var parseResponse = function(result){
 			if(result.status == "200"){
-				click.setToken(result.token);				
+				click.setToken(result.token);
+
 				Lungo.Router.section("main");
 				Lungo.Notification.show(
 					"check",                //Icon
@@ -408,6 +358,23 @@ Lungo.dom('#section2').on('hold', function(event){
                         </div>\
                     </li>';
 	}
+
+	function insertContact(contact){
+			var contactList = document.getElementById("contacts-view-list");
+			contactList.insertAdjacentHTML("beforeend", contact);
+	}
+	function construirContacto(login, name, surname, photo, date){
+		//return '<li class="thumb" onclick="javascript:click.addContact(id)" >\
+		return '<li class="thumb">\
+                    <img class="contactIMG" src="'+photo+'" />\
+                    <div>\
+                        <strong class="contactName">'+name+' '+surname+'</strong>\
+                        <small class="contactState">'+login+'</small>\
+                        <div class="on-right tiny sname">'+date+'</div>\
+                    </div>\
+                </li>';
+	}
+
 
 
 
@@ -498,6 +465,28 @@ function showArticle(section, article){
 
 }
 
+function showContacts(){
+	contactList = document.getElementById("contacts-view-list");
+	contactList.innerHTML = "";
+	
+	function loadContacts(contacts){
+
+		if (contacts.length == 0){
+		
+		}else{
+			for(i=0;i<contacts.length;i++){
+				contacto = construirContacto(contacts[i].login, contacts[i].name, contacts[i].surname, contacts[i].photo, " Mie 23/11/2012");
+				insertContact(contacto);
+			}
+		}
+		showArticle('main','contactsView');
+	}
+	
+	click.getContacts(loadContacts);
+
+
+}
+
 
 
 
@@ -519,3 +508,138 @@ searchNav.onkeyup = function () {
         }
     }
 }
+
+//##################################################################################//
+//############################## MAPS ##############################################//
+//##################################################################################//
+
+//Localizacion longitude y latitude
+	function getLocation(){
+		if (navigator.geolocation){
+	    	navigator.geolocation.getCurrentPosition(showPosition,showError);
+	    }else{
+	    	document.getElementById("outLatitude").innerHTML="Geolocation is not supported by this browser.";
+	    }
+	}
+
+/*	var divMap=document.getElementById('divMap');
+	var divCoordenadas=document.getElementById('divCoordenadas');*/
+
+
+	function showPosition(position){
+		var ilongitud = position.coords.longitude;
+		var ilatitud = position.coords.latitude;
+		document.getElementById("outLatitude").innerHTML = ilatitud;
+		document.getElementById("outLongitude").innerHTML = ilongitud;
+
+
+		//Open Street Maps
+/*	    var cloudmade = new CM.Tiles.CloudMade.Web({key: '139f1f8c45e84baf8ce557b4f82687a0'});
+	    var map = new CM.Map('cm-example', cloudmade);
+	    var myMarkerLatLng = new CM.LatLng(ilongitud, ilatitud);
+		var myMarker = new CM.Marker(myMarkerLatLng, {
+			title: "Me encuentro aquí"
+		});    
+		map.setCenter(myMarkerLatLng, 15);
+		map.addOverlay(myMarker);*/
+	}
+
+	
+
+	function showError(error){
+		switch(error.code){
+			case error.POSITION_UNAVAILABLE:
+	     		x.innerHTML="Your position information is not available"
+	      		break;
+	    	case error.PERMISSION_DENIED:
+	      		x.innerHTML="User denied the request for Geolocation."
+	      		break;
+	    	case error.POSITION_UNAVAILABLE:
+	      		x.innerHTML="Location information is unavailable."
+	      		break;
+	    	case error.TIMEOUT:
+	      		x.innerHTML="The request to get user location timed out."
+	     		break;
+	    	case error.UNKNOWN_ERROR:
+	     		x.innerHTML="An unknown error occurred."
+	      		break;
+	    }
+	}
+
+
+
+//show the map
+
+var map;
+
+function initialize(position) {
+	var userPointer = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+    var mapOptions = {
+      center: userPointer,
+      zoom: 15,
+      mapTypeControl: false,
+      zoomControl: false,
+      streetViewControl: false,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+    var circleUser = {
+    	path: google.maps.SymbolPath.CIRCLE,
+    	scale: 10
+    };
+
+    var marker = new google.maps.Marker({
+    	position: userPointer,
+    	title:"beuki",
+    	icon: circleUser,
+    	map: map
+    });
+
+    marker.setMap(map);
+}
+
+
+Lungo.dom('#map').on('load', function(event){
+	navigator.geolocation.getCurrentPosition(initialize,showError);
+});
+
+// INCORPORARA CAPA A UN MAPA
+//Para añadir una capa a un mapa, solo es necesario ejecutar setMap(), 
+//transmitiéndole el objeto del mapa en el que se mostrará la capa. 
+//De forma similar, para ocultar una capa, ejecuta setMap(), transmitiendo null
+
+
+
+
+
+
+//FUNCIONES CONTACTOS PABLO
+//    click.getContacts()
+//    
+//click.contacts
+// email: "beatrizmr89@gmail.com"
+//id: "1"
+//login: "beuki"
+// name: "Beatriz"
+// photo: "beatriz.jpg"
+// surname: "Martinez Rubio"
+
+
+//click.contacts[0].name
+
+
+//
+//
+//click.getGroups()
+//
+// click.groups
+//cid: "1"
+//  id: "1"
+//name: "prueba"
+//timestamp: "2013-11-17 18:00:46"
+
+
+//click.getUsers()

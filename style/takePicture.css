@@ -1,3 +1,22 @@
+/* para que las declaraciones funcionen en modo standar */
+/*html{
+	height: 100% 
+}
+
+body{
+	height: 100%; 
+	margin: 0; 
+	padding: 0 
+}
+*/
+/* maps*/
+#map_canvas{
+	height: 100%; 
+	width: 100%;
+}
+
+#map{
+}
 
 /*Nueva paleta:(azul)0ebfb2 (marron)402f18 (verde)8cbf3b (crudo)dee3e5 (salmon)f74855*/
 .nameGroup{

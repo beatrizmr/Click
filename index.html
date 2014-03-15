@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html> <!-- declare the application as html5 -->
 <html>
 <head>
 
@@ -13,6 +13,8 @@
     <meta name="format-detection" content="telephone=no"/>
     <meta http-equiv="cleartype" content="on"/>
     <meta http-equiv="Content-Type" content="text/html; charset=windows-1252"/>
+    <!-- maps -->
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 
     <!-- iPhone -->
     <link href="http://cdn.tapquo.com/lungo/icon-57.png" sizes="57x57" rel="apple-touch-icon"/>
@@ -99,7 +101,7 @@
                 </div>
 
                 <fieldset class="radius-top" data-icon="user">
-                    <input type="text" placeholder="mail address" id="txt-signupLastname" value/>
+                    <input type="text" placeholder="mail address" id="txt-signupEmail" value/>
                 </fieldset>
 
                 <div id="logginData">
@@ -389,55 +391,8 @@
         <article id="contactsView">
             <div id="contactsContainer">
                 <div class="contactLi indented scroll list">
-                    <ul>
-                        <li class="thumb">
-                            <img class="contactIMG" src="img/fotoPerfilDefecto.jpg" />
-                            <div>                                
-                                <strong class="contactName">Beatriz Martinez</strong>
-                                <small class="contactState">beuki</small>
-                                <div class="on-right tiny sname">21 de feb a las 23:06</div>
-                            </div>
-                        </li>
-                        <li class="thumb">
-                            <img class="contactIMG" src="img/usuario3.jpg" />
-                            <div>                                
-                                <strong class="contactName">Pablo Moncada</strong>
-                                <small class="contactState">monkalabaci</small>
-                                <div class="on-right tiny sname">ayer a las 23:06</div>
-                            </div>
-                        </li>
-                        <li class="thumb">
-                            <img class="contactIMG" src="img/usuario4.jpg" />
-                            <div>                                
-                                <strong class="contactName">David Perez</strong>
-                                <small class="contactState">oyuelitos</small>
-                                <div class="on-right tiny sname">hoy a las 23:06</div>
-                            </div>
-                        </li>
-                        <li class="thumb">
-                            <img class="contactIMG" src="img/fotoPerfilDefecto.jpg" />
-                            <div>                                
-                                <strong class="contactName">Jota jotita</strong>
-                                <small class="contactState">sadomaso</small>
-                                <div class="on-right tiny sname">21 de feb a las 23:06</div>
-                            </div>
-                        </li>
-                        <li class="thumb">
-                            <img class="contactIMG" src="img/fotoPerfilDefecto.jpg" />
-                            <div>                                
-                                <strong class="contactName">Papi Chulote</strong>
-                                <small class="contactState">papichulo</small>
-                                <div class="on-right tiny sname">21 de feb a las 23:06</div>
-                            </div>
-                        </li>
-                        <li class="thumb">
-                            <img class="contactIMG" src="img/fotoPerfilDefecto.jpg" />
-                            <div>                                
-                                <strong class="contactName">Beatriz Martinez</strong>
-                                <small class="contactState">beuki</small>
-                                <div class="on-right tiny sname">21 de feb a las 23:06</div>
-                            </div>
-                        </li>
+                    <ul id="contacts-view-list">
+                        
                     </ul>
                 </div>
                 <button href="#" data-view-menu="options" id="addCon" class="secondary anchor" data-icon="plus" disabled="true" data-label="Add"></button>
@@ -570,19 +525,7 @@
 
         <!--/////////////////////////////////////////// map  ////////////////////////////////////////////////////////////-->
         <article id="map">
-            <div class="horizontal scroll contenedorcito">
-                <div class = "divli" id="uno">
-                    hola caraculo feo qeu te quiero
-                </div>
-                <div class = "divli" id="dos">
-                    hola caraculo feo qeu te quiero
-                </div>
-                <div class = "divli" id="tres">
-                    hola caraculo feo qeu te quiero
-                </div>
-                <div class = "divli" id="cuatro">
-                    hola caraculo feo qeu te quiero
-                </div>
+            <div id="map_canvas">
             </div>
         </article>
 
@@ -702,8 +645,11 @@
             <div data-view-article="profile" class="groupsPart" data-icon="user">
                 <span class="groupsPartText">PROFILE</span>
             </div>
-            <div data-view-article="contactsView" id="contactsLink" class="groupsPart" data-icon="book">
+            <div onClick="javascript:showContacts()" id="contactsLink" class="groupsPart" data-icon="book">
                 <span class="groupsPartText">CONTACTOS</span>
+            </div>
+            <div onClick="javascript:db.authenticate()" class="groupsPart" data-icon="book">
+                <span class="groupsPartText">LINK DROPBOX</span>
             </div>
         </article>
     </aside>
@@ -721,10 +667,17 @@
     <script src="https://www.dropbox.com/static/api/dropbox-datastores-1.0-latest.js" type="text/javascript"></script>
     <!--<script type="text/javascript" src="javascript/dropbox-datastores-1.0.0.js"></script>-->
 
-    <script src="javascript/Click.js"></script>    
+    <!--sensor: indica si esta aplicacion utiliza un sensor (por ejemplo, un localizador GPS) para determinar la ubicación del usuario.-->       
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8y9MpnDOJRiaCwhaG5l70LqiWfAPZGG8&sensor=true">
+    </script>
+
+
+    <script src="javascript/Click.js"></script>
+    <script src="javascript/dropbox.click.js"></script> 
     <script src="javascript/takePicture.js"></script>
     
-    <script type="text/javascript" src="https://www.google.com/jsapi"></script>  
+     <!-- <script type="text/javascript" src="https://www.google.com/jsapi"></script> -->
     
     <!-- Lungo - Sandbox App -->
     <script>

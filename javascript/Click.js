@@ -1,25 +1,110 @@
+/********************************************
+/*         Click Javascript Library         *
+/********************************************
+/*                                          *
+/* This file is part of Click               *
+/* @author Beatriz Martinez Rubio           *
+/* @version 11/11/2013                      *
+*********************************************/
+
 function Click (){
 
 	this.endpoint = "http://moncadaisla.es/click/";
 	this.jsonEndpoint = this.endpoint + "json.php";
 	this.loginEndpoint = this.endpoint + "login.php";
-
+	
+	/**
+	/* Función que sirve para guardar el token de autenticación que ha de ser enviado al servidor
+	/* para realizar cualquier operación correspondiente al usuario.
+	**/
 	this.setToken = setToken;
 	function setToken (token){
 		localStorage.clear();
 		localStorage.setItem("token", token);
 	}
 
+	/**
+	/* Función getter del token de autenticación
+	/* Lo coge de localstorage de HTML5
+	**/
 	this.getToken = getToken;
 	function getToken (){
 		return localStorage.getItem("token");
 	}
 
+	/**
+	/* Helper para guardar clave-valor en localstorage de HTML5
+	**/
 	this.setData = setData;
 	function setData(key, value){
 		localStorage.setItem(key, value);
 	}
+	
+	/**
+	/* Setter para el active group
+	/* El active group será el último grupo visitado
+	**/
+	this.setActiveGroup = setActiveGroup;
+	function setActiveGroup(gid){
+		setData("activeGroup", gid);
+	}
+	
+	/**
+	/* Getter para el active group
+	**/
+	this.getActiveGroup = getActiveGroup;
+	function getActiveGroup(gid){
+		return localStorage.getItem("activeGroup");
+	}
+	
 
+	/**
+	/* Gets groups that the user logged in is suscribed to.
+	/* @param Callback function to manage results
+	**/
+	this.getGroups = getGroups;
+	function getGroups(callBack){
+		this.getSimple("getGroups", callBack);	
+	}
+
+	/**
+	/* Gets the logged user contact list
+	/* @param Callback function to manage results
+	**/
+	this.getContacts = getContacts;
+	function getContacts(callBack){
+		this.getSimple("getContacts", callBack);	
+	}
+	
+	/**
+	/* Add contact to the user's contact list
+	/* @param cid User id of the contacto to add
+	/* @param callBack Callback function to manage results
+	**/
+	this.addContact = addContact;
+	function addContact(cid, callBack){
+		var postData = {data: JSON.stringify( {"token": this.getToken(), "cod": "addContact", "cid": cid } ) };
+			Lungo.Service.post(this.jsonEndpoint, postData, callBack, "json");
+	}
+	
+	/**
+	/* This function makes simple POST to server to get simple data. Simple data 
+	/* is defined as that 
+	/* 
+	/* @param Callback function to manage results
+	**/
+	this.getSimple = getSimple;
+	function getSimple(cod, callback){
+		var postData = {data: JSON.stringify( {"token": this.getToken(), "cod": cod} ) };
+		Lungo.Service.post(this.jsonEndpoint, postData, callback, "json");	
+	}
+
+	/**
+	/* Sirve para cargar el valor de una clave de dato de usuario
+	/* Lo carga en el tag HTML con el id indicado
+	/* Se puede forzar a actualizar el contenido local con el del servidor
+	/* con el parámetor update.
+	*/
 	this.loadData = loadData;
 	function loadData (key, id, update){
 		var element;
@@ -44,13 +129,13 @@ function Click (){
 				return local;
 		}
 		
-		/* Actualizamos contenido del servidor si no existe o se fuerza mediante parámetro */
+		/* Actualizamos contenido del servidor si no existe o se fuerza mediante parÃ¡metro */
 		if( (local == null) || (arguments.length == 3 && update == true) ){
 
-			//Hacemos la petición HTTP para recuperar los datos actualizados
+			//Hacemos la peticiÃ³n HTTP para recuperar los datos actualizados
 			var postData = {data: JSON.stringify( {"token": this.getToken(), "cod": "getKey", "key": key } ) };
 
-			// Funcion de callback de la petición ajax
+			// Funcion de callback de la peticiÃ³n ajax
 			var parseResponse = function(result){
 				if(result.status == "200"){
 					newData = result.key;
@@ -66,7 +151,7 @@ function Click (){
 					alert(result.status);
 			}
 
-			// Petición ajax
+			// PeticiÃ³n ajax
 			Lungo.Service.post(this.jsonEndpoint, postData, parseResponse, "json");
 
 		}
@@ -75,9 +160,9 @@ function Click (){
 
 
 	/**
-	/* Función que se encarga de poner el valor adecuado en cada campo con el atributo indicado
+	/* Funcion que se encarga de poner el valor adecuado en cada campo con el atributo indicado
 	/* Ejemplo: <div id="usrName" data-click="name"></div>
-	/* y ejecutando bindData("data-click") pondrá dentro del <div> "usrName" el valor de la clave "name"
+	/* y ejecutando bindData("data-click") pondrÃ¡ dentro del <div> "usrName" el valor de la clave "name"
 	*/
 	this.bindData = bindData;
 	function bindData(attribute){
@@ -91,10 +176,33 @@ function Click (){
 		}
 
 	}
-
-
-
-	/* Función para obtener elementos por atirbuto */
+	
+	/** 
+	/* Funcion para crear un nuevo usuario.
+	/*
+	*/
+	this.newUser = newUser;
+	function newUser(login, name, surname, email, password){
+		var postData = {data: JSON.stringify( {"token": this.getToken(), "cod": "new_user", "new_user": {"login": login, "name": name, "surname": surname, "email": email, "password": password} })};
+		var parseResponse = function(result){
+				if(result.status == "200"){
+					Lungo.Router.section("main_section");
+					Lungo.Notification.show(
+					"check",                //Icon
+					"User "+login+" created",         //Title
+					3,                      //Seconds
+					null       				//Callback function
+				);
+				}
+				else
+					alert(result.status);
+			}
+		Lungo.Service.post(this.jsonEndpoint, postData, parseResponse, "json");
+	}
+	/**
+	/* Función para obtener los elementos con un determinado atributo
+	/* 
+	*/
 	function getAllElementsWithAttribute(attribute){
 	  var matchingElements = [];
 	  var allElements = document.getElementsByTagName('*');
@@ -102,12 +210,92 @@ function Click (){
 	  {
 	    if (allElements[i].getAttribute(attribute))
 	    {
-	      // Element exists with attribute. Add to array.
 	      matchingElements.push(allElements[i]);
 	    }
 	  }
 	  return matchingElements;
 	}
+	
+	
+	/** 
+	/* Funcion para convertir ima imagen a String Base64
+	/* La usaremos para guardar imágenes en localstorage.
+	*/
+	function convertImgToBase64(url, callback, outputFormat){
+		var canvas = document.createElement('CANVAS');
+		var ctx = canvas.getContext('2d');
+		var img = new Image;
+		img.crossOrigin = 'Anonymous';
+		img.onload = function(){
+			canvas.height = img.height;
+			canvas.width = img.width;
+			ctx.drawImage(img,0,0);
+			var dataURL = canvas.toDataURL(outputFormat || 'image/png');
+			callback.call(this, dataURL);
+			// Clean up
+			canvas = null; 
+		};
+		img.src = url;
+	}
+	
+	/**
+	/* Añade una imagen a un tag html dado mediante id
+	/* Nos servirá para insertar imágenes en un <div>.
+	*/
+	this.appendImg = appendImg;
+	function appendImg(id, src){
+		var img = document.createElement("img");
+		img.src = src;
+		var src = document.getElementById(id);
+		src.appendChild(img);
+	}
+	
+	this.loadGroup = loadGroup;
+	function loadGroup(id){
+	
+	}
+	
+	this.ficheroSeleccionado = ficheroSeleccionado;
+	function ficheroSeleccionado(e) {		
+        if (e.target.files.length > 0) {
+            subirFichero(e.target.files[0]);
+        }
+    }
+ 
+	
+	/**
+	/* Subir fichero a DropBox
+	/*
+	*/
+    function subirFichero(file) {
+        var xhr = new XMLHttpRequest();
+        var formData = new FormData();
+        formData.append("file", file);
+		/*
+        xhr.addEventListener("error", function(e) {
+            alert("Error subiendo el archivo.");
+            var progress = document.getElementById("progress");
+            progress.value = 0;
+        }, false);
+		*/
+        xhr.addEventListener("load", function(e) {
+            alert("fichero subido: " + e.target.status + "->" + e.target.statusText);
+        });
+        
+		/*	
+		xhr.upload.addEventListener("progress", function(e) {
+			if (e.lengthComputable) {
+				var progress = document.getElementById("progress");
+				progress.max = e.total;
+				progress.value = e.loaded;
+			}
+		}, false);
+		*/
+        xhr.open('POST', "http://moncadaisla.es/click/dropbox.endpoint.php?clickToken="+window.btoa(getToken())+"&cod=upload&gid=1", true);
+        xhr.send(formData);
+    }
+	
+	
+	
 }
-
 
