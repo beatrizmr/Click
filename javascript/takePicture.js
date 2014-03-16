@@ -294,10 +294,14 @@ Lungo.dom('#section2').on('hold', function(event){
 			if(result.status == "200"){
 				click.setToken(result.token);
 
+				/* Load initial user data */
+				showGroupList();
+
+
 				Lungo.Router.section("main");
 				Lungo.Notification.show(
 					"check",                //Icon
-					"Welcome",       //Title
+					"Welcome",       		//Title
 					3,                      //Seconds
 					null       				//Callback function
 				);
@@ -305,8 +309,8 @@ Lungo.dom('#section2').on('hold', function(event){
 				}
 			else{
 				Lungo.Notification.show(
-					"ban-circle",                //Icon
-					"Login incorrecto",       //Title
+					"ban-circle",           //Icon
+					"Login incorrecto",     //Title
 					3,                      //Seconds
 					null       				//Callback function
 				);
@@ -359,10 +363,21 @@ Lungo.dom('#section2').on('hold', function(event){
                     </li>';
 	}
 
+	function insertGroupAside(group){
+			var groupList = document.getElementById("aside-group-list");
+			groupList.insertAdjacentHTML("beforeend", group);
+	}
+
 	function insertContact(contact){
 			var contactList = document.getElementById("contacts-view-list");
 			contactList.insertAdjacentHTML("beforeend", contact);
 	}
+
+	function insertAllContact(contact){
+			var allContactList = document.getElementById("allContacts-view-list");
+			allContactList.insertAdjacentHTML("beforeend", contact);
+	}
+
 	function construirContacto(login, name, surname, photo, date){
 		//return '<li class="thumb" onclick="javascript:click.addContact(id)" >\
 		return '<li class="thumb">\
@@ -376,6 +391,17 @@ Lungo.dom('#section2').on('hold', function(event){
 	}
 
 
+
+	function construirUser(login, name, surname, photo){
+		//return '<li class="thumb" onclick="javascript:click.addContact(id)" >\
+		return '<li class="liNav thumb">\
+                            <img class="contactIMG" src="'+photo+'" />\
+                            <div class ="textNav">\
+                                <strong class="nameNav">'+name+' '+surname+'</strong>\
+                                <small class="nameNav">'+login+'</small>\
+                            </div>\
+                        </li>';
+	}
 
 
 	document.getElementById("txtComment").addEventListener("change", function(){insertItem('Es una prueba')}, false);
@@ -466,26 +492,74 @@ function showArticle(section, article){
 }
 
 function showContacts(){
+	Lungo.Notification.show();
 	contactList = document.getElementById("contacts-view-list");
 	contactList.innerHTML = "";
 	
 	function loadContacts(contacts){
 
 		if (contacts.length == 0){
-		
+			noContactsComment = document.getElementById("noContacts");
+			noContactsComment.innerHTML = '<div class="greenText" id="greenNoContacts">\
+                        <small>\
+                            You do not have any contact yet\
+                        </small>\
+                    </div>\
+                    <div id="noContactsComment">To add contacts, please click the Add button below, and select the users of the application which you would like to add to your groups.</div>';
 		}else{
 			for(i=0;i<contacts.length;i++){
 				contacto = construirContacto(contacts[i].login, contacts[i].name, contacts[i].surname, contacts[i].photo, " Mie 23/11/2012");
 				insertContact(contacto);
 			}
 		}
+		Lungo.Notification.hide();
 		showArticle('main','contactsView');
+		showAllContacts();
 	}
 	
 	click.getContacts(loadContacts);
 
 
 }
+
+
+function showAllContacts(){
+	allContactList = document.getElementById("allContacts-view-list");
+	allContactList.innerHTML = "";
+	
+	function loadAllContacts(contacts){
+		for(i=0;i<contacts.length;i++){
+			contacto = construirUser(contacts[i].login, contacts[i].name, contacts[i].surname, contacts[i].photo);
+			insertAllContact(contacto);
+		}
+	}
+
+	click.getUsers(loadAllContacts);
+
+
+}
+allContactsList = document.getElementById("addCon").addEventListener("click", showAllContacts, false);
+
+
+function construirGroupAside(id, name){
+		return '<li data-icon="edit" onClick="javascript:loadGroup('+id+')"><strong>'+name+'</strong></li>';
+}
+
+function showGroupList(){
+	asideGroupList = document.getElementById("asideGroupList");
+	//asideGroupList.innerHTML = "";
+
+	function loadGroupsAside(groups){
+		for(i=0; i<groups.length;i++){
+			group = construirGroupAside(groups[i].id, groups[i].name);
+			insertGroupAside(group);
+		}
+	}
+	click.getGroups(loadGroupsAside);
+}
+
+
+
 
 
 

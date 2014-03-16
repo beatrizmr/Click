@@ -390,40 +390,23 @@
         <!--/////////////////////////////////////////// contactsView  ////////////////////////////////////////////////////////////-->
         <article id="contactsView">
             <div id="contactsContainer">
+                <div id="noContacts">
+                    
+                </div>
                 <div class="contactLi indented scroll list">
                     <ul id="contacts-view-list">
                         
                     </ul>
                 </div>
-                <button href="#" data-view-menu="options" id="addCon" class="secondary anchor" data-icon="plus" disabled="true" data-label="Add"></button>
+                <button href="#" data-view-menu="options" id="addCon" class="secondary anchor" data-icon="plus"  data-label="Add"></button>
             </div>
             <nav id="options" class="form navSearch" data-control="menu">
                 <fieldset data-icon="search" class="anchor fieldsetSearch">
                     <input id="searchNav" type="search" placeholder="Search...">
                 </fieldset>
                 <div class="scroll list" id="navContacts">
-                    <ul>                        
-                        <li class="liNav thumb">
-                            <img class="contactIMG" src="img/fotoPerfilDefecto.jpg" />
-                            <div class ="textNav">                                
-                                <strong class="nameNav">Beatriz Martinez</strong>
-                                <small class="nameNav">beuki</small>
-                            </div>
-                        </li>
-                        <li class="liNav thumb">
-                            <img class="contactIMG" src="img/usuario3.jpg" />
-                            <div class ="textNav">                                
-                                <strong class="nameNav">Pablo Moncada</strong>
-                                <small class="nameNav">monkalabaci</small>
-                            </div>
-                        </li>
-                        <li class="liNav thumb">
-                            <img class="contactIMG" src="img/usuario4.jpg" />
-                            <div class ="textNav">                                
-                                <strong class="nameNav">David Perez</strong>
-                                <small class="nameNav">oyuelitos</small>
-                            </div>
-                        </li>
+                    <ul id="allContacts-view-list">                         
+                        
                     </ul>
                 </div>
             </nav>
@@ -628,7 +611,7 @@
                 <span class="groupsPartText">GROUPS</span>
             </div>
 			
-            <ul>
+            <ul id="aside-group-list">
                 <li onClick="javascript:showArticle('main','createGrView')" data-icon="sign">
                     <strong>New group</strong>                           
                 </li>
@@ -642,7 +625,7 @@
                     <strong>loggin</strong>                           
                 </li>              
             </ul>
-            <div data-view-article="profile" class="groupsPart" data-icon="user">
+            <div onClick="javascript:showArticle('main','profile')" class="groupsPart" data-icon="user">
                 <span class="groupsPartText">PROFILE</span>
             </div>
             <div onClick="javascript:showContacts()" id="contactsLink" class="groupsPart" data-icon="book">

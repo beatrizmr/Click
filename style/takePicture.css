@@ -23,6 +23,21 @@ body{
 	
 }
 
+#noContactsComment{
+	background: #dadada;
+	color: #999 !important;
+	width: 90%;
+	margin-left: 5%;
+	margin-right: 5%;
+	padding: 4%;
+	margin-top: 2%;
+}
+
+#greenNoContacts{
+	margin-left: 5%;
+	padding-top: 13%;
+}
+
 .NameMemGR{
 	padding-top: 8%;
 	margin-left: 45%;

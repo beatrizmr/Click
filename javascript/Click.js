@@ -9,7 +9,7 @@
 
 function Click (){
 
-	this.endpoint = "http://moncadaisla.es/click/";
+	this.endpoint = "https://moncadaisla.es/click/";
 	this.jsonEndpoint = this.endpoint + "json.php";
 	this.loginEndpoint = this.endpoint + "login.php";
 	
@@ -77,13 +77,36 @@ function Click (){
 	}
 	
 	/**
+	/* Gets all users
+	/* @param Callback function to manage results
+	**/
+	this.getUsers = getUsers;
+	function getUsers(callBack){
+		this.getSimple("getUsers", callBack);	
+	}
+	
+	/**
 	/* Add contact to the user's contact list
 	/* @param cid User id of the contacto to add
 	/* @param callBack Callback function to manage results
+	/* @returns returns to the callback function '200' if succesful
 	**/
 	this.addContact = addContact;
 	function addContact(cid, callBack){
 		var postData = {data: JSON.stringify( {"token": this.getToken(), "cod": "addContact", "cid": cid } ) };
+			Lungo.Service.post(this.jsonEndpoint, postData, callBack, "json");
+	}
+	
+	/**
+	/* Add users to a group
+	/* @param gid group of the user
+	/* @param users array of user ids
+	/* @param callBack Callback function to manage results
+	/* @returns returns to the callback function '200' if succesful
+	**/
+	this.addUsersToGroup = addUsersToGroup;
+	function addUsersToGroup(gid, users, callBack){
+		var postData = {data: JSON.stringify( {"token": this.getToken(), "cod": "addUsersToGroup", "gid": gid, "users": users } ) };
 			Lungo.Service.post(this.jsonEndpoint, postData, callBack, "json");
 	}
 	
