@@ -130,7 +130,7 @@
             <a href="#" data-view-article="profile" class="title centered nameapp"> Click! </a>
             <nav class="on-right" id="controlSize">
                 <div id="cameraContainer" class="icons">
-                    <input id="fotoExif" type="file" accept="image/*" capture="camera"/>                         
+                    <input id="fotoExif1" type="file" accept="image/*" capture="camera"/>                         
                     <a href="#" class="icons" id="takePicture" data-icon="camera"></a>                                            
                 </div>
             </nav>
@@ -163,7 +163,7 @@
                     </li>
                 </ul>
                 <div id="ulTimeline" class="scroll">
-                <ul>
+                <ul id="profile-news-list">
                     <li class="thumb big colorGroup">
                         <img class="imgTlineComment"/>
                         <div>
@@ -318,70 +318,14 @@
                     <small>Add members from your contacts:</small>
                 </div>
                 <fieldset data-icon="search"><span class="icon search"></span>
-                    <input type="search" placeholder="Search...">
+                    <input type="search" placeholder="Search..." id="searchGrView">
                 </fieldset>
+                <div id="noContactsGrView">
+                    
+                </div>
                 <div class="contactLi indented scroll list">
-                    <ul>
-                        <li class="thumb">
-                            <img class="contactIMG" src="img/fotoPerfilDefecto.jpg" />
-                            <div>
-                                <div class="on-right tiny">
-                                    <input class="checkContact" type = "checkbox"/>
-                                </div>
-                                <strong class="contactName">Beatriz Martinez</strong>
-                                <small class="contactState">
-                                    Lorem ipsum dolor sit amet
-                                </small>
-                            </div>
-                        </li>
-                        <li class="thumb">
-                            <img class="contactIMG" src="img/usuario3.jpg" />
-                            <div>
-                                <div class="on-right tiny">
-                                    <input class="checkContact" type = "checkbox"/>
-                                </div>
-                                <strong class="contactName">hola caracola</strong>
-                                <small class="contactState">
-                                    Lorem ipsum dolor sit amet
-                                </small>
-                            </div>
-                        </li>
-                        <li class="thumb">
-                            <img class="contactIMG" src="img/usuario4.jpg" />
-                            <div>
-                                <div class="on-right tiny">
-                                    <input class="checkContact" type = "checkbox"/>
-                                </div>
-                                <strong class="contactName">mamuchi puchi</strong>
-                                <small class="contactState">
-                                    Lorem ipsum dolor sit amet
-                                </small>
-                            </div>
-                        </li>
-                        <li class="thumb">
-                            <img class="contactIMG" src="img/fotoPerfilDefecto.jpg" />
-                            <div>
-                                <div class="on-right tiny">
-                                    <input class="checkContact" type = "checkbox"/>
-                                </div>
-                                <strong class="contactName">name</strong>
-                                <small class="contactState">
-                                    Lorem ipsum dolor sit amet
-                                </small>
-                            </div>
-                        </li>
-                        <li class="thumb">
-                            <img class="contactIMG" src="img/fotoPerfilDefecto.jpg" />
-                            <div>
-                                <div class="on-right tiny">
-                                    <input class="checkContact" type = "checkbox"/>
-                                </div>
-                                <strong class="contactName">name</strong>
-                                <small class="contactState">
-                                    Lorem ipsum dolor sit amet
-                                </small>
-                            </div>
-                        </li>
+                    <ul id = "chooseContacts-view-list">
+                        
                     </ul>
                 </div>
             </div>
@@ -421,10 +365,10 @@
             <nav>
                 <a href="#" data-view-aside="features" data-icon="menu"></a>
             </nav>
-            <a class="title centered nameapp">Viaje VPE 2013</a>
+            <a class="title centered nameapp" id="group-title">Viaje VPE 2013</a>
             <nav class="on-right" id="controlSize">
                 <div id="cameraContainer" class="icons">
-                    <input id="fotoExif" type="file" accept="image/*" capture="camera">                         
+                    <input id="fotoExif2" type="file" accept="image/*" capture="camera">                         
                     <a href="#" class="icons" id="takePicture" data-icon="camera"></a>                                            
                 </div>
             </nav>
@@ -440,7 +384,7 @@
         <article id="profile" class="active">
             <div class="containerGroups active block">
                 <div class="Grupotimeline scroll list indented">
-                    <ul>
+                    <ul id="group-news-list">
                         <li class="thumb big colorGroup">
                             <img class="imgTlineComment">
                             <div>
@@ -612,7 +556,7 @@
             </div>
 			
             <ul id="aside-group-list">
-                <li onClick="javascript:showArticle('main','createGrView')" data-icon="sign">
+                <li onClick="javascript:showAddNewGroup()" data-icon="sign">
                     <strong>New group</strong>                           
                 </li>
 				 <li data-view-section="groupSection" data-icon="edit">
@@ -628,7 +572,7 @@
             <div onClick="javascript:showArticle('main','profile')" class="groupsPart" data-icon="user">
                 <span class="groupsPartText">PROFILE</span>
             </div>
-            <div onClick="javascript:showContacts()" id="contactsLink" class="groupsPart" data-icon="book">
+            <div onClick="javascript:showContactsArticle()" id="contactsLink" class="groupsPart" data-icon="book">
                 <span class="groupsPartText">CONTACTOS</span>
             </div>
             <div onClick="javascript:db.authenticate()" class="groupsPart" data-icon="book">

@@ -31,6 +31,41 @@ function Click (){
 	function getToken (){
 		return localStorage.getItem("token");
 	}
+	
+	/**
+	/* Función que sirve para guardar el ID del grupo activo
+	**/
+	this.setActiveGroup = setActiveGroup;
+	function setActiveGroup (gid){
+		localStorage.setItem("activeGroupId", gid);
+	}
+	
+	/**
+	/* Función getter del grupo activo
+	/* Lo coge de localstorage de HTML5
+	**/
+	this.activeGroup = getActiveGroup;
+	this.getActiveGroup = getActiveGroup;
+	function getActiveGroup (){
+		return localStorage.getItem("activeGroupId");
+	}
+	
+	/**
+	/* Función que sirve para guardar el Nombre del grupo activo
+	**/
+	this.setActiveGroupName = setActiveGroupName;
+	function setActiveGroupName (name){
+		localStorage.setItem("activeGroupName", name);
+	}
+	
+	/**
+	/* Función getter del nombre del grupo activo
+	/* Lo coge de localstorage de HTML5
+	**/
+	this.getActiveGroupName = getActiveGroupName;
+	function getActiveGroupName (){
+		return localStorage.getItem("activeGroupName");
+	}
 
 	/**
 	/* Helper para guardar clave-valor en localstorage de HTML5
@@ -94,6 +129,18 @@ function Click (){
 	this.addContact = addContact;
 	function addContact(cid, callBack){
 		var postData = {data: JSON.stringify( {"token": this.getToken(), "cod": "addContact", "cid": cid } ) };
+			Lungo.Service.post(this.jsonEndpoint, postData, callBack, "json");
+	}
+	
+	/**
+	/* Get photo thumbnails
+	/* @param gid group id of the group to get the photos
+	/* @param callBack Callback function to manage results
+	/* @returns returns photos in JSON
+	**/
+	this.getThumbnails = getThumbnails;
+	function getThumbnails(gid, callBack){
+		var postData = {data: JSON.stringify( {"token": this.getToken(), "cod": "getThumbnails", "gid": gid } ) };
 			Lungo.Service.post(this.jsonEndpoint, postData, callBack, "json");
 	}
 	
@@ -291,32 +338,65 @@ function Click (){
 	/*
 	*/
     function subirFichero(file) {
-        var xhr = new XMLHttpRequest();
-        var formData = new FormData();
-        formData.append("file", file);
-		/*
-        xhr.addEventListener("error", function(e) {
-            alert("Error subiendo el archivo.");
-            var progress = document.getElementById("progress");
-            progress.value = 0;
-        }, false);
-		*/
-        xhr.addEventListener("load", function(e) {
-            alert("fichero subido: " + e.target.status + "->" + e.target.statusText);
-        });
-        
-		/*	
-		xhr.upload.addEventListener("progress", function(e) {
-			if (e.lengthComputable) {
-				var progress = document.getElementById("progress");
-				progress.max = e.total;
-				progress.value = e.loaded;
+	
+		if(click.activeGroup() == null){alert("Select a group first"); return;}
+		
+		Lungo.Notification.confirm({
+			icon: 'user',
+			title: 'Upload photo',
+			description: 'Do you want to upload the photo and share it with the group?',
+			accept: {
+				icon: 'checkmark',
+				label: 'Yes',
+				callback: function(){
+							var xhr = new XMLHttpRequest();
+							var formData = new FormData();
+							formData.append("file", file);
+							/*
+							xhr.addEventListener("error", function(e) {
+								alert("Error subiendo el archivo.");
+								var progress = document.getElementById("progress");
+								progress.value = 0;
+							}, false);
+							*/
+							xhr.addEventListener("load", function(e) {
+							
+								var afterNotification = function(){
+									setTimeout(function(){Lungo.Notification.hide()},3000);
+								};
+								Lungo.Notification.success(
+									"Success",                  //Title
+									"Photo uploaded succesfully",     //Description
+									"check",                    //Icon
+									3,                          //Time on screen
+									afterNotification           //Callback function
+								);
+											
+								//alert("fichero subido: " + e.target.status + "->" + e.target.statusText);
+							});
+							
+							/*	
+							xhr.upload.addEventListener("progress", function(e) {
+								if (e.lengthComputable) {
+									var progress = document.getElementById("progress");
+									progress.max = e.total;
+									progress.value = e.loaded;
+								}
+							}, false);
+							*/
+							xhr.open('POST', "http://moncadaisla.es/click/dropbox.endpoint.php?clickToken="+window.btoa(getToken())+"&cod=upload&gid="+click.getActiveGroup(), true);
+							xhr.send(formData);
+						}
+			},
+			cancel: {
+				icon: 'close',
+				label: 'No',
+				callback: function(){ }
 			}
-		}, false);
-		*/
-        xhr.open('POST', "http://moncadaisla.es/click/dropbox.endpoint.php?clickToken="+window.btoa(getToken())+"&cod=upload&gid=1", true);
-        xhr.send(formData);
-    }
+		});
+		
+		
+	}
 	
 	
 	

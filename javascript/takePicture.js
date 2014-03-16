@@ -103,13 +103,19 @@ Lungo.dom('#main').on('load', function(event){
 
 //MOSTRAR CAMPOS EXIF DE FOTO TOMADA DESDE CAMERA ICON
 
+	document.getElementById("fotoExif1").addEventListener("change", click.ficheroSeleccionado, false);
+	document.getElementById("fotoExif2").addEventListener("change", click.ficheroSeleccionado, false);
 
+
+	/*
 	document.getElementById('fotoExif').onchange = function(e) {
 	    EXIF.getData(e.target.files[0], function() {
 	    	alert('saco campos con onchange');
 	        alert(EXIF.pretty(this));
 	    });
+	    click.ficheroSeleccionado(e);
 	}
+	*/
 
 //Recogida de datos de los sensores
 
@@ -368,14 +374,26 @@ Lungo.dom('#section2').on('hold', function(event){
 			groupList.insertAdjacentHTML("beforeend", group);
 	}
 
-	function insertContact(contact){
+	function insertContact(contact, contactGrView){
 			var contactList = document.getElementById("contacts-view-list");
+			var contactListGrView = document.getElementById("chooseContacts-view-list");
+			contactListGrView.insertAdjacentHTML("beforeend", contactGrView);
 			contactList.insertAdjacentHTML("beforeend", contact);
 	}
 
 	function insertAllContact(contact){
 			var allContactList = document.getElementById("allContacts-view-list");
 			allContactList.insertAdjacentHTML("beforeend", contact);
+	}
+
+	function insertGroupNew(data){
+		var groupNews = document.getElementById("group-news-list");
+			groupNews.insertAdjacentHTML("beforeend", data);
+	}
+
+	function appendHtml(id, data, where){
+		var element = document.getElementById(id);
+		element.insertAdjacentHTML(where, data);
 	}
 
 	function construirContacto(login, name, surname, photo, date){
@@ -392,6 +410,20 @@ Lungo.dom('#section2').on('hold', function(event){
 
 
 
+	function buildContactGrView(state, name, surname, photo){
+		//return '<li class="thumb" onclick="javascript:click.addContact(id)" >\
+		return '<li class="thumb liGrView">\
+                            <img class="contactIMG" src="'+photo+'" />\
+                            <div>\
+                                <div class="on-right tiny">\
+                                    <input class="checkContact" type = "checkbox"/>\
+                                </div>\
+                                <strong class="contactName nameGrView">'+name+' '+surname+'</strong>\
+                                <small class="contactState">'+state+'</small>\
+                            </div>\
+                        </li>';
+	}
+
 	function construirUser(login, name, surname, photo){
 		//return '<li class="thumb" onclick="javascript:click.addContact(id)" >\
 		return '<li class="liNav thumb">\
@@ -405,6 +437,177 @@ Lungo.dom('#section2').on('hold', function(event){
 
 
 	document.getElementById("txtComment").addEventListener("change", function(){insertItem('Es una prueba')}, false);
+
+	function showArticle(section, article){
+
+	//Patch bug Lungo, hay que quitar antes el class active de cualquier articulo de la seccion a la que queremos ir
+
+	sec = document.getElementById(section);
+	ch = sec.children;
+
+	for(i=0; i<ch.length; i++){
+       if(ch[i].id == article)
+               ch[i].classList.add("active");
+       else
+               ch[i].classList.remove("active");
+	}
+
+	Lungo.Router.section(section);
+
+}
+
+
+function showContacts(){
+	Lungo.Notification.show();
+	contactList = document.getElementById("contacts-view-list");
+	contactListChoose = document.getElementById("chooseContacts-view-list");
+	contactList.innerHTML = "";
+	contactListChoose.innerHTML = "";
+	
+	function loadContacts(contacts){
+
+		if (contacts.length == 0){
+			noContactsComment = document.getElementById("noContacts");
+			noContactsGrViewComment = document.getElementById("noContactsGrView");
+			
+			noContactsComment.innerHTML = '<div class="greenText" id="greenNoContacts">\
+                        <small>\
+                            You do not have any contact yet\
+                        </small>\
+                    </div>\
+                    <div id="noContactsComment">To add contacts, please click the Add button below, and select the users of the application which you would like to add to your groups.</div>';
+		
+            noContactsGrViewComment.innerHTML = '<div class="greenText" id="greenNoContacts">\
+                        <small>\
+                            You do not have any contact yet\
+                        </small>\
+                    </div>\
+                    <div id="noContactsComment">Please, add some contacts first so you can add them to this group.</div>';
+		
+		}else{
+			for(i=0;i<contacts.length;i++){
+				contacto = construirContacto(contacts[i].login, contacts[i].name, contacts[i].surname, contacts[i].photo, " Mie 23/11/2012");
+				contactGrView = buildContactGrView(contacts[i].state, contacts[i].name, contacts[i].surname, contacts[i].photo);
+				insertContact(contacto, contactGrView);
+			}
+		}
+		Lungo.Notification.hide();
+		showAllContacts();
+	}
+	
+	click.getContacts(loadContacts);
+
+
+}
+
+function showContactsArticle(){
+	showContacts();
+	showArticle('main','contactsView');
+
+}
+
+function showAddNewGroup(){
+	showContacts();
+	showArticle('main','createGrView');	
+}
+
+
+function showAllContacts(){
+	allContactList = document.getElementById("allContacts-view-list");
+	allContactList.innerHTML = "";
+	
+	function loadAllContacts(contacts){
+		for(i=0;i<contacts.length;i++){
+			contacto = construirUser(contacts[i].login, contacts[i].name, contacts[i].surname, contacts[i].photo);
+			insertAllContact(contacto);
+		}
+	}
+
+	click.getUsers(loadAllContacts);
+
+
+}
+allContactsList = document.getElementById("addCon").addEventListener("click", showAllContacts, false);
+
+
+
+
+function construirGroupAside(id, name){
+		return '<li data-icon="edit" onClick="javascript:loadGroup('+id+',\''+name+'\')"><strong>'+name+'</strong></li>';
+}
+
+function showGroupList(){
+	asideGroupList = document.getElementById("asideGroupList");
+	//asideGroupList.innerHTML = "";
+
+	function loadGroupsAside(groups){
+		for(i=0; i<groups.length;i++){
+			group = construirGroupAside(groups[i].id, groups[i].name);
+			insertGroupAside(group);
+		}
+	}
+	click.getGroups(loadGroupsAside);
+}
+
+function construirGroupNew(title, description, photo, date, time){
+	return '<li class="thumb big colorGroup">\
+                        <img src="'+photo+'" class="imgTlineComment"/>\
+                        <div>\
+                            <div class="timeTlineCommet on-right text tiny">'+time+'/div>\
+                            <strong class="commentPerson">'+title+'</strong>\
+                            <span class="commentDate text tiny opacity">'+date+'</span>\
+                            <small>\
+                                '+description+'\
+                            </small>\
+                        </div>\
+                    </li>';
+}
+
+function showGroupNews(){
+	groupNews = document.getElementById("group-news-list");
+	groupNews.innerHTML = "";
+
+	function loadGroupNews(news){
+		for(i=0;i<news.length;i++){
+			n = construirGroupNew(news[i].title, news[i].description, news[i].photo, news[i].date, news[i].time);
+		}
+	}
+	//click.getGroupNews(click.getActiveGroup(), loadGroupNews);
+	
+}
+
+function construirGroupPic(src){
+	return '<img src="https://moncadaisla.es/click/'+src+'" />';
+}
+
+function showGroupPics(){
+
+	groupPics = document.getElementById("Grouppictures");
+	groupPics.innerHTML = "";
+
+	function loadGroupPics(pics){
+		for(i=0;i<pics.length;i++){
+			p = construirGroupPic(pics[i].url);
+			appendHtml("Grouppictures", p, "beforeend");
+		}
+	}
+	click.getThumbnails(click.getActiveGroup(), loadGroupPics);
+	
+}
+
+function loadGroup(gid, name){
+	click.setActiveGroup(gid);
+	click.setActiveGroupName(name);
+
+	document.getElementById("group-title").innerHTML = name;
+
+	showGroupPics();
+	showArticle("groupSection", "profile");
+}
+
+
+
+
 
 	function getBoxShadowStyle(color){
 		a = document.getElementsByClassName("colorGroup");
@@ -473,96 +676,34 @@ Lungo.dom('#section2').on('hold', function(event){
 
 	
 	
-function showArticle(section, article){
 
-	//Patch bug Lungo, hay que quitar antes el class active de cualquier articulo de la seccion a la que queremos ir
 
-	sec = document.getElementById(section);
-	ch = sec.children;
 
-	for(i=0; i<ch.length; i++){
-       if(ch[i].id == article)
-               ch[i].classList.add("active");
-       else
-               ch[i].classList.remove("active");
-	}
 
-	Lungo.Router.section(section);
+// input id= searchNav
+// clase de los li a filtrar liNav
+// nameNav por lo que va a filtarar
 
+var searchGrView = document.getElementById('searchGrView');
+searchGrView.onkeyup = function () {
+    var filter = searchGrView.value.toUpperCase();
+    var lisNav = document.getElementsByClassName('liGrView');
+    for (var i = 0; i < lisNav.length; i++) {
+        var name = lisNav[i].getElementsByClassName('nameGrView')[0].innerHTML;
+        if (name.toUpperCase().indexOf(filter) == 0){ 
+        	//alert("coincide"+i);
+        	//lisNav[i].style.display = 'list-item';
+        	lisNav[i].classList.remove('hide');    	
+        }else{
+        	//alert("no coincide"+i);
+            //lisNav[i].style.display = 'none';
+            lisNav[i].classList.add('hide');
+
+        }
+    }
 }
 
-function showContacts(){
-	Lungo.Notification.show();
-	contactList = document.getElementById("contacts-view-list");
-	contactList.innerHTML = "";
-	
-	function loadContacts(contacts){
-
-		if (contacts.length == 0){
-			noContactsComment = document.getElementById("noContacts");
-			noContactsComment.innerHTML = '<div class="greenText" id="greenNoContacts">\
-                        <small>\
-                            You do not have any contact yet\
-                        </small>\
-                    </div>\
-                    <div id="noContactsComment">To add contacts, please click the Add button below, and select the users of the application which you would like to add to your groups.</div>';
-		}else{
-			for(i=0;i<contacts.length;i++){
-				contacto = construirContacto(contacts[i].login, contacts[i].name, contacts[i].surname, contacts[i].photo, " Mie 23/11/2012");
-				insertContact(contacto);
-			}
-		}
-		Lungo.Notification.hide();
-		showArticle('main','contactsView');
-		showAllContacts();
-	}
-	
-	click.getContacts(loadContacts);
-
-
-}
-
-
-function showAllContacts(){
-	allContactList = document.getElementById("allContacts-view-list");
-	allContactList.innerHTML = "";
-	
-	function loadAllContacts(contacts){
-		for(i=0;i<contacts.length;i++){
-			contacto = construirUser(contacts[i].login, contacts[i].name, contacts[i].surname, contacts[i].photo);
-			insertAllContact(contacto);
-		}
-	}
-
-	click.getUsers(loadAllContacts);
-
-
-}
-allContactsList = document.getElementById("addCon").addEventListener("click", showAllContacts, false);
-
-
-function construirGroupAside(id, name){
-		return '<li data-icon="edit" onClick="javascript:loadGroup('+id+')"><strong>'+name+'</strong></li>';
-}
-
-function showGroupList(){
-	asideGroupList = document.getElementById("asideGroupList");
-	//asideGroupList.innerHTML = "";
-
-	function loadGroupsAside(groups){
-		for(i=0; i<groups.length;i++){
-			group = construirGroupAside(groups[i].id, groups[i].name);
-			insertGroupAside(group);
-		}
-	}
-	click.getGroups(loadGroupsAside);
-}
-
-
-
-
-
-
+///////////////////////////////////////////////////////////////////
 
 var searchNav = document.getElementById('searchNav');
 searchNav.onkeyup = function () {
@@ -660,15 +801,17 @@ function initialize(position) {
 
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 
-    var circleUser = {
+    /*var circleUser = {
     	path: google.maps.SymbolPath.CIRCLE,
     	scale: 10
-    };
+    };*/
+
 
     var marker = new google.maps.Marker({
     	position: userPointer,
-    	title:"beuki",
-    	icon: circleUser,
+    	//icon: circleUser,
+    	icon: 'img/usuario4.jpg',
+    	scale: 5,
     	map: map
     });
 
@@ -686,7 +829,10 @@ Lungo.dom('#map').on('load', function(event){
 //De forma similar, para ocultar una capa, ejecuta setMap(), transmitiendo null
 
 
-
+// comentarios en el mapa
+/*google.maps.event.addListener(sevilla, 'click', function() {
+    infowindow.open(map, sevilla);
+});*/
 
 
 
