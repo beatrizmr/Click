@@ -580,6 +580,18 @@ function construirGroupPic(src){
 	return '<img src="https://moncadaisla.es/click/'+src+'" />';
 }
 
+function construirGroupUpdate(title, description, photo, date, time){
+	return '<li class="thumb big colorGroup">\
+                            <img src="'+photo+'" class="imgTlineComment">\
+                            <div>\
+                                <div class="timeTlineCommet on-right text tiny">'+time+'</div>\
+                                <strong class="commentPerson">'+title+'</strong>\
+                                <span class="commentDate text tiny opacity">'+date+'</span>\
+                                <small>'+description+'</small>\
+                            </div>\
+                        </li> ';
+}
+
 function showGroupPics(){
 
 	groupPics = document.getElementById("Grouppictures");
@@ -592,8 +604,24 @@ function showGroupPics(){
 		}
 	}
 	click.getThumbnails(click.getActiveGroup(), loadGroupPics);
+}
+
+
+function showGrActivity(){
+
+	groupActivityList = document.getElementById("group-news-list");
+	groupActivityList.innerHTML = "";
+
+	function loadgroupActivityList(updates){
+		for(i=0;i<updates.length;i++){
+			u = construirGroupUpdate(updates[i].title, updates[i].description, "http://moncadaisla.es/click/"+updates[i].photo, updates[i].date, updates[i].time);
+			appendHtml("group-news-list", u, "beforeend");
+		}
+	}
+	click.getUpdates(click.getActiveGroup(), loadgroupActivityList);
 	
 }
+
 
 function loadGroup(gid, name){
 	click.setActiveGroup(gid);
@@ -602,6 +630,7 @@ function loadGroup(gid, name){
 	document.getElementById("group-title").innerHTML = name;
 
 	showGroupPics();
+	showGrActivity();
 	showArticle("groupSection", "profile");
 }
 
