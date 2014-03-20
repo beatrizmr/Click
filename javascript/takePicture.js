@@ -1,6 +1,7 @@
 
 var click = new Click();
 var db = new DropboxClick();
+var mc = new MarkerChooser();
 
 
 
@@ -435,6 +436,18 @@ Lungo.dom('#section2').on('hold', function(event){
                         </li>';
 	}
 
+	function construirInsertarContacto(id, login, name, surname, photo){
+		//return '<li class="thumb" onclick="javascript:click.addContact(id)" >\
+		return '<li class="liNav thumb" onClick="javascript:agregarContacto('+id+')">\
+                            <img class="contactIMG" src="'+photo+'" />\
+                            <div class ="textNav">\
+                                <strong class="nameNav">'+name+' '+surname+'</strong>\
+                                <small class="nameNav">'+login+'</small>\
+                            </div>\
+                        </li>';
+	}
+
+
 
 	document.getElementById("txtComment").addEventListener("change", function(){insertItem('Es una prueba')}, false);
 
@@ -518,7 +531,7 @@ function showAllContacts(){
 	
 	function loadAllContacts(contacts){
 		for(i=0;i<contacts.length;i++){
-			contacto = construirUser(contacts[i].login, contacts[i].name, contacts[i].surname, contacts[i].photo);
+			contacto = construirInsertarContacto(contacts[i].id, contacts[i].login, contacts[i].name, contacts[i].surname, contacts[i].photo);
 			insertAllContact(contacto);
 		}
 	}
@@ -632,6 +645,17 @@ function loadGroup(gid, name){
 	showGroupPics();
 	showGrActivity();
 	showArticle("groupSection", "profile");
+}
+
+function agregarContacto(cid){
+
+	function refreshContacts(data){
+		Lungo.Element.Menu.hide("options");
+		showContactsArticle();
+
+	}
+	click.addContact(cid, refreshContacts);
+
 }
 
 
@@ -830,21 +854,43 @@ function initialize(position) {
 
     map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 
-    /*var circleUser = {
-    	path: google.maps.SymbolPath.CIRCLE,
-    	scale: 10
-    };*/
+    function addMarker(Userposition, icon){
+    	var marker = new google.maps.Marker({
+	    	position: Userposition,
+	    	icon: new google.maps.MarkerImage('img/marcadores/'+icon+'',
+	    null, null, null, new google.maps.Size(64,64)),
+	    	draggable: false,
+	    	map: map    	
+	    });
 
+	    marker.setMap(map);
+    }
 
-    var marker = new google.maps.Marker({
-    	position: userPointer,
-    	//icon: circleUser,
-    	icon: 'img/usuario4.jpg',
-    	scale: 5,
-    	map: map
-    });
+addMarker(userPointer, "location_B_azulC.svg");
 
-    marker.setMap(map);
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+    // var marker = new google.maps.Marker({
+    // 	position: userPointer,
+    // 	icon: new google.maps.MarkerImage('img/marcadores/location_B_azulC.svg',
+    // null, null, null, new google.maps.Size(64,64)),
+    // 	draggable: false,
+    // 	map: map    	
+    // });
+
+    // var marker2 = new google.maps.Marker({
+    // 	position: new google.maps.LatLng(43.389326120482, -80.1219289293),
+    // 	icon: new google.maps.MarkerImage('img/marcadores/location_A_rosa.svg',
+    // null, null, null, new google.maps.Size(64,64)),
+    // 	draggable: false,
+    // 	map: map    	
+    // });
+
+    
+    // marker2.setMap(map);
+    // marker.setMap(map);
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
 }
 
 
