@@ -902,6 +902,8 @@ function initialize(position) {
 		controlUI.appendChild(controlText);
 
 		google.maps.event.addDomListener(controlUI, 'click', function() {
+			mVisible = false;
+			marker();
 			imgWindow.open(map);
 		  //map.setCenter (merce)
 		});		
@@ -934,6 +936,7 @@ function initialize(position) {
 		controlUI.appendChild(controlText);
 
 		google.maps.event.addDomListener(controlUI, 'click', function() {
+			imgWindow.close(map);
 			mVisible = true;
 			marker();
 		  //map.setCenter (merce)
