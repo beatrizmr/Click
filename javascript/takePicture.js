@@ -854,17 +854,59 @@ function initialize(position) {
       mapTypeControl: false,
       zoomControl: false,
       streetViewControl: false,
+      disableDefaultUI: true,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
     map = new google.maps.Map (document.getElementById("map_canvas"), mapOptions);
 
 	var peopleControlDiv = document.createElement('div');
+	var picturesControlDiv = document.createElement('div');
     var peopleControl = new PeopleControl (peopleControlDiv, map);
+    var picturesControl = new PicturesControl (picturesControlDiv, map);
 
     peopleControlDiv.index = 1;
+    picturesControlDiv.incex = 2;
 
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(peopleControlDiv);
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(picturesControlDiv);
+
+    var contentImg = '<div><img style = "width: 100px;" src="galeriaPrueba/3.jpg" />';
+	var imgWindow = new google.maps.InfoWindow({
+		position: userPointer,
+		content: contentImg
+	});
+
+	function PicturesControl(controlDiv, map){
+		controlDiv.style.marginRight = '4%';
+		controlDiv.style.marginTop = '4%';
+		controlDiv.style.height = '5%';
+		controlDiv.style.width = '20%';
+
+		var controlUI = document.createElement('div');
+		controlUI.style.backgroundColor = '#0095c1';
+		controlUI.style.textAlign = 'center';
+		controlUI.style.height = '100%';
+		controlUI.style.borderRadius = '7%';
+		controlUI.style.opacity = '0.8';
+
+		controlDiv.appendChild(controlUI);
+		var controlText = document.createElement('div');
+		controlText.style.fontFamily = 'Arial,sans-serif';
+		controlText.style.fontSize = '16px';
+		controlText.style.paddingLeft = '12%';
+		controlText.style.paddingRight = '9%';
+		controlUI.style.color = 'white';
+		controlUI.style.paddingTop = '6%';
+		controlText.innerHTML = '<strong>Photos</strong>';
+		controlUI.appendChild(controlText);
+
+		google.maps.event.addDomListener(controlUI, 'click', function() {
+			imgWindow.open(map);
+		  //map.setCenter (merce)
+		});		
+	}
+
 
     function PeopleControl(controlDiv, map){
 
@@ -878,7 +920,7 @@ function initialize(position) {
 		controlUI.style.textAlign = 'center';
 		controlUI.style.height = '100%';
 		controlUI.style.borderRadius = '7%';
-		controlUI.style.opacity = '0.65';
+		controlUI.style.opacity = '0.8';
 
 		controlDiv.appendChild(controlUI);
 		var controlText = document.createElement('div');
@@ -898,7 +940,7 @@ function initialize(position) {
 		});	
 	}
 
-    function addMarker(Userposition, icon){
+    function addUserMarker(Userposition, icon){
     	var marker = new google.maps.Marker({
 	    	position: Userposition,
 	    	icon: new google.maps.MarkerImage('img/marcadores/'+icon+'',
@@ -912,12 +954,12 @@ function initialize(position) {
     }
 
     function marker(){
-    	addMarker(userPointer, mc.getFileName("Beatriz"));
-		addMarker(userPointer2, mc.getFileName("Peatriz"));
-		addMarker(merce, mc.getFileName("Merce"));
+    	addUserMarker(userPointer, mc.getFileName("Beatriz"));
+		addUserMarker(userPointer2, mc.getFileName("Peatriz"));
+		addUserMarker(merce, mc.getFileName("Merce"));
     }
 
-	
+		
 }
 
 
