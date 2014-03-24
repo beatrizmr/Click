@@ -859,8 +859,7 @@ function initialize(position) {
 
     map = new google.maps.Map (document.getElementById("map_canvas"), mapOptions);
 
-   // var peopleControlDiv = document.createElement('div');
-	var peopleControlDiv = document.getElementById("peopleControlDiv");
+	var peopleControlDiv = document.createElement('div');
     var peopleControl = new PeopleControl (peopleControlDiv, map);
 
     peopleControlDiv.index = 1;
@@ -869,21 +868,26 @@ function initialize(position) {
 
     function PeopleControl(controlDiv, map){
 
-		controlDiv.style.padding = '5px';
-		// var controlUI = document.createElement('div');
-		 var controlUI = document.getElementById("");
-		controlUI.style.backgroundColor = 'white';
-		controlUI.style.borderStyle = 'solid';
-		controlUI.style.borderWidth = '2px';
-		controlUI.style.cursor = 'pointer';
+		controlDiv.style.marginRight = '4%';
+		controlDiv.style.marginTop = '4%';
+		controlDiv.style.height = '5%';
+		controlDiv.style.width = '20%';
+
+		var controlUI = document.createElement('div');
+		controlUI.style.backgroundColor = '#0095c1';
 		controlUI.style.textAlign = 'center';
-		controlUI.title = 'Click to set the map to Home';
+		controlUI.style.height = '100%';
+		controlUI.style.borderRadius = '7%';
+		controlUI.style.opacity = '0.65';
+
 		controlDiv.appendChild(controlUI);
 		var controlText = document.createElement('div');
 		controlText.style.fontFamily = 'Arial,sans-serif';
-		controlText.style.fontSize = '12px';
-		controlText.style.paddingLeft = '4px';
-		controlText.style.paddingRight = '4px';
+		controlText.style.fontSize = '16px';
+		controlText.style.paddingLeft = '12%';
+		controlText.style.paddingRight = '9%';
+		controlUI.style.color = 'white';
+		controlUI.style.paddingTop = '6%';
 		controlText.innerHTML = '<strong>People</strong>';
 		controlUI.appendChild(controlText);
 
