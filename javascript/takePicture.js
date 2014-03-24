@@ -839,9 +839,14 @@ searchNav.onkeyup = function () {
 //show the map
 
 var map;
+var mVisible = false;
 
-function initialize(position) {
+
+var merce = new google.maps.LatLng(41.850033, -87.6500523);
+
+function initialize(position) {		
 	var userPointer = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+	var userPointer2 = new google.maps.LatLng(position.coords.latitude+3, position.coords.longitude);
 
     var mapOptions = {
       center: userPointer,
@@ -852,7 +857,42 @@ function initialize(position) {
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
-    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+    map = new google.maps.Map (document.getElementById("map_canvas"), mapOptions);
+
+   // var peopleControlDiv = document.createElement('div');
+	var peopleControlDiv = document.getElementById("peopleControlDiv");
+    var peopleControl = new PeopleControl (peopleControlDiv, map);
+
+    peopleControlDiv.index = 1;
+
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(peopleControlDiv);
+
+    function PeopleControl(controlDiv, map){
+
+		controlDiv.style.padding = '5px';
+		// var controlUI = document.createElement('div');
+		 var controlUI = document.getElementById("");
+		controlUI.style.backgroundColor = 'white';
+		controlUI.style.borderStyle = 'solid';
+		controlUI.style.borderWidth = '2px';
+		controlUI.style.cursor = 'pointer';
+		controlUI.style.textAlign = 'center';
+		controlUI.title = 'Click to set the map to Home';
+		controlDiv.appendChild(controlUI);
+		var controlText = document.createElement('div');
+		controlText.style.fontFamily = 'Arial,sans-serif';
+		controlText.style.fontSize = '12px';
+		controlText.style.paddingLeft = '4px';
+		controlText.style.paddingRight = '4px';
+		controlText.innerHTML = '<strong>People</strong>';
+		controlUI.appendChild(controlText);
+
+		google.maps.event.addDomListener(controlUI, 'click', function() {
+			mVisible = true;
+			marker();
+		  //map.setCenter (merce)
+		});	
+	}
 
     function addMarker(Userposition, icon){
     	var marker = new google.maps.Marker({
@@ -860,37 +900,20 @@ function initialize(position) {
 	    	icon: new google.maps.MarkerImage('img/marcadores/'+icon+'',
 	    null, null, null, new google.maps.Size(64,64)),
 	    	draggable: false,
+	    	visible: mVisible,
 	    	map: map    	
 	    });
 
 	    marker.setMap(map);
     }
 
-addMarker(userPointer, "location_B_azulC.svg");
+    function marker(){
+    	addMarker(userPointer, mc.getFileName("Beatriz"));
+		addMarker(userPointer2, mc.getFileName("Peatriz"));
+		addMarker(merce, mc.getFileName("Merce"));
+    }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-    // var marker = new google.maps.Marker({
-    // 	position: userPointer,
-    // 	icon: new google.maps.MarkerImage('img/marcadores/location_B_azulC.svg',
-    // null, null, null, new google.maps.Size(64,64)),
-    // 	draggable: false,
-    // 	map: map    	
-    // });
-
-    // var marker2 = new google.maps.Marker({
-    // 	position: new google.maps.LatLng(43.389326120482, -80.1219289293),
-    // 	icon: new google.maps.MarkerImage('img/marcadores/location_A_rosa.svg',
-    // null, null, null, new google.maps.Size(64,64)),
-    // 	draggable: false,
-    // 	map: map    	
-    // });
-
-    
-    // marker2.setMap(map);
-    // marker.setMap(map);
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-
+	
 }
 
 
@@ -909,9 +932,11 @@ Lungo.dom('#map').on('load', function(event){
     infowindow.open(map, sevilla);
 });*/
 
+// seter, para cambiar el centro del mapa y desplazarlo
+// setCenter(google.maps.LatLng(latitud, longitud))
 
 
-//FUNCIONES CONTACTOS PABLO
+//FUNCIONES CONTACTOS
 //    click.getContacts()
 //    
 //click.contacts

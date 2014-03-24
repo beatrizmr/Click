@@ -240,6 +240,8 @@ function Click (){
 
 	}
 
+	
+
 
 	/**
 	/* Funcion que se encarga de poner el valor adecuado en cada campo con el atributo indicado
