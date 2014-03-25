@@ -844,7 +844,7 @@ var mVisible = true;
 
 var merce = new google.maps.LatLng(41.850033, -87.6500523);
 
-function initialize(position) {		
+function initialize(position) {
 	var userPointer = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 	var userPointer2 = new google.maps.LatLng(position.coords.latitude+3, position.coords.longitude);
 
@@ -866,16 +866,36 @@ function initialize(position) {
     var picturesControl = new PicturesControl (picturesControlDiv, map);
 
     peopleControlDiv.index = 1;
-    picturesControlDiv.incex = 2;
+    picturesControlDiv.index = 2;
 
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(peopleControlDiv);
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(picturesControlDiv);
 
-    var contentImg = '<div><img style = "width: 100px;" src="galeriaPrueba/3.jpg" />';
-	var imgWindow = new google.maps.InfoWindow({
-		position: userPointer,
-		content: contentImg
-	});
+    var imgWindowArray = [];
+    
+    function loadGroupMinPics(pics){
+		for(i=0;i<pics.length;i++){
+			var contentImg = '<div><img style = "width: 100px;" src="https://moncadaisla.es/click/'+pics[i].url+'" />';
+			imgWindowArray[i] = new google.maps.InfoWindow({
+				position: userPointer,
+				content: contentImg
+			});
+		}
+	}
+	click.getThumbnails(click.getActiveGroup(), loadGroupMinPics);
+
+	function showPictureWindows(){
+		for(i=0;i<imgWindowArray.length;i++){
+			imgWindowArray[i].open(map);
+		}
+	}
+
+	function hidePictureWindows(){
+		for(i=0;i<imgWindowArray.length;i++){
+			imgWindowArray[i].close(map);
+		}
+	}
+
 
 	function PicturesControl(controlDiv, map){
 		controlDiv.style.marginRight = '4%';
@@ -904,7 +924,7 @@ function initialize(position) {
 		google.maps.event.addDomListener(controlUI, 'click', function() {
 			mVisible = false;
 			clearMarkers()
-			imgWindow.open(map);
+			showPictureWindows();
 		  //map.setCenter (merce)
 		});		
 	}
@@ -936,7 +956,7 @@ function initialize(position) {
 		controlUI.appendChild(controlText);
 
 		google.maps.event.addDomListener(controlUI, 'click', function() {
-			imgWindow.close(map);
+			hidePictureWindows();
 			mVisible = true;
 			showMarkers()
 		  //map.setCenter (merce)
