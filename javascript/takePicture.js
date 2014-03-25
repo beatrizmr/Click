@@ -839,7 +839,7 @@ searchNav.onkeyup = function () {
 //show the map
 
 var map;
-var mVisible = false;
+var mVisible = true;
 
 
 var merce = new google.maps.LatLng(41.850033, -87.6500523);
@@ -903,7 +903,7 @@ function initialize(position) {
 
 		google.maps.event.addDomListener(controlUI, 'click', function() {
 			mVisible = false;
-			marker();
+			clearMarkers()
 			imgWindow.open(map);
 		  //map.setCenter (merce)
 		});		
@@ -938,10 +938,12 @@ function initialize(position) {
 		google.maps.event.addDomListener(controlUI, 'click', function() {
 			imgWindow.close(map);
 			mVisible = true;
-			marker();
+			showMarkers()
 		  //map.setCenter (merce)
 		});	
 	}
+
+	var userMarkers = [];
 
     function addUserMarker(Userposition, icon){
     	var marker = new google.maps.Marker({
@@ -953,14 +955,39 @@ function initialize(position) {
 	    	map: map    	
 	    });
 
-	    marker.setMap(map);
+    	userMarkers.push(marker);
+	    //marker.setMap(map);
     }
+
+    // Sets the map on all markers in the array.
+	function setAllMap(map) {
+	  for (var i = 0; i < userMarkers.length; i++) {
+	    userMarkers[i].setMap(map);
+	  }
+	}
+
+	// Removes the markers from the map, but keeps them in the array.
+	function clearMarkers() {
+	  setAllMap(null);
+	}
+
+	// Shows any markers currently in the array.
+	function showMarkers() {
+	  setAllMap(map);
+	}
+
+	// Deletes all markers in the array by removing references to them.
+	function deleteMarkers() {
+	  clearMarkers();
+	  userMarkers = [];
+	}
 
     function marker(){
     	addUserMarker(userPointer, mc.getFileName("Beatriz"));
 		addUserMarker(userPointer2, mc.getFileName("Peatriz"));
 		addUserMarker(merce, mc.getFileName("Merce"));
     }
+    marker();
 
 		
 }
