@@ -690,15 +690,35 @@ function agregarContacto(cid){
 	}
 
 	document.getElementById("colorInputGr").addEventListener("change", function(){colorG()}, false);
-		
+
+// GALERIA DEL GRUPO
+var grPhotosArray = [];
+var indexGallery = 0;
+function loadGroupPhotos(pics){
+	for(i=0;i<pics.length;i++){
+		grPhotosArray[i] = "background-image: url('https://moncadaisla.es/click/"+pics[i].url+"')";
+	}
+}
+click.getThumbnails(click.getActiveGroup(), loadGroupPhotos);
+document.getElementById('picturesContainer').setAttribute('style', grPhotosArray[0]);
 
 //Next and previous pictures in carrousel
 	function nextPic (){
-		document.getElementById('picturesContainer').setAttribute('style', "background-image: url('galeriaPrueba/8.jpg')");
+		if (indexGallery < (grPhotosArray.length - 1)){
+			indexGallery = indexGallery +1;	
+		}else{
+			indexGallery = 0;
+		}
+		document.getElementById('picturesContainer').setAttribute('style', grPhotosArray[indexGallery]);
 	}
 
 	function prevPic (){
-		document.getElementById('picturesContainer').setAttribute('style', "background-image: url('galeriaPrueba/4.jpg')");
+		if (indexGallery > 0){
+			indexGallery = indexGallery -1;			
+		}else{
+			indexGallery = grPhotosArray.length - 1;
+		}
+		document.getElementById('picturesContainer').setAttribute('style', grPhotosArray[indexGallery]);
 	}
 
 	document.getElementById("next").addEventListener("click", function(){nextPic()}, false);
@@ -895,7 +915,7 @@ function initialize(position) {
 			imgWindowArray[i].close(map);
 		}
 	}
-	
+
 	var lat_lng = new Array();
 	var primeraPicLatLong = new google.maps.LatLng(30.706930048067, -90.63327001790483);
 	var segundaPicLatLong = new google.maps.LatLng(32.42915942244132, -88.74362158040506);
