@@ -872,7 +872,7 @@ function initialize(position) {
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(picturesControlDiv);
 
     var imgWindowArray = [];
-    
+
     function loadGroupMinPics(pics){
 		for(i=0;i<pics.length;i++){
 			var contentImg = '<div><img style = "width: 100px;" src="https://moncadaisla.es/click/'+pics[i].url+'" />';
@@ -895,6 +895,42 @@ function initialize(position) {
 			imgWindowArray[i].close(map);
 		}
 	}
+	
+	var lat_lng = new Array();
+	var primeraPicLatLong = new google.maps.LatLng(30.706930048067, -90.63327001790483);
+	var segundaPicLatLong = new google.maps.LatLng(32.42915942244132, -88.74362158040506);
+	lat_lng[0] = primeraPicLatLong;
+	lat_lng[1] = segundaPicLatLong;
+
+	//Initialize the Path Array
+	var path = new google.maps.MVCArray();
+
+	//Intialize the Direction Service
+    var service = new google.maps.DirectionsService();
+
+    //Set the Path Stroke Color
+    var poly = new google.maps.Polyline({ map: map, strokeColor: '#4986E7' });
+
+    //Loop and Draw Path Route between the Points on MAP  (TRANSIT, DRIVING)
+    for (var i = 0; i < lat_lng.length; i++) {
+        if ((i + 1) < lat_lng.length) {
+            var src = lat_lng[i];
+            var des = lat_lng[i + 1];
+            path.push(src);
+            poly.setPath(path);
+            service.route({
+                origin: src,
+                destination: des,
+                travelMode: google.maps.DirectionsTravelMode.DRIVING
+            }, function (result, status) {
+                if (status == google.maps.DirectionsStatus.OK) {
+                    for (var i = 0, len = result.routes[0].overview_path.length; i < len; i++) {
+                        path.push(result.routes[0].overview_path[i]);
+                    }
+                }
+            });
+        }
+    }
 
 
 	function PicturesControl(controlDiv, map){
