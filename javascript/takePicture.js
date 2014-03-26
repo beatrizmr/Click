@@ -810,26 +810,12 @@ searchNav.onkeyup = function () {
 	    }
 	}
 
-/*	var divMap=document.getElementById('divMap');
-	var divCoordenadas=document.getElementById('divCoordenadas');*/
-
 
 	function showPosition(position){
 		var ilongitud = position.coords.longitude;
 		var ilatitud = position.coords.latitude;
 		document.getElementById("outLatitude").innerHTML = ilatitud;
 		document.getElementById("outLongitude").innerHTML = ilongitud;
-
-
-		//Open Street Maps
-/*	    var cloudmade = new CM.Tiles.CloudMade.Web({key: '139f1f8c45e84baf8ce557b4f82687a0'});
-	    var map = new CM.Map('cm-example', cloudmade);
-	    var myMarkerLatLng = new CM.LatLng(ilongitud, ilatitud);
-		var myMarker = new CM.Marker(myMarkerLatLng, {
-			title: "Me encuentro aquí"
-		});    
-		map.setCenter(myMarkerLatLng, 15);
-		map.addOverlay(myMarker);*/
 	}
 
 	
@@ -868,6 +854,25 @@ function initialize(position) {
 	var userPointer = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 	var userPointer2 = new google.maps.LatLng(position.coords.latitude+3, position.coords.longitude);
 
+	var primeraPicLatLong = new google.maps.LatLng(40.421789454328426, -3.711673490803208);
+	var segundaPicLatLong = new google.maps.LatLng(40.41865295575235, -3.700858824055197);
+	var terceraPicLatLong = new google.maps.LatLng(40.41015753778932, -3.692104093830591);
+	var cuartaPicLatLong = new google.maps.LatLng(40.4032297108584, -3.6872975752758292);
+	var quintaPicLatLong = new google.maps.LatLng(40.41120318557326, -3.7145917342114405);
+	var sextaPicLatLong = new google.maps.LatLng(40.41943709410558, -3.7164800093578805);
+	var septimaPicLatLong = new google.maps.LatLng(40.44034407862666, -3.728667967121615);
+	var octavaPicLatLong = new google.maps.LatLng(40.45667313767128, -3.711845152180173);
+
+	var lat_lng = new Array();	
+	lat_lng[0] = primeraPicLatLong;
+	lat_lng[1] = segundaPicLatLong;
+	lat_lng[2] = terceraPicLatLong;
+	lat_lng[3] = cuartaPicLatLong;
+	lat_lng[4] = quintaPicLatLong;
+	lat_lng[5] = sextaPicLatLong;
+	lat_lng[6] = septimaPicLatLong;
+	lat_lng[7] = octavaPicLatLong;
+
     var mapOptions = {
       center: userPointer,
       zoom: 15,
@@ -895,9 +900,9 @@ function initialize(position) {
 
     function loadGroupMinPics(pics){
 		for(i=0;i<pics.length;i++){
-			var contentImg = '<div><img style = "width: 100px;" src="https://moncadaisla.es/click/'+pics[i].url+'" />';
+			var contentImg = '<div><img style = "width: 100px;" src="https://moncadaisla.es/click/'+pics[i].url+'" /></div>';
 			imgWindowArray[i] = new google.maps.InfoWindow({
-				position: userPointer,
+				position: lat_lng[i],
 				content: contentImg
 			});
 		}
@@ -916,11 +921,7 @@ function initialize(position) {
 		}
 	}
 
-	var lat_lng = new Array();
-	var primeraPicLatLong = new google.maps.LatLng(30.706930048067, -90.63327001790483);
-	var segundaPicLatLong = new google.maps.LatLng(32.42915942244132, -88.74362158040506);
-	lat_lng[0] = primeraPicLatLong;
-	lat_lng[1] = segundaPicLatLong;
+	
 
 	//Initialize the Path Array
 	var path = new google.maps.MVCArray();
@@ -933,18 +934,21 @@ function initialize(position) {
 
     //Loop and Draw Path Route between the Points on MAP  (TRANSIT, DRIVING)
     for (var i = 0; i < lat_lng.length; i++) {
-        if ((i + 1) < lat_lng.length) {
+        if ((i + 1) < lat_lng.length) {        	
             var src = lat_lng[i];
             var des = lat_lng[i + 1];
             path.push(src);
             poly.setPath(path);
             service.route({
-                origin: src,
+                origin: src, 
                 destination: des,
+                provideRouteAlternatives: false,
                 travelMode: google.maps.DirectionsTravelMode.DRIVING
+                //google.maps.TravelMode.TRANSIT 
             }, function (result, status) {
                 if (status == google.maps.DirectionsStatus.OK) {
                     for (var i = 0, len = result.routes[0].overview_path.length; i < len; i++) {
+                    	alert("elemento "+i);
                         path.push(result.routes[0].overview_path[i]);
                     }
                 }
@@ -1058,12 +1062,23 @@ function initialize(position) {
 	  userMarkers = [];
 	}
 
-    function marker(){
+
+    function marker(groupPeople){
+    	//for(i=0;i<groupPeople.length;i++){
+    		//addUserMarker(groupPeople[i].LatLng, mc.getFileName(groupPeople[i].name));
+    		// var userPointer = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    		// que haya un groupPeople[i].position y hago groupPeople[i].position.latitude ...
+    	//}
+
+    	//*****************************************************
     	addUserMarker(userPointer, mc.getFileName("Beatriz"));
 		addUserMarker(userPointer2, mc.getFileName("Peatriz"));
 		addUserMarker(merce, mc.getFileName("Merce"));
+		//****************************************************
+
+
     }
-    marker();
+    click.getContacts(click.getActiveGroup(), marker); // en lugar de getContacts sera  un get gente del grupo
 
 		
 }
