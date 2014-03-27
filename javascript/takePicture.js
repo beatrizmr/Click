@@ -631,8 +631,7 @@ function showGrActivity(){
 			appendHtml("group-news-list", u, "beforeend");
 		}
 	}
-	click.getUpdates(click.getActiveGroup(), loadgroupActivityList);
-	
+	click.getUpdates(click.getActiveGroup(), loadgroupActivityList);	
 }
 
 
@@ -843,14 +842,18 @@ searchNav.onkeyup = function () {
 
 
 //show the map
-
+//var directionsDisplay;  //para la ruta
+var directionsService = new google.maps.DirectionsService();  //para la ruta
 var map;
 var mVisible = true;
+var lat_lng = new Array();
 
 
 var merce = new google.maps.LatLng(41.850033, -87.6500523);
 
 function initialize(position) {
+	//directionsDisplay = new google.maps.DirectionsRenderer(); //para la ruta
+
 	var userPointer = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 	var userPointer2 = new google.maps.LatLng(position.coords.latitude+3, position.coords.longitude);
 
@@ -863,7 +866,7 @@ function initialize(position) {
 	var septimaPicLatLong = new google.maps.LatLng(40.41973114363177, -3.7024466917920593);
 	var octavaPicLatLong = new google.maps.LatLng(40.411562623247114, -3.6928336546827163);
 
-	var lat_lng = new Array();	
+		
 	lat_lng[0] = primeraPicLatLong;
 	lat_lng[1] = segundaPicLatLong;
 	lat_lng[2] = terceraPicLatLong;
@@ -884,6 +887,7 @@ function initialize(position) {
     };
 
     map = new google.maps.Map (document.getElementById("map_canvas"), mapOptions);
+    //directionsDisplay.setMap(map); //para la ruta
 
 	var peopleControlDiv = document.createElement('div');
 	var picturesControlDiv = document.createElement('div');
@@ -925,68 +929,41 @@ function initialize(position) {
 	
 
     //Loop and Draw Path Route between the Points on MAP  (TRANSIT, DRIVING)
-    for (var i = 0; i < lat_lng.length; i++) {
-        if ((i + 1) < lat_lng.length) {
-        //Initialize the Path Array
+   //  for (var i = 0; i < lat_lng.length; i++) {
+   //      if ((i + 1) < lat_lng.length) {
+   //      //Initialize the Path Array
 	
-			var path = new google.maps.MVCArray();
+			// var path = new google.maps.MVCArray();
 
-			//Intialize the Direction Service
-		    var service = new google.maps.DirectionsService();
+			// //Intialize the Direction Service
+		 //    var service = new google.maps.DirectionsService();
 
-		    //Set the Path Stroke Color
-		    var poly = new google.maps.Polyline({ map: map, strokeColor: '#4986E7' });    
-            var src = lat_lng[i];
-            var des = lat_lng[i + 1];
-            path.push(src);
+		 //    //Set the Path Stroke Color
+		 //    var poly = new google.maps.Polyline({ map: map, strokeColor: '#4986E7' });    
+   //          var src = lat_lng[i];
+   //          var des = lat_lng[i + 1];
+   //          path.push(src);
             
-            poly.setPath(path);	
+   //          poly.setPath(path);	
             
             
-            service.route({
-                origin: src, 
-                destination: des,
-                provideRouteAlternatives: false,
-                travelMode: google.maps.DirectionsTravelMode.WALKING
-                //google.maps.TravelMode.TRANSIT 
-            }, function (result, status) {
-                if (status == google.maps.DirectionsStatus.OK) {
-                    for (var i = 0, len = result.routes[0].overview_path.length; i < len; i++) {
-                        path.push(result.routes[0].overview_path[i]);
-                    }
-                }
-            });
-        }
-    }
+   //          service.route({
+   //              origin: src, 
+   //              destination: des,
+   //              provideRouteAlternatives: false,
+   //              travelMode: google.maps.DirectionsTravelMode.WALKING
+   //              //google.maps.TravelMode.TRANSIT 
+   //          }, function (result, status) {
+   //              if (status == google.maps.DirectionsStatus.OK) {
+   //                  for (var i = 0, len = result.routes[0].overview_path.length; i < len; i++) {
+   //                      path.push(result.routes[0].overview_path[i]);
+   //                  }
+   //              }
+   //          });
+   //      }
+   //  }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
-
-    /*
-    directionsDisplay = new google.maps.DirectionsRenderer();
-	  var mapOptions = {
-	    zoom: 14,
-	    center: haight
-	  }
-	  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-	  directionsDisplay.setMap(map);
-	}
-
-	function calcRoute() {
-	  var selectedMode = document.getElementById('mode').value;
-	  var request = {
-	      origin: haight,
-	      destination: oceanBeach,
-	      travelMode: google.maps.TravelMode[selectedMode]
-	  };
-	  directionsService.route(request, function(response, status) {
-	    if (status == google.maps.DirectionsStatus.OK) {
-	      directionsDisplay.setDirections(response);
-	    }
-	  });
-	*/
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 	function PicturesControl(controlDiv, map){
 		controlDiv.style.marginRight = '4%';
@@ -1106,13 +1083,33 @@ function initialize(position) {
 		addUserMarker(userPointer2, mc.getFileName("Peatriz"));
 		addUserMarker(merce, mc.getFileName("Merce"));
 		//****************************************************
-
-
     }
-    click.getContacts(click.getActiveGroup(), marker); // en lugar de getContacts sera  un get gente del grupo
+    //click.getContacts(click.getActiveGroup(), marker); // en lugar de getContacts sera  un get gente del grupo
 
-		
+
+	function calcRoute(i, directionsDisplay) {
+		var request = {
+			origin:lat_lng[i],
+			destination:lat_lng[i+1],
+			travelMode: google.maps.TravelMode.WALKING
+		};
+
+		directionsService.route(request, function(result, status) {
+			if (status == google.maps.DirectionsStatus.OK) {
+				directionsDisplay.setDirections(result);
+			}
+		});
+	}
+
+	for(i=0;i<lat_lng.length;i++){			
+		var directionsDisplay = new google.maps.DirectionsRenderer(); 
+		directionsDisplay.setMap(map);
+		calcRoute(i, directionsDisplay);
+	}
+
 }
+
+
 
 
 Lungo.dom('#map').on('load', function(event){

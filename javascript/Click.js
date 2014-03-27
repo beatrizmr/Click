@@ -156,6 +156,19 @@ function Click (){
 			Lungo.Service.post(this.jsonEndpoint, postData, callBack, "json");
 	}
 	
+	
+	/**
+	/* Get group users
+	/* @param gid group id of the group to get the users
+	/* @param callBack Callback function to manage results
+	/* @returns returns updates in JSON with fields: id	gid	uid	title	description	photo	date	time
+	**/
+	this.getUsersFromGroup = getUsersFromGroup;
+	function getUsersFromGroup(gid, callBack){
+		var postData = {data: JSON.stringify( {"token": this.getToken(), "cod": "getUsersFromGroup", "gid": gid } ) };
+			Lungo.Service.post(this.jsonEndpoint, postData, callBack, "json");
+	}
+	
 	/**
 	/* Add users to a group
 	/* @param gid group of the user
