@@ -854,14 +854,14 @@ function initialize(position) {
 	var userPointer = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 	var userPointer2 = new google.maps.LatLng(position.coords.latitude+3, position.coords.longitude);
 
-	var primeraPicLatLong = new google.maps.LatLng(40.421789454328426, -3.711673490803208);
-	var segundaPicLatLong = new google.maps.LatLng(40.41865295575235, -3.700858824055197);
-	var terceraPicLatLong = new google.maps.LatLng(40.41015753778932, -3.692104093830591);
-	var cuartaPicLatLong = new google.maps.LatLng(40.4032297108584, -3.6872975752758292);
-	var quintaPicLatLong = new google.maps.LatLng(40.41120318557326, -3.7145917342114405);
-	var sextaPicLatLong = new google.maps.LatLng(40.41943709410558, -3.7164800093578805);
-	var septimaPicLatLong = new google.maps.LatLng(40.44034407862666, -3.728667967121615);
-	var octavaPicLatLong = new google.maps.LatLng(40.45667313767128, -3.711845152180173);
+	var primeraPicLatLong = new google.maps.LatLng(40.45232999527589, -3.7275521681714743);
+	var segundaPicLatLong = new google.maps.LatLng(40.44654958842416, -3.7275950835157383);
+	var terceraPicLatLong = new google.maps.LatLng(40.44132393404964, -3.726436369221244);
+	var cuartaPicLatLong = new google.maps.LatLng(40.43648984206507, -3.7205569670606065);
+	var quintaPicLatLong = new google.maps.LatLng(40.42969539554344, -3.7161796019483027);
+	var sextaPicLatLong = new google.maps.LatLng(40.423749691680364, -3.7116305754590346);
+	var septimaPicLatLong = new google.maps.LatLng(40.41973114363177, -3.7024466917920593);
+	var octavaPicLatLong = new google.maps.LatLng(40.411562623247114, -3.6928336546827163);
 
 	var lat_lng = new Array();	
 	lat_lng[0] = primeraPicLatLong;
@@ -922,39 +922,70 @@ function initialize(position) {
 	}
 
 	
-
-	//Initialize the Path Array
-	var path = new google.maps.MVCArray();
-
-	//Intialize the Direction Service
-    var service = new google.maps.DirectionsService();
-
-    //Set the Path Stroke Color
-    var poly = new google.maps.Polyline({ map: map, strokeColor: '#4986E7' });
+	
 
     //Loop and Draw Path Route between the Points on MAP  (TRANSIT, DRIVING)
     for (var i = 0; i < lat_lng.length; i++) {
-        if ((i + 1) < lat_lng.length) {        	
+        if ((i + 1) < lat_lng.length) {
+        //Initialize the Path Array
+	
+			var path = new google.maps.MVCArray();
+
+			//Intialize the Direction Service
+		    var service = new google.maps.DirectionsService();
+
+		    //Set the Path Stroke Color
+		    var poly = new google.maps.Polyline({ map: map, strokeColor: '#4986E7' });    
             var src = lat_lng[i];
             var des = lat_lng[i + 1];
             path.push(src);
-            poly.setPath(path);
+            
+            poly.setPath(path);	
+            
+            
             service.route({
                 origin: src, 
                 destination: des,
                 provideRouteAlternatives: false,
-                travelMode: google.maps.DirectionsTravelMode.DRIVING
+                travelMode: google.maps.DirectionsTravelMode.WALKING
                 //google.maps.TravelMode.TRANSIT 
             }, function (result, status) {
                 if (status == google.maps.DirectionsStatus.OK) {
                     for (var i = 0, len = result.routes[0].overview_path.length; i < len; i++) {
-                    	alert("elemento "+i);
                         path.push(result.routes[0].overview_path[i]);
                     }
                 }
             });
         }
     }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /*
+    directionsDisplay = new google.maps.DirectionsRenderer();
+	  var mapOptions = {
+	    zoom: 14,
+	    center: haight
+	  }
+	  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	  directionsDisplay.setMap(map);
+	}
+
+	function calcRoute() {
+	  var selectedMode = document.getElementById('mode').value;
+	  var request = {
+	      origin: haight,
+	      destination: oceanBeach,
+	      travelMode: google.maps.TravelMode[selectedMode]
+	  };
+	  directionsService.route(request, function(response, status) {
+	    if (status == google.maps.DirectionsStatus.OK) {
+	      directionsDisplay.setDirections(response);
+	    }
+	  });
+	*/
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 	function PicturesControl(controlDiv, map){
