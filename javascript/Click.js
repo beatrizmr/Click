@@ -411,8 +411,21 @@ function Click (){
 								}
 							}, false);
 							*/
-							xhr.open('POST', "http://moncadaisla.es/click/dropbox.endpoint.php?clickToken="+window.btoa(getToken())+"&cod=upload&gid="+click.getActiveGroup(), true);
-							xhr.send(formData);
+
+							
+
+							function getPosition(position){
+								var longitude = position.coords.longitude;
+								var latitude = position.coords.latitude;
+								var position = latitude+","+longitude;
+								xhr.open('POST', "http://moncadaisla.es/click/dropbox.endpoint.php?clickToken="+window.btoa(getToken())+"&cod=upload&gid="+click.getActiveGroup()+"&position="+position, true);
+								xhr.send(formData);
+							}
+							function showError(res){
+								console.log(res);
+							}
+
+							navigator.geolocation.getCurrentPosition(getPosition,showError);
 						}
 			},
 			cancel: {

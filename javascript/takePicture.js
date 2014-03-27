@@ -846,6 +846,8 @@ searchNav.onkeyup = function () {
 var directionsService = new google.maps.DirectionsService();  //para la ruta
 var map;
 var mVisible = true;
+// Aqui va a guardarse la position del usuario cada vez que se llame a la funcion initialize
+var userPointer;
 var lat_lng = new Array();
 
 
@@ -854,7 +856,7 @@ var merce = new google.maps.LatLng(41.850033, -87.6500523);
 function initialize(position) {
 	//directionsDisplay = new google.maps.DirectionsRenderer(); //para la ruta
 
-	var userPointer = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+	userPointer = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 	var userPointer2 = new google.maps.LatLng(position.coords.latitude+3, position.coords.longitude);
 
 	var primeraPicLatLong = new google.maps.LatLng(40.45232999527589, -3.7275521681714743);
@@ -926,44 +928,6 @@ function initialize(position) {
 	}
 
 	
-	
-
-    //Loop and Draw Path Route between the Points on MAP  (TRANSIT, DRIVING)
-   //  for (var i = 0; i < lat_lng.length; i++) {
-   //      if ((i + 1) < lat_lng.length) {
-   //      //Initialize the Path Array
-	
-			// var path = new google.maps.MVCArray();
-
-			// //Intialize the Direction Service
-		 //    var service = new google.maps.DirectionsService();
-
-		 //    //Set the Path Stroke Color
-		 //    var poly = new google.maps.Polyline({ map: map, strokeColor: '#4986E7' });    
-   //          var src = lat_lng[i];
-   //          var des = lat_lng[i + 1];
-   //          path.push(src);
-            
-   //          poly.setPath(path);	
-            
-            
-   //          service.route({
-   //              origin: src, 
-   //              destination: des,
-   //              provideRouteAlternatives: false,
-   //              travelMode: google.maps.DirectionsTravelMode.WALKING
-   //              //google.maps.TravelMode.TRANSIT 
-   //          }, function (result, status) {
-   //              if (status == google.maps.DirectionsStatus.OK) {
-   //                  for (var i = 0, len = result.routes[0].overview_path.length; i < len; i++) {
-   //                      path.push(result.routes[0].overview_path[i]);
-   //                  }
-   //              }
-   //          });
-   //      }
-   //  }
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////
 
 	function PicturesControl(controlDiv, map){
 		controlDiv.style.marginRight = '4%';
@@ -1025,6 +989,8 @@ function initialize(position) {
 		controlUI.appendChild(controlText);
 
 		google.maps.event.addDomListener(controlUI, 'click', function() {
+			alert("pimchado people");
+			console.log("pinchado people");
 			hidePictureWindows(),
 			mVisible = true,
 			showMarkers()
