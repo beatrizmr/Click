@@ -990,9 +990,10 @@ function initialize(position) {
 		controlUI.appendChild(controlText);
 
 		google.maps.event.addDomListener(controlUI, 'click', function() {
-			mVisible = false;
-			clearMarkers()
-			showPictureWindows();
+			mVisible = false,
+			clearMarkers(),
+			routesPics(),
+			showPictureWindows()
 		  //map.setCenter (merce)
 		});		
 	}
@@ -1024,8 +1025,8 @@ function initialize(position) {
 		controlUI.appendChild(controlText);
 
 		google.maps.event.addDomListener(controlUI, 'click', function() {
-			hidePictureWindows();
-			mVisible = true;
+			hidePictureWindows(),
+			mVisible = true,
 			showMarkers()
 		  //map.setCenter (merce)
 		});	
@@ -1086,7 +1087,10 @@ function initialize(position) {
     }
     //click.getContacts(click.getActiveGroup(), marker); // en lugar de getContacts sera  un get gente del grupo
 
+	
+}
 
+function routesPics(){
 	function calcRoute(i, directionsDisplay) {
 		var request = {
 			origin:lat_lng[i],
@@ -1101,12 +1105,12 @@ function initialize(position) {
 		});
 	}
 
-	for(i=0;i<lat_lng.length;i++){			
+	for(i=0;i<lat_lng.length;i++){
 		var directionsDisplay = new google.maps.DirectionsRenderer(); 
 		directionsDisplay.setMap(map);
+		directionsDisplay.setOptions( { suppressMarkers: true } );
 		calcRoute(i, directionsDisplay);
 	}
-
 }
 
 
