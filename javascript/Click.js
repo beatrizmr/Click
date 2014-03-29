@@ -145,6 +145,18 @@ function Click (){
 	}
 	
 	/**
+	/* Get user given key. I.E. login or photo
+	/* @param key key to retrieve
+	/* @param callBack Callback function to manage results
+	/* @returns returns photos in JSON
+	**/
+	this.getKey = getKey;
+	function getKey(key, callBack){
+		var postData = {data: JSON.stringify( {"token": this.getToken(), "cod": "getSimpleKey", "key": key } ) };
+			Lungo.Service.post(this.jsonEndpoint, postData, callBack, "json");
+	}
+	
+	/**
 	/* Get group updates
 	/* @param gid group id of the group to get the updates
 	/* @param callBack Callback function to manage results
@@ -153,19 +165,6 @@ function Click (){
 	this.getUpdates = getUpdates;
 	function getUpdates(gid, callBack){
 		var postData = {data: JSON.stringify( {"token": this.getToken(), "cod": "getUpdates", "gid": gid } ) };
-			Lungo.Service.post(this.jsonEndpoint, postData, callBack, "json");
-	}
-	
-	
-	/**
-	/* Get group users
-	/* @param gid group id of the group to get the users
-	/* @param callBack Callback function to manage results
-	/* @returns returns updates in JSON with fields: id	gid	uid	title	description	photo	date	time
-	**/
-	this.getUsersFromGroup = getUsersFromGroup;
-	function getUsersFromGroup(gid, callBack){
-		var postData = {data: JSON.stringify( {"token": this.getToken(), "cod": "getUsersFromGroup", "gid": gid } ) };
 			Lungo.Service.post(this.jsonEndpoint, postData, callBack, "json");
 	}
 	
@@ -402,7 +401,7 @@ function Click (){
 								//alert("fichero subido: " + e.target.status + "->" + e.target.statusText);
 							});
 							
-							/*	
+							
 							xhr.upload.addEventListener("progress", function(e) {
 								if (e.lengthComputable) {
 									var progress = document.getElementById("progress");
@@ -410,22 +409,9 @@ function Click (){
 									progress.value = e.loaded;
 								}
 							}, false);
-							*/
-
 							
-
-							function getPosition(position){
-								var longitude = position.coords.longitude;
-								var latitude = position.coords.latitude;
-								var position = latitude+","+longitude;
-								xhr.open('POST', "http://moncadaisla.es/click/dropbox.endpoint.php?clickToken="+window.btoa(getToken())+"&cod=upload&gid="+click.getActiveGroup()+"&position="+position, true);
-								xhr.send(formData);
-							}
-							function showError(res){
-								console.log(res);
-							}
-
-							navigator.geolocation.getCurrentPosition(getPosition,showError);
+							xhr.open('POST', "http://moncadaisla.es/click/dropbox.endpoint.php?clickToken="+window.btoa(getToken())+"&cod=upload&gid="+click.getActiveGroup(), true);
+							xhr.send(formData);
 						}
 			},
 			cancel: {

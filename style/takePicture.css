@@ -640,6 +640,16 @@ header{
 	display: none !important;
 }
 
+#progress{
+	height: 5%;
+	position: absolute;
+	margin-top: 11%;
+	background-color: #89CD44;
+	z-index: -3;
+	width: 85%;
+	margin-left: -12%;
+}
+
 /*img[src="http://maps.gstatic.com/mapfiles/api-3/images/mapcnt3.png"] {
     display: none;
 }*/
