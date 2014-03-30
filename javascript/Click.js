@@ -397,10 +397,11 @@ function Click (){
 									3,                          //Time on screen
 									afterNotification           //Callback function
 								);
-											
+
+								document.getElementById("progress").classList.ad("hide");	
 								//alert("fichero subido: " + e.target.status + "->" + e.target.statusText);
 							});
-							
+							document.getElementById("progress").classList.remove("hide");
 							
 							xhr.upload.addEventListener("progress", function(e) {
 								if (e.lengthComputable) {

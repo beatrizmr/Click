@@ -14,6 +14,26 @@ var mc = new MarkerChooser();
 menuAside = document.getElementById("features");
 menuAside.onclick = function(){menuAside.classList.remove("show")}
 
+
+/**
+/* Patch bug Lungo, is needed to remove the active class of any article of the section we want to link to
+**/
+function showArticle(section, article){
+	//Patch bug Lungo, hay que quitar antes el class active de cualquier articulo de la seccion a la que queremos ir
+	sec = document.getElementById(section);
+	ch = sec.children;
+
+	for(i=0; i<ch.length; i++){
+	   if(ch[i].id == article)
+	           ch[i].classList.add("active");
+	   else
+	           ch[i].classList.remove("active");
+	}
+
+	Lungo.Router.section(section);
+
+}
+
 //*****************************************************************************************************************************************************************
 //*****************************************************************************************************************************************************************
 //*****************************************************************************************************************************************************************
@@ -198,7 +218,10 @@ function loginUser(login, password){
 	Lungo.Service.post(url, data, parseResponse, "json");
 }
 
-
+//*****************************************************************************************************************************************************************
+//*****************************************************************************************************************************************************************
+//*****************************************************************************************************************************************************************
+//*****************************************************************************************************************************************************************
 
 /**
 /* Using pull and request Lungo efect____________________________________________FALTA QUE RECARGUE NOVEDADES
@@ -358,11 +381,10 @@ if (client.isAuthenticated()) {
 
 //*****************************************************************************************************************************************************************
 //*****************************************************************************************************************************************************************
-//****************************************************         TIMELINE COMmENTS     *******************************************************************************
+//****************************************************         INNER COMMENT       ****************************************************
 //*****************************************************************************************************************************************************************
 
 
-//Timeline Comments 
 var f = new Date();
 var perfilTlinePic = document.getElementsByClassName('imgTlineComment')[0];
 perfilTlinePic.src = 'http://cdn.tapquo.com/lungo/icon-144.png';
@@ -395,7 +417,11 @@ function insertItem(newListItem) {
 
 
 /**
-/* 
+/* Inner the comment html
+/* @param name name of the user who writes the comment
+/* @param text text of the comment
+/* @param pic profile picture of the user who writes the comment
+/* @param color the color of the group
 **/
 function construirComentario(name,text, pic, color){
 	var d = new Date();
@@ -410,106 +436,155 @@ function construirComentario(name,text, pic, color){
                 </li>';
 }
 
-	function insertGroupAside(group){
-			var groupList = document.getElementById("aside-group-list");
-			groupList.insertAdjacentHTML("beforeend", group);
-	}
-
-	function insertContact(contact, contactGrView){
-			var contactList = document.getElementById("contacts-view-list");
-			var contactListGrView = document.getElementById("chooseContacts-view-list");
-			contactListGrView.insertAdjacentHTML("beforeend", contactGrView);
-			contactList.insertAdjacentHTML("beforeend", contact);
-	}
-
-	function insertAllContact(contact){
-			var allContactList = document.getElementById("allContacts-view-list");
-			allContactList.insertAdjacentHTML("beforeend", contact);
-	}
-
-	function insertGroupNew(data){
-		var groupNews = document.getElementById("group-news-list");
-			groupNews.insertAdjacentHTML("beforeend", data);
-	}
-
-	function appendHtml(id, data, where){
-		var element = document.getElementById(id);
-		element.insertAdjacentHTML(where, data);
-	}
-
-	function construirContacto(login, name, surname, photo, date){
-		//return '<li class="thumb" onclick="javascript:click.addContact(id)" >\
-		return '<li class="thumb">\
-                    <img class="contactIMG" src="'+photo+'" />\
-                    <div>\
-                        <strong class="contactName">'+name+' '+surname+'</strong>\
-                        <small class="contactState">'+login+'</small>\
-                        <div class="on-right tiny sname">'+date+'</div>\
-                    </div>\
-                </li>';
-	}
 
 
 
-	function buildContactGrView(state, name, surname, photo){
-		//return '<li class="thumb" onclick="javascript:click.addContact(id)" >\
-		return '<li class="thumb liGrView">\
-                            <img class="contactIMG" src="'+photo+'" />\
-                            <div>\
-                                <div class="on-right tiny">\
-                                    <input class="checkContact" type = "checkbox"/>\
-                                </div>\
-                                <strong class="contactName nameGrView">'+name+' '+surname+'</strong>\
-                                <small class="contactState">'+state+'</small>\
-                            </div>\
-                        </li>';
-	}
+//*****************************************************************************************************************************************************************
+//*****************************************************************************************************************************************************************
+//****************************************************         GROUP       ****************************************************
+//*****************************************************************************************************************************************************************
 
-	function construirUser(login, name, surname, photo){
-		//return '<li class="thumb" onclick="javascript:click.addContact(id)" >\
-		return '<li class="liNav thumb">\
-                            <img class="contactIMG" src="'+photo+'" />\
-                            <div class ="textNav">\
-                                <strong class="nameNav">'+name+' '+surname+'</strong>\
-                                <small class="nameNav">'+login+'</small>\
-                            </div>\
-                        </li>';
-	}
-
-	function construirInsertarContacto(id, login, name, surname, photo){
-		//return '<li class="thumb" onclick="javascript:click.addContact(id)" >\
-		return '<li class="liNav thumb" onClick="javascript:agregarContacto('+id+')">\
-                            <img class="contactIMG" src="'+photo+'" />\
-                            <div class ="textNav">\
-                                <strong class="nameNav">'+name+' '+surname+'</strong>\
-                                <small class="nameNav">'+login+'</small>\
-                            </div>\
-                        </li>';
-	}
-
-
-
-	document.getElementById("txtComment").addEventListener("change", function(){insertItem('Es una prueba')}, false);
-
-	function showArticle(section, article){
-
-	//Patch bug Lungo, hay que quitar antes el class active de cualquier articulo de la seccion a la que queremos ir
-
-	sec = document.getElementById(section);
-	ch = sec.children;
-
-	for(i=0; i<ch.length; i++){
-       if(ch[i].id == article)
-               ch[i].classList.add("active");
-       else
-               ch[i].classList.remove("active");
-	}
-
-	Lungo.Router.section(section);
-
+/**
+/* Add a group to the group list in the aside
+/* @param group the name of the group is going to be add
+**/
+function insertGroupAside(group){
+		var groupList = document.getElementById("aside-group-list");
+		groupList.insertAdjacentHTML("beforeend", group);
 }
 
 
+
+/**
+/* Insert what is new in the group's profile view_________________________________________________TODAVIA NO SE USA
+/* @param data
+**/
+function insertGroupNew(data){
+	var groupNews = document.getElementById("group-news-list");	
+		groupNews.insertAdjacentHTML("beforeend", data);
+}
+
+//*****************************************************************************************************************************************************************
+//*****************************************************************************************************************************************************************
+//****************************************************         CONTACTOS       ****************************************************
+//*****************************************************************************************************************************************************************
+
+/**
+/* Add a contact (first param) to the contact list view and the contact (second param) to the create new group view
+/* @param contact contact to add to contact list view
+/* @param contacGrView contact to add to create new group view
+**/
+function insertContact(contact, contactGrView){
+		var contactList = document.getElementById("contacts-view-list");
+		contactList.insertAdjacentHTML("beforeend", contact);
+
+		var contactListGrView = document.getElementById("chooseContacts-view-list");
+		contactListGrView.insertAdjacentHTML("beforeend", contactGrView);
+		
+}
+
+
+
+/**
+/* Add an app contact to the all-app-contacts list
+/* @param contact contact to add to all app contacts list
+**/
+function insertAllContact(contact){
+		var allContactList = document.getElementById("allContacts-view-list");
+		allContactList.insertAdjacentHTML("beforeend", contact);
+}
+
+
+
+
+/**
+/* Build a contact view in the contact list
+/* @param login login of the user
+/* @param name name of the us
+/* @param surname surname of the user
+/* @param photo profile photo of the user
+/* @param date__________________________________________________________________FALTA VER SI SERA CUANDO SE UNIO, ULTIMA CONEXION...
+**/
+function construirContacto(login, name, surname, photo, date){
+	//return '<li class="thumb" onclick="javascript:click.addContact(id)" >\
+	return '<li class="thumb">\
+                <img class="contactIMG" src="'+photo+'" />\
+                <div>\
+                    <strong class="contactName">'+name+' '+surname+'</strong>\
+                    <small class="contactState">'+login+'</small>\
+                    <div class="on-right tiny sname">'+date+'</div>\
+                </div>\
+            </li>';
+}
+
+
+/**
+/* Build a contact view in the list of contacts in create new group view
+/* @param state state of the user
+/* @param name name of the us
+/* @param surname surname of the user
+/* @param photo profile photo of the user
+**/
+function buildContactGrView(state, name, surname, photo){
+	//return '<li class="thumb" onclick="javascript:click.addContact(id)" >\
+	return '<li class="thumb liGrView">\
+                        <img class="contactIMG" src="'+photo+'" />\
+                        <div>\
+                            <div class="on-right tiny">\
+                                <input class="checkContact" type = "checkbox"/>\
+                            </div>\
+                            <strong class="contactName nameGrView">'+name+' '+surname+'</strong>\
+                            <small class="contactState">'+state+'</small>\
+                        </div>\
+                    </li>';
+}
+
+
+
+/**
+/* Build a contact view in the list of all-app-contacts add contacts view___________________________________________ESTA NO SE USA
+/* @param login login of the user
+/* @param name name of the us
+/* @param surname surname of the user
+/* @param photo profile photo of the user
+**/
+function construirUser(login, name, surname, photo){
+	//return '<li class="thumb" onclick="javascript:click.addContact(id)" >\
+	return '<li class="liNav thumb">\
+                        <img class="contactIMG" src="'+photo+'" />\
+                        <div class ="textNav">\
+                            <strong class="nameNav">'+name+' '+surname+'</strong>\
+                            <small class="nameNav">'+login+'</small>\
+                        </div>\
+                    </li>';
+}
+
+
+/**
+/* Build a contact view in the list of all-app-contacts add contacts view
+/* @param login login of the user
+/* @param name name of the us
+/* @param surname surname of the user
+/* @param photo profile photo of the user
+**/
+function construirInsertarContacto(id, login, name, surname, photo){
+	//return '<li class="thumb" onclick="javascript:click.addContact(id)" >\
+	return '<li class="liNav thumb" onClick="javascript:agregarContacto('+id+')">\
+                        <img class="contactIMG" src="'+photo+'" />\
+                        <div class ="textNav">\
+                            <strong class="nameNav">'+name+' '+surname+'</strong>\
+                            <small class="nameNav">'+login+'</small>\
+                        </div>\
+                    </li>';
+}
+
+
+
+
+/**
+/* Show all contact list in both user contacts list view and user contacts allowed to add to a new group list view
+/* if no contacts show a message
+**/
 function showContacts(){
 	Lungo.Notification.show();
 	contactList = document.getElementById("contacts-view-list");
@@ -549,46 +624,65 @@ function showContacts(){
 	}
 	
 	click.getContacts(loadContacts);
-
-
 }
 
+
+
+/**
+/* Route to contacts Article
+**/
 function showContactsArticle(){
 	showContacts();
 	showArticle('main','contactsView');
 
 }
 
+
+/**
+/* Route to new group_____________________________________________________________________________________NO SE USA
+**/
 function showAddNewGroup(){
 	showContacts();
 	showArticle('main','createGrView');	
 }
 
 
+/**
+/* Show all app contacts list, when adding new user contacts
+**/
 function showAllContacts(){
 	allContactList = document.getElementById("allContacts-view-list");
 	allContactList.innerHTML = "";
 	
+	/**
+	/* Get all contacts' information
+	/* @param contacts all click users array
+	**/
 	function loadAllContacts(contacts){
 		for(i=0;i<contacts.length;i++){
 			contacto = construirInsertarContacto(contacts[i].id, contacts[i].login, contacts[i].name, contacts[i].surname, contacts[i].photo);
 			insertAllContact(contacto);
 		}
 	}
-
 	click.getUsers(loadAllContacts);
-
-
 }
-allContactsList = document.getElementById("addCon").addEventListener("click", showAllContacts, false);
 
 
 
-
+/**
+/* Add a group in the aside groups list
+/* @param id identifier of the group
+/* @param name name of the group 
+/* @return the html to inner in the list
+**/
 function construirGroupAside(id, name){
-		return '<li data-icon="edit" onClick="javascript:loadGroup('+id+',\''+name+'\')"><strong>'+name+'</strong></li>';
+	return '<li data-icon="edit" onClick="javascript:loadGroup('+id+',\''+name+'\')"><strong>'+name+'</strong></li>';
 }
 
+
+/**
+/* Add a group in the aside groups list
+**/
 function showGroupList(){
 	asideGroupList = document.getElementById("asideGroupList");
 	//asideGroupList.innerHTML = "";
@@ -644,6 +738,20 @@ function construirGroupUpdate(title, description, photo, date, time){
                             </div>\
                         </li> ';
 }
+
+
+
+/**
+/* Append data in 'id' passed as parameter in the position indicated by 'where' parameter
+/* @param id element in which append data
+/* @param data the data to append
+/* @param where in the id element (beforeend ...)
+**/
+function appendHtml(id, data, where){
+	var element = document.getElementById(id);
+	element.insertAdjacentHTML(where, data);
+}
+
 
 function showGroupPics(){
 
