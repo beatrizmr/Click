@@ -62,82 +62,82 @@ Lungo.dom('#section2').on('hold', function(event){
 /* crop and redim that image
 **/
 //second input element in the document, element [0] is the one in camera input
-var fileChooser = document.getElementsByTagName('input')[1];
-var content = document.getElementById('pic');
+// var fileChooser = document.getElementsByTagName('input')[1];
+// var content = document.getElementById('pic');
 
-if (typeof window.FileReader === 'undefined') {
-    content.className = 'fail';
-    content.innerHTML = 'File API &amp; FileReader API are not supported in your browser.  Try on a new-ish Android phone.';
-}
+// if (typeof window.FileReader === 'undefined') {
+//     content.className = 'fail';
+//     content.innerHTML = 'File API &amp; FileReader API are not supported in your browser.  Try on a new-ish Android phone.';
+// }
 
-fileChooser.onchange = function (e) {
-    //e.preventDefault();    
-    var canvas = document.getElementById('pic');
-    var context = canvas.getContext("2d");
-    var imageObj = new Image();
-    //var pixelRatio = window.devicePixelRatio;
-    //context.scale(pixelRatio, pixelRatio);
+// fileChooser.onchange = function (e) {
+//     //e.preventDefault();    
+//     var canvas = document.getElementById('pic');
+//     var context = canvas.getContext("2d");
+//     var imageObj = new Image();
+//     //var pixelRatio = window.devicePixelRatio;
+//     //context.scale(pixelRatio, pixelRatio);
 
-    imageObj.onload = function() {
-        var sourceX = 0;
-        var sourceY = 0;
-        var destX = 0;
-        var destY = 0;
+//     imageObj.onload = function() {
+//         var sourceX = 0;
+//         var sourceY = 0;
+//         var destX = 0;
+//         var destY = 0;
 
-        if (canvas.width > canvas.height) {
-            var stretchRatio = ( imageObj.width / canvas.width );
-            var sourceWidth = Math.floor(imageObj.width);
-            var sourceHeight = Math.floor(canvas.height*stretchRatio);
-            sourceY = Math.floor((imageObj.height - sourceHeight)/2);
-        } else {
-            var stretchRatio = ( imageObj.height / canvas.height );
-            var sourceWidth = Math.floor(canvas.width*stretchRatio);
-            var sourceHeight = Math.floor(imageObj.height);
-            sourceX = Math.floor((imageObj.width - sourceWidth)/2);
-        }
-        //var destWidth = Math.floor(canvas.width / pixelRatio);
-        //var destHeight = Math.floor(canvas.height / pixelRatio);
-	var destWidth = Math.floor(canvas.width);
-        var destHeight = Math.floor(canvas.height);		
+//         if (canvas.width > canvas.height) {
+//             var stretchRatio = ( imageObj.width / canvas.width );
+//             var sourceWidth = Math.floor(imageObj.width);
+//             var sourceHeight = Math.floor(canvas.height*stretchRatio);
+//             sourceY = Math.floor((imageObj.height - sourceHeight)/2);
+//         } else {
+//             var stretchRatio = ( imageObj.height / canvas.height );
+//             var sourceWidth = Math.floor(canvas.width*stretchRatio);
+//             var sourceHeight = Math.floor(imageObj.height);
+//             sourceX = Math.floor((imageObj.width - sourceWidth)/2);
+//         }
+//         //var destWidth = Math.floor(canvas.width / pixelRatio);
+//         //var destHeight = Math.floor(canvas.height / pixelRatio);
+// 	var destWidth = Math.floor(canvas.width);
+//         var destHeight = Math.floor(canvas.height);		
 
-        context.drawImage(imageObj, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight);
-    }; 
+//         context.drawImage(imageObj, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight);
+//     }; 
 
-    var file = fileChooser.files[0],
-        reader = new FileReader();
+//     var file = fileChooser.files[0],
+//         reader = new FileReader();
         
-    reader.onerror = function (event) {
-        content.innerHTML = "Error reading file";
-    }
+//     reader.onerror = function (event) {
+//         content.innerHTML = "Error reading file";
+//     }
 
-    reader.onload = function (event) {
-        var imag = new Image();
+//     reader.onload = function (event) {
+//         var imag = new Image();
 
-        // files from the Gallery need the URL adjusted
-        if (event.target.result && event.target.result.match(/^data:base64/)) {
-            imag.src = event.target.result.replace(/^data:base64/, 'data:image/jpeg;base64');
-        } else {
-            imag.src = event.target.result;
-        }
+//         // files from the Gallery need the URL adjusted
+//         if (event.target.result && event.target.result.match(/^data:base64/)) {
+//             imag.src = event.target.result.replace(/^data:base64/, 'data:image/jpeg;base64');
+//         } else {
+//             imag.src = event.target.result;
+//         }
 
-        // Guess photo orientation based on device orientation, works when taking picture, fails when loading from gallery
-        if (navigator.userAgent.match(/mobile/i) && window.orientation === 0) {
-            imag.height = 250;
-            imag.className = "gira";
-        } else {
-            imag.width = 400;
-	    	imag.className = "gira";
-        }
+//         // Guess photo orientation based on device orientation, works when taking picture, fails when loading from gallery
+//         if (navigator.userAgent.match(/mobile/i) && window.orientation === 0) {
+//             imag.height = 250;
+//             imag.className = "gira";
+//         } else {
+//             imag.width = 400;
+// 	    	imag.className = "gira";
+//         }
 
-        imageObj.src = imag.src;
-        content.innerHTML = '';
-        content.appendChild(imag);
-    };
+//         imageObj.src = imag.src;
+//         content.innerHTML = '';
+//         content.appendChild(imag);
+//     };
     
-    reader.readAsDataURL(file);
+//     reader.readAsDataURL(file);
 
-    return false;
-}
+//     return false;
+// }
 
 
 

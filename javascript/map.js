@@ -8,6 +8,9 @@
 *********************************************/
 
 //Localizacion longitude y latitude
+/**
+/* Get the current position of the user
+*/
 function getLocation(){
 	if (navigator.geolocation){
     	navigator.geolocation.getCurrentPosition(showPosition,showError);
@@ -16,7 +19,10 @@ function getLocation(){
     }
 }
 
-
+/**
+/* Get latitude and longitude of the position
+/* @param position
+*/
 function showPosition(position){
 	var ilongitud = position.coords.longitude;
 	var ilatitud = position.coords.latitude;
@@ -25,7 +31,10 @@ function showPosition(position){
 }
 
 
-
+/**
+/* Get latitude and longitude of the position
+/* @param position
+*/
 function showError(error){
 	switch(error.code){
 		case error.POSITION_UNAVAILABLE:
@@ -112,15 +121,20 @@ function initialize(position) {
     var imgWindowArray = [];
 
     function loadGroupMinPics(pics){
+    	var octavaPicLatLong = new google.maps.LatLng(40.411562623247114, -3.6928336546827163);
 		for(i=0;i<pics.length;i++){
+
 			var contentImg = '<div><img style = "width: 100px;" src="https://moncadaisla.es/click/'+pics[i].url+'" /></div>';
 			imgWindowArray[i] = new google.maps.InfoWindow({
-				position: lat_lng[i],
+				//position: lat_lng[i],
+				position: new google.maps.LatLng(pics[i].position),
 				content: contentImg
 			});
 		}
 	}
 	click.getThumbnails(click.getActiveGroup(), loadGroupMinPics);
+
+
 
 	function showPictureWindows(){
 		for(i=0;i<imgWindowArray.length;i++){
