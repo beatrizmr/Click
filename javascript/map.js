@@ -75,25 +75,6 @@ function initialize(position) {
 	userPointer = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 	var userPointer2 = new google.maps.LatLng(position.coords.latitude+3, position.coords.longitude);
 
-	var primeraPicLatLong = new google.maps.LatLng(40.45232999527589, -3.7275521681714743);
-	var segundaPicLatLong = new google.maps.LatLng(40.44654958842416, -3.7275950835157383);
-	var terceraPicLatLong = new google.maps.LatLng(40.44132393404964, -3.726436369221244);
-	var cuartaPicLatLong = new google.maps.LatLng(40.43648984206507, -3.7205569670606065);
-	var quintaPicLatLong = new google.maps.LatLng(40.42969539554344, -3.7161796019483027);
-	var sextaPicLatLong = new google.maps.LatLng(40.423749691680364, -3.7116305754590346);
-	var septimaPicLatLong = new google.maps.LatLng(40.41973114363177, -3.7024466917920593);
-	var octavaPicLatLong = new google.maps.LatLng(40.411562623247114, -3.6928336546827163);
-
-		
-	lat_lng[0] = primeraPicLatLong;
-	lat_lng[1] = segundaPicLatLong;
-	lat_lng[2] = terceraPicLatLong;
-	lat_lng[3] = cuartaPicLatLong;
-	lat_lng[4] = quintaPicLatLong;
-	lat_lng[5] = sextaPicLatLong;
-	lat_lng[6] = septimaPicLatLong;
-	lat_lng[7] = octavaPicLatLong;
-
     var mapOptions = {
       center: userPointer,
       zoom: 15,
@@ -121,16 +102,21 @@ function initialize(position) {
     var imgWindowArray = [];
 
     function loadGroupMinPics(pics){
-    	var octavaPicLatLong = new google.maps.LatLng(40.411562623247114, -3.6928336546827163);
 		for(i=0;i<pics.length;i++){
-
+			//var picPos = new google.maps.LatLng(pics[i].position);
+			//lat_lng[i] = picPos;
+			var picPos = pics[i].position;
+			var picPosition = picPos.split(',');
+			var picLat = parseFloat(picPosition[0]);
+			var picLon = parseFloat(picPosition[1]);
+			lat_lng[i] = new google.maps.LatLng(picLat,picLon);
 			var contentImg = '<div><img style = "width: 100px;" src="https://moncadaisla.es/click/'+pics[i].url+'" /></div>';
 			imgWindowArray[i] = new google.maps.InfoWindow({
-				//position: lat_lng[i],
-				position: new google.maps.LatLng(pics[i].position),
+				position:  lat_lng[i],
 				content: contentImg
 			});
 		}
+		alert("num fotos: "+ lat_lng.length);
 	}
 	click.getThumbnails(click.getActiveGroup(), loadGroupMinPics);
 
@@ -293,6 +279,7 @@ function routesPics(){
 	}
 
 	for(i=0;i<lat_lng.length;i++){
+		//alert("para ruta: "+ lat_lng.length);
 		var directionsDisplay = new google.maps.DirectionsRenderer(); 
 		directionsDisplay.setMap(map);
 		directionsDisplay.setOptions( { suppressMarkers: true } );
