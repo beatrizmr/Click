@@ -278,7 +278,7 @@ function routesPics(){
 		});
 	}
 
-	for(i=0;i<lat_lng.length;i++){
+	for(i=0;i<lat_lng.length - 1;i++){
 		//alert("para ruta: "+ lat_lng.length);
 		var directionsDisplay = new google.maps.DirectionsRenderer(); 
 		directionsDisplay.setMap(map);
