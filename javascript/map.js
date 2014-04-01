@@ -116,7 +116,7 @@ function initialize(position) {
 				content: contentImg
 			});
 		}
-		alert("num fotos: "+ lat_lng.length);
+		//alert("num fotos: "+ lat_lng.length);
 	}
 	click.getThumbnails(click.getActiveGroup(), loadGroupMinPics);
 

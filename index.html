@@ -112,6 +112,9 @@
                     <fieldset class="radius-bottom shadow" data-icon="lock">
                         <input type="password" placeholder="Password" id="txt-signupPssword" value/>
                     </fieldset>
+                    <fieldset class="radius-bottom shadow" data-icon="lock">
+                        <input type="password" placeholder="Repeat Password" id="txt-signupPssword2" value/>
+                    </fieldset>
                 </div>
 
                 <br />
@@ -378,7 +381,8 @@
         </header>
         <nav data-control="groupbar" data-article="profile map members pictures">
             <a href="#" data-view-article="profile" data-icon="checkmark" data-label="Profile" class="active"></a>
-            <a href="#" data-view-article="map" data-icon="checkmark" data-label="Map"></a>
+            <a href="#" data-view-article="map" data-icon="checkmark" data-label="Map"></a>            
+            <a href="#" onClick="javascript:showArticle('groupSection','locatedComments')" data-icon="checkmark" data-label="Comment"></a>
             <a href="#" data-view-article="members" data-icon="checkmark" data-label="Members"></a>
             <a href="#" data-view-article="pictures" data-icon="checkmark" data-label="Pictures"></a>
         </nav>
@@ -412,7 +416,14 @@
 
         <!--********************************************************      MAP     ***************************************************************-->
         <article id="map">
-            <div id="map_canvas">>
+            <div id="map_canvas">
+            </div>
+        </article>
+
+        <!--********************************************************      LOCATED COMMENTS     **************************************************-->
+        <article id="locatedComments">
+            <div id="comments_gr">
+                Hola feo
             </div>
         </article>
 

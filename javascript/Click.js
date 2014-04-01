@@ -168,6 +168,40 @@ function Click (){
 			Lungo.Service.post(this.jsonEndpoint, postData, callBack, "json");
 	}
 	
+	
+	/**
+	/* Get group messages
+	/* @param gid group id of the group to get the messages
+	/* @param callBack Callback function to manage results
+	/* @returns returns updates in JSON with fields: id	gid	uid	message position timestamp
+	**/
+	this.getMessages = getMessages;
+	function getMessages(gid, callBack){
+		var postData = {data: JSON.stringify( {"token": this.getToken(), "cod": "getMessages", "gid": gid } ) };
+			Lungo.Service.post(this.jsonEndpoint, postData, callBack, "json");
+	}
+	
+	/**
+	/* Insert new message
+	/* @param gid group the message belongs to
+	/* @param message Message to insert
+	/* @param position Position in format <latitude,longitude> string
+	/* @param callBack Callback function to manage results
+	/* @returns returns to the callback function '200' if succesful
+	**/
+	this.insertMessage = insertMessage;
+	function insertMessage(gid, message, callBack){		
+			function sendRequest(data){
+				position = data.coords.latitude+","+data.coords.longitude;
+				var postData = {data: JSON.stringify( {"token": click.getToken(), "cod": "insertMessage", "gid": gid, "message": message, "position": position } ) };
+				Lungo.Service.post(click.jsonEndpoint, postData, callBack, "json");
+			}
+			function showError(){
+				alert("error position :-(");
+			}							
+			navigator.geolocation.getCurrentPosition(sendRequest,showError);			
+	}
+	
 	/**
 	/* Add users to a group
 	/* @param gid group of the user
