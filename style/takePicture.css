@@ -328,12 +328,13 @@ header{
 }
 
 .picMember{ 
-	width: 21%;
-	margin-left: 64%;
+	width: 65%;
+	margin-left: 28%;
 }
 
 .dateMemb{
-	margin-top: 5%;
+	margin-top: 0%;
+	margin-right: 5%;
 }
 
 .findmemap img{
@@ -344,7 +345,7 @@ header{
 .findmemap{
 	width: 79%;
 	margin-left: 14%;
-	margin-top: -45%;
+	margin-top: -61%;
 	margin-bottom: 13%;
 }
 
@@ -357,17 +358,15 @@ header{
 }
 
 .leftInfo{
-	width: 26%;
 	float: left;
-	margin-left: 19%;
-	margin-top: 10%;
-
+	margin-left: 4%;
+	margin-right: 6%;
+	width: 26%;
 }
 
 .info{
 	float: left;
 	margin-right: 0;
-	margin-top: 2%;
 	margin-left: 12%;
 	width: 49%;
 }
@@ -381,8 +380,9 @@ header{
 
 .rating {
   unicode-bidi: bidi-override;
-  direction: rtl;
-  width: 120%;
+	direction: rtl;
+	width: 114%;
+	margin-top: 6%;
 }
 .rating > span {
   display: inline-block;
@@ -396,14 +396,18 @@ header{
 }
 
 .picMember img{
-	height: 100%;
 	width: 100%;
 }
 
 .contenidoMember{
-	margin-top: -10%;
-	padding-top: 15%;
-}
+	height: 91%;
+	width: 87%;
+	margin-left: 8%;
+	padding-top: 3.3%;
+	border-bottom-color: #00afe3;
+	border-width: 1px;
+	border-bottom-style: solid;
+	}
 
 .infoMember{
 	padding-left: 6%;
@@ -433,6 +437,7 @@ header{
 }
 
 .ulFri{
+	height: 85%;
 }
 
 .ulFri li{
@@ -441,12 +446,9 @@ header{
 }
 
 .nota{
-	background-image: url("../img/nota.png"); 
-	background-repeat:no-repeat;
-	padding-top: 0%;
-	padding-bottom: 27%;
-	margin-top: 6%;
-	background-position: center;
+	height: 25%;
+	width: 99%;
+	padding-top: 0.5%;
 }
 
 .contactLi li{
