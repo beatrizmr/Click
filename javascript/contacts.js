@@ -64,13 +64,13 @@ function construirContacto(login, name, surname, photo, date){
 /* @param surname surname of the user
 /* @param photo profile photo of the user
 **/
-function buildContactGrView(state, name, surname, photo){
+function buildContactGrView(uid, state, name, surname, photo){
 	//return '<li class="thumb" onclick="javascript:click.addContact(id)" >\
 	return '<li class="thumb liGrView">\
                         <img class="contactIMG" src="'+photo+'" />\
                         <div>\
                             <div class="on-right tiny">\
-                                <input class="checkContact" type = "checkbox"/>\
+                                <input class="checkContact" type = "checkbox" value = "'+uid+'"/>\
                             </div>\
                             <strong class="contactName nameGrView">'+name+' '+surname+'</strong>\
                             <small class="contactState">'+state+'</small>\
@@ -155,7 +155,7 @@ function showContacts(){
 		}else{
 			for(i=0;i<contacts.length;i++){
 				contacto = construirContacto(contacts[i].login, contacts[i].name, contacts[i].surname, contacts[i].photo, " Mie 23/11/2012");
-				contactGrView = buildContactGrView(contacts[i].state, contacts[i].name, contacts[i].surname, contacts[i].photo);
+				contactGrView = buildContactGrView(contacts[i].id, contacts[i].state, contacts[i].name, contacts[i].surname, contacts[i].photo);
 				insertContact(contacto, contactGrView);
 			}
 		}

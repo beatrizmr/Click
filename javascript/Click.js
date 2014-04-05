@@ -216,6 +216,18 @@ function Click (){
 	}
 	
 	/**
+	/* Create Group
+	/* @param name Name of the group
+	/* @param callBack Callback function to manage results
+	/* @returns returns the gif of the group created if succesfull
+	**/
+	this.createGroup = createGroup;
+	function createGroup(name, callBack){
+		var postData = {data: JSON.stringify( {"token": this.getToken(), "cod": "createGroup", "name": name} ) };
+			Lungo.Service.post(this.jsonEndpoint, postData, callBack, "json");
+	}
+	
+	/**
 	/* This function makes simple POST to server to get simple data. Simple data 
 	/* is defined as that 
 	/* 

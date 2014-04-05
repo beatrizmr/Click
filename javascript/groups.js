@@ -378,3 +378,95 @@ searchGrView.onkeyup = function () {
         }
     }
 }
+
+/**
+/* Use this function to create new group
+/*
+*/
+function createNewGroup(){	
+
+	function insertContacts(gid){
+		
+		var members = new Array();
+		function insertSelectedContacts(cid){
+			members.push(""+cid);
+			checkBoxes = document.getElementsByClassName("checkContact");
+			for(i=0; i<checkBoxes.length; i++){
+				if(checkBoxes[i].checked)
+					members.push(checkBoxes[i].value)
+			}
+			function loadNewGroup(d){
+				loadGroup(gid, name);
+			}
+
+			click.addUsersToGroup(gid, members, loadNewGroup);
+		}
+		click.getKey("id", insertSelectedContacts);
+
+	}
+	
+	name = document.getElementById("createGroup-name").value;
+	click.createGroup(name, insertContacts);
+	
+}
+
+
+// /**
+// /* Build a new group memeber view
+// /* @param score score of the member
+// /* @param pircturesNum pircturesNum of the member
+// /* @param commentsNum commentsNum of the member
+// /* @param memberName memberName of the member
+// /* @param memberPic memberPic of the member
+// **/
+// function buildGroupMember(pircturesNum, commentsNum, memberName, memberPic){
+// 	return '<div class="nota">\
+//                     <div class="contenidoMember">\
+//                         <div class="leftInfo">\
+//                             <div class="picMember">\
+//                                 <img src="'+memberPic+'"/>\
+//                             </div>\
+//                             <div class="rating">\
+//                                 <span>&#9734;</span><span>&#9734;</span><span>&#9734;</span><span>&#9734;</span><span>&#9734;</span>\
+//                             </div>\
+//                         </div>\
+//                         <div class="infoMember">\
+//                             <div class="info">\
+//                                 <p>\                             
+//                                     <span class="commentPerson strong greenText">Name:</span>\
+//                                     <span class="opacity leftspace">'+memberName+'</span>\
+//                                 </p>\
+//                                 <p>\
+//                                     <span class="commentPerson strong greenText">Shared:</span>\
+//                                     <span class="small opacity leftspace" data-icon="picture"><span class="spaceSpan">'+pircturesNum+'</span></span>\
+//                                 </p>\
+//                                 <p>\
+//                                     <span class="commentPerson strong greenText">Post:</span>\
+//                                     <span class="small opacity leftspace" data-icon="comments-alt"><span class="spaceSpan">'+commentsNum+'</span></span>\
+//                                 </p>\
+//                             </div>\
+//                         </div>\
+//                     </div>\            
+//                 </div>';
+// }
+
+// /**
+// /* Show all members in members group view
+// **/ 
+// function showGrMembers(){
+
+// 	groupActivityList = document.getElementById("group-news-list");
+// 	groupActivityList.innerHTML = "";
+
+// 	/**
+// 	/* Get all updates of the group
+// 	/* @param updates all group news array
+// 	**/
+// 	function loadgroupActivityList(updates){
+// 		for(i=0;i<updates.length;i++){
+// 			u = construirGroupUpdate(updates[i].title, updates[i].description, "http://moncadaisla.es/click/"+updates[i].photo, updates[i].date, updates[i].time);
+// 			appendHtml("group-news-list", u, "beforeend");
+// 		}
+// 	}
+// 	click.getUpdates(click.getActiveGroup(), loadgroupActivityList);	
+// }

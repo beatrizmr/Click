@@ -310,10 +310,10 @@
 
         <!--***********************************************      CREATEGRVIEW     ***************************************************************-->
         <article id="createGrView" class="indented scroll" id="form-indented">
-            <a href="#" class="createNg button small margin-bottom" disabled="true" data-icon="ok" data-label="Create"></a>
+            <a onClick="javascript:createNewGroup()" href="#" class="createNg button small margin-bottom" disabled="true" data-icon="ok" id="createGroupSubmit" data-label="Create"></a>
             <div class="form formularioCrGr">
                 <fieldset class="radius shadow nameGroup" data-icon="group">
-                    <input type="text" placeholder="Group Name" value/>
+                    <input id = "createGroup-name" type="text" placeholder="Group Name" value/>
                 </fieldset>
                 <fieldset class="radius shadow picColorGr">
                     <input class="colorInputGr" id="colorInputGr" type="color" value=''/>
