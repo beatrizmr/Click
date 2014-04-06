@@ -411,62 +411,65 @@ function createNewGroup(){
 }
 
 
-// /**
-// /* Build a new group memeber view
-// /* @param score score of the member
-// /* @param pircturesNum pircturesNum of the member
-// /* @param commentsNum commentsNum of the member
-// /* @param memberName memberName of the member
-// /* @param memberPic memberPic of the member
-// **/
-// function buildGroupMember(pircturesNum, commentsNum, memberName, memberPic){
-// 	return '<div class="nota">\
-//                     <div class="contenidoMember">\
-//                         <div class="leftInfo">\
-//                             <div class="picMember">\
-//                                 <img src="'+memberPic+'"/>\
-//                             </div>\
-//                             <div class="rating">\
-//                                 <span>&#9734;</span><span>&#9734;</span><span>&#9734;</span><span>&#9734;</span><span>&#9734;</span>\
-//                             </div>\
-//                         </div>\
-//                         <div class="infoMember">\
-//                             <div class="info">\
-//                                 <p>\                             
-//                                     <span class="commentPerson strong greenText">Name:</span>\
-//                                     <span class="opacity leftspace">'+memberName+'</span>\
-//                                 </p>\
-//                                 <p>\
-//                                     <span class="commentPerson strong greenText">Shared:</span>\
-//                                     <span class="small opacity leftspace" data-icon="picture"><span class="spaceSpan">'+pircturesNum+'</span></span>\
-//                                 </p>\
-//                                 <p>\
-//                                     <span class="commentPerson strong greenText">Post:</span>\
-//                                     <span class="small opacity leftspace" data-icon="comments-alt"><span class="spaceSpan">'+commentsNum+'</span></span>\
-//                                 </p>\
-//                             </div>\
-//                         </div>\
-//                     </div>\            
-//                 </div>';
-// }
+/**
+/* Build a new group memeber view
+/* @param score score of the member_________________________________________________________FALTA
+/* @param pircturesNum pircturesNum of the member
+/* @param commentsNum commentsNum of the member
+/* @param memberName memberName of the member
+/* @param memberPic memberPic of the member
+**/
+function buildGroupMember(pircturesNum, commentsNum, memberName, memberPic){
+	return '<div class="nota">\
+                    <div class="contenidoMember">\
+                        <div class="leftInfo">\
+                            <div class="picMember">\
+                                <img src="'+memberPic+'"/>\
+                            </div>\
+                            <div class="rating">\
+                                <span>&#9734;</span><span>&#9734;</span><span>&#9734;</span><span>&#9734;</span><span>&#9734;</span>\
+                            </div>\
+                        </div>\
+                        <div class="infoMember">\
+                            <div class="info">\
+                                <p>\
+                                    <span class="commentPerson strong greenText">Name:</span>\
+                                    <span class="opacity leftspace">'+memberName+'</span>\
+                                </p>\
+                                <p>\
+                                    <span class="commentPerson strong greenText">Shared:</span>\
+                                    <span class="small opacity leftspace icon picture"><span class="spaceSpan">'+pircturesNum+'</span></span>\
+                                </p>\
+                                <p>\
+                                    <span class="commentPerson strong greenText">Post:</span>\
+                                    <span class="small opacity leftspace icon comments-alt"><span class="spaceSpan">'+commentsNum+'</span></span>\
+                                </p>\
+                            </div>\
+                        </div>\
+                    </div>\
+                </div>';
+}
 
-// /**
-// /* Show all members in members group view
-// **/ 
-// function showGrMembers(){
+/**
+/* Show all members in members group view
+**/ 
+function showGrMembers(){
 
-// 	groupActivityList = document.getElementById("group-news-list");
-// 	groupActivityList.innerHTML = "";
+	groupMembersList = document.getElementById("group-member-list");
+	groupMembersList.innerHTML = "";
 
-// 	/**
-// 	/* Get all updates of the group
-// 	/* @param updates all group news array
-// 	**/
-// 	function loadgroupActivityList(updates){
-// 		for(i=0;i<updates.length;i++){
-// 			u = construirGroupUpdate(updates[i].title, updates[i].description, "http://moncadaisla.es/click/"+updates[i].photo, updates[i].date, updates[i].time);
-// 			appendHtml("group-news-list", u, "beforeend");
-// 		}
-// 	}
-// 	click.getUpdates(click.getActiveGroup(), loadgroupActivityList);	
-// }
+	/**
+	/* Get all updates of the group
+	/* @param updates all group news array
+	**/
+	function loadgroupMemberList(members){
+		for(i=0;i<members.length;i++){
+			//u = buildGroupMember(members[i].pircturesNum, members[i].commentsNum, members[i].name, "http://moncadaisla.es/click/"+members[i].photo);
+			u = buildGroupMember(7, 5, members[i].name, members[i].photo);
+			appendHtml("group-member-list", u, "beforeend");
+		}
+	}
+	click.getUsersFromGroup(click.getActiveGroup(), loadgroupMemberList);	
+}
+
+document.getElementById("show-group-members").addEventListener("click", function(){showGrMembers()}, false);

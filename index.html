@@ -383,7 +383,7 @@
             <a href="#" data-view-article="profile" data-icon="checkmark" data-label="Profile" class="active"></a>
             <a href="#" data-view-article="map" data-icon="checkmark" data-label="Map"></a>            
             <a href="#" onClick="javascript:showArticle('groupSection','locatedComments')" data-icon="checkmark" data-label="Comment"></a>
-            <a href="#" data-view-article="members" data-icon="checkmark" data-label="Members"></a>
+            <a href="#" data-view-article="members" data-icon="checkmark" data-label="Members" id="show-group-members"></a>
             <a href="#" data-view-article="pictures" data-icon="checkmark" data-label="Pictures"></a>
         </nav>
 
@@ -429,91 +429,8 @@
 
         <!--****************************************************      MEMBERS     ***************************************************************-->
         <article id="members" class="scroll">
-            <div class="ulFri">
-                <div class="nota">
-                    <div class="contenidoMember">
-                        <div class="leftInfo">
-                            <div class="picMember">
-                                <img src = "img/usuario1.jpg"/>
-                            </div>
-                            <div class="rating">
-                                <span>&#9734;</span><span>&#9734;</span><span>&#9734;</span><span>&#9734;</span><span>&#9734;</span>
-                            </div>
-                        </div>
-                        <div class="infoMember">
-                            <div class="info">  
-                                <p>                                  
-                                    <span class="commentPerson strong greenText">Name:</span>
-                                    <span class="opacity leftspace">Beuki</span>
-                                </p>
-                                <p>
-                                    <span class="commentPerson strong greenText">Shared:</span>
-                                    <span class="small opacity leftspace" data-icon="picture"><span class="spaceSpan">6</span></span>
-                                </p>
-                                <p>
-                                    <span class="commentPerson strong greenText">Post:</span>
-                                    <span class="small opacity leftspace" data-icon="comments-alt"><span class="spaceSpan">6</span></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>                
-                </div>
-                <div class="nota">
-                    <div class="contenidoMember">
-                        <div class="leftInfo">
-                            <div class="picMember">
-                                <img src = "img/usuario1.jpg"/>
-                            </div>
-                            <div class="rating">
-                                <span>&#9734;</span><span>&#9734;</span><span>&#9734;</span><span>&#9734;</span><span>&#9734;</span>
-                            </div>
-                        </div>
-                        <div class="infoMember">
-                            <div class="info">  
-                                <p>                                  
-                                    <span class="commentPerson strong greenText">Name:</span>
-                                    <span class="opacity leftspace">Beuki</span>
-                                </p>
-                                <p>
-                                    <span class="commentPerson strong greenText">Shared:</span>
-                                    <span class="small opacity leftspace" data-icon="picture"><span class="spaceSpan">6</span></span>
-                                </p>
-                                <p>
-                                    <span class="commentPerson strong greenText">Post:</span>
-                                    <span class="small opacity leftspace" data-icon="comments-alt"><span class="spaceSpan">6</span></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>                
-                </div>
-                <div class="nota">
-                    <div class="contenidoMember">
-                        <div class="leftInfo">
-                            <div class="picMember">
-                                <img src = "img/usuario1.jpg"/>
-                            </div>
-                            <div class="rating">
-                                <span>&#9734;</span><span>&#9734;</span><span>&#9734;</span><span>&#9734;</span><span>&#9734;</span>
-                            </div>
-                        </div>
-                        <div class="infoMember">
-                            <div class="info">  
-                                <p>                                  
-                                    <span class="commentPerson strong greenText">Name:</span>
-                                    <span class="opacity leftspace">Beuki</span>
-                                </p>
-                                <p>
-                                    <span class="commentPerson strong greenText">Shared:</span>
-                                    <span class="small opacity leftspace" data-icon="picture"><span class="spaceSpan">6</span></span>
-                                </p>
-                                <p>
-                                    <span class="commentPerson strong greenText">Post:</span>
-                                    <span class="small opacity leftspace" data-icon="comments-alt"><span class="spaceSpan">6</span></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>                
-                </div>
+            <div class="ulFri" id="group-member-list">
+                
             </div>
         </article>
 
