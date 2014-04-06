@@ -659,3 +659,37 @@ header{
 /*img[src="http://maps.gstatic.com/mapfiles/api-3/images/mapcnt3.png"] {
     display: none;
 }*/
+
+
+.bocadillo {
+	width: 81%;
+	margin-top: 2%;
+	margin-left: 7%;
+	position: absolute;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	border-style: solid;
+	border-color: #89CD44;
+	padding: 1%;
+	border-width: 2px;
+}
+
+.bocadillo:before {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-top: 21px solid transparent;
+	border-right: 15px solid #89CD44;
+	border-bottom: 21px solid transparent;
+	margin: -1px 0 0 -19px;
+}
+
+#comments_gr{
+	height: 88%;
+}
+
+#locatedComments{
+	background-image: url("../img/gplaypattern.png");
+}
