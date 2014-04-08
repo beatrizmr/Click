@@ -672,7 +672,20 @@ header{
 	border-style: solid;
 	border-color: #89CD44;
 	border-width: 2px;
-	}
+}
+
+.bocadilloR {
+	width: 81%;
+	height: 12%;
+	margin-top: 2%;
+	margin-left: 7%;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	border-style: solid;
+	border-color: #009ecc;
+	border-width: 2px;
+}
 
 .bocadillo:before {
 	content: "";
@@ -682,7 +695,18 @@ header{
 	border-top: 26px solid transparent;
 	border-right: 20px solid #89CD44;
 	border-bottom: 26px solid transparent;
-	margin: 0px 0 0 -19px;
+	margin: 0px 0 0 -5%;
+}
+
+.bocadilloR:before {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-top: 26px solid transparent;
+	border-left: 20px solid #009ecc;
+	border-bottom: 26px solid transparent;
+	margin: 0px 0 0 80%;
 }
 
 #comments_gr{
@@ -691,6 +715,7 @@ header{
 
 #locatedComments{
 	background-image: url("../img/gplaypattern.png");
+	padding-top: 1%;
 }
 
 .textCloud{
@@ -701,8 +726,19 @@ header{
 	margin-top: 1%;
 }
 
+.textCloudR{
+	width: 76%;
+	float: right;
+	font-size: 100%;
+	margin-top: 1%;
+}
+
 .miniMap{
 	margin-left: 81.5%;
+	height: 100%;
+}
+
+.miniMapR{
 	height: 100%;
 }
 
@@ -711,6 +747,12 @@ header{
 	border-radius: 15%;
 }
 
-#locatedComments{
-	padding-top: 1%;
+.miniMapR img{
+	height: 100%;
+	border-radius: 15%;
+}
+
+#addGeoComment{
+	margin-left: 39%;
+	margin-top: 9%;
 }
