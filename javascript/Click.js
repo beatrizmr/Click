@@ -182,6 +182,18 @@ function Click (){
 	}
 	
 	/**
+	/* Get group thumbnails and messages
+	/* @param gid group id of the group to get the messages
+	/* @param callBack Callback function to manage results
+	/* @returns returns updates in JSON with fields: id	gid	uid	message position timestamp
+	**/
+	this.getThumbnailsAndMessages = getThumbnailsAndMessages;
+	function getMessages(gid, callBack){
+		var postData = {data: JSON.stringify( {"token": this.getToken(), "cod": "getThumbnailsAndMessages", "gid": gid } ) };
+			Lungo.Service.post(this.jsonEndpoint, postData, callBack, "json");
+	}
+	
+	/**
 	/* Insert new message
 	/* @param gid group the message belongs to
 	/* @param message Message to insert

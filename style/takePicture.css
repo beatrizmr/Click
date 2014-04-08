@@ -663,27 +663,26 @@ header{
 
 .bocadillo {
 	width: 81%;
+	height: 12%;
 	margin-top: 2%;
 	margin-left: 7%;
-	position: absolute;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
 	border-style: solid;
 	border-color: #89CD44;
-	padding: 1%;
 	border-width: 2px;
-}
+	}
 
 .bocadillo:before {
 	content: "";
 	position: absolute;
 	width: 0;
 	height: 0;
-	border-top: 21px solid transparent;
-	border-right: 15px solid #89CD44;
-	border-bottom: 21px solid transparent;
-	margin: -1px 0 0 -19px;
+	border-top: 26px solid transparent;
+	border-right: 20px solid #89CD44;
+	border-bottom: 26px solid transparent;
+	margin: 0px 0 0 -19px;
 }
 
 #comments_gr{
@@ -692,4 +691,26 @@ header{
 
 #locatedComments{
 	background-image: url("../img/gplaypattern.png");
+}
+
+.textCloud{
+	width: 76%;
+	float: left;
+	font-size: 100%;
+	margin-left: 2%;
+	margin-top: 1%;
+}
+
+.miniMap{
+	margin-left: 81.5%;
+	height: 100%;
+}
+
+.miniMap img{
+	height: 100%;
+	border-radius: 15%;
+}
+
+#locatedComments{
+	padding-top: 1%;
 }
