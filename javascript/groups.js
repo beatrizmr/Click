@@ -473,3 +473,11 @@ function showGrMembers(){
 }
 
 document.getElementById("show-group-members").addEventListener("click", function(){showGrMembers()}, false);
+
+
+function writeComment(){
+	Lungo.Notification.html('<h1>Hello World</h1>', "Close");
+}
+
+document.getElementById("wComment").addEventListener("click", function(){writeComment();}, false);
+

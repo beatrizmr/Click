@@ -188,7 +188,7 @@ function Click (){
 	/* @returns returns updates in JSON with fields: id	gid	uid	message position timestamp
 	**/
 	this.getThumbnailsAndMessages = getThumbnailsAndMessages;
-	function getMessages(gid, callBack){
+	function getThumbnailsAndMessages(gid, callBack){
 		var postData = {data: JSON.stringify( {"token": this.getToken(), "cod": "getThumbnailsAndMessages", "gid": gid } ) };
 			Lungo.Service.post(this.jsonEndpoint, postData, callBack, "json");
 	}

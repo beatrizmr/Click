@@ -692,10 +692,10 @@ header{
 	position: absolute;
 	width: 0;
 	height: 0;
-	border-top: 26px solid transparent;
-	border-right: 20px solid #89CD44;
-	border-bottom: 26px solid transparent;
-	margin: 0px 0 0 -5%;
+	border-top: 1.7em solid transparent;
+	border-right: 1.3em solid #89CD44;
+	border-bottom: 1.7em solid transparent;
+	margin: 1% 0 0 -7%;
 }
 
 .bocadilloR:before {
@@ -703,10 +703,10 @@ header{
 	position: absolute;
 	width: 0;
 	height: 0;
-	border-top: 26px solid transparent;
-	border-left: 20px solid #009ecc;
-	border-bottom: 26px solid transparent;
-	margin: 0px 0 0 80%;
+	border-top: 1.7em solid transparent;
+	border-left: 1.3em solid #009ecc;
+	border-bottom: 1.7em solid transparent;
+	margin: 1% 0 0 100%;
 }
 
 #comments_gr{
@@ -755,4 +755,41 @@ header{
 #addGeoComment{
 	margin-left: 39%;
 	margin-top: 9%;
+}
+
+.bocadilloInput{
+	margin-bottom: 5%;
+	width: 81%;
+	padding: 1%;
+	margin-top: 2%;
+	margin-left: 7%;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	border-style: solid;
+	border-color: #009ecc;
+	border-width: 2px;
+}
+
+.bocadilloInput:before {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-top-style: solid;
+	border-top-color: transparent;
+	border-top-width: 1.35em;
+
+	border-left-style: solid;
+	border-left-color: #009ecc;
+	border-left-width: 1.2em;
+
+	border-bottom-style: solid;
+	border-bottom-color: transparent;
+	border-bottom-width: 1.35em;	
+	margin:-0.3% 0 0 79%;
+}
+
+#wComment{
+	width: 100%;
 }
