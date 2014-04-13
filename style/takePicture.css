@@ -793,3 +793,43 @@ header{
 #wComment{
 	width: 100%;
 }
+
+
+#sendCmnt{
+	background: #EEE; 
+	color: #b5b5b5; 
+}
+
+#textareaComnt{
+	width: 96%;
+	padding: 3%;
+	margin-left: 2%;
+	margin-right: 2%;
+	margin-top: 2%;
+	resize: none;
+	border-width: 0px;
+	background: #f5f5f5;
+	font-size: 1rem; 
+    -moz-border-radius: 3px; 
+    -webkit-border-radius: 3px; 
+    border-radius: 3px; 
+    border: none; 
+    box-shadow: inset 0px 2px 3px rgba( 0,0,0,0.1 ); 
+    outline: none; 
+    font-family: 'Unkempt';
+}
+
+#textareaComnt:focus{
+	outline: none;
+}
+
+textareaComnt:-webkit-textarea-placeholder { 
+    color:    #b5b5b5; 
+    font-family: 'Unkempt';
+} 
+ 
+textareaComnt-moz-placeholder { 
+    color:    #b5b5b5; 
+    font-family: 'Unkempt';
+} 
+

@@ -476,7 +476,9 @@ document.getElementById("show-group-members").addEventListener("click", function
 
 
 function writeComment(){
-	Lungo.Notification.html('<h1>Hello World</h1>', "Close");
+	var text = '<textarea id="textareaComnt" placeholder="Write your comment..." rows="4" maxlength="140"></textarea>';
+	var send = '<div id="sendCmnt" class="icon comments">Send</div>';
+	Lungo.Notification.html(text, send);
 }
 
 document.getElementById("wComment").addEventListener("click", function(){writeComment();}, false);
