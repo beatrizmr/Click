@@ -672,6 +672,7 @@ header{
 	border-style: solid;
 	border-color: #89CD44;
 	border-width: 2px;
+	list-style-type: none;
 }
 
 .bocadilloR {
@@ -685,6 +686,7 @@ header{
 	border-style: solid;
 	border-color: #009ecc;
 	border-width: 2px;
+	list-style-type: none;
 }
 
 .bocadillo:before {
@@ -709,7 +711,7 @@ header{
 	margin: 1% 0 0 100%;
 }
 
-#comments_gr{
+#group-comments-list{
 	height: 88%;
 }
 
@@ -719,7 +721,8 @@ header{
 }
 
 .textCloud{
-	width: 76%;
+	width: 74.547%;
+	margin-right: 2%;
 	float: left;
 	font-size: 100%;
 	margin-left: 2%;
@@ -734,7 +737,6 @@ header{
 }
 
 .miniMap{
-	margin-left: 81.5%;
 	height: 100%;
 }
 
@@ -842,7 +844,8 @@ textareaComnt-moz-placeholder {
 	color: #009ecc;
 	margin-right: 1%;
 }
-
+/*
 aside .list li .icon {
 	color: red;
 }
+*/

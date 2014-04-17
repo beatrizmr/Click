@@ -223,6 +223,7 @@ function loadGroup(gid, name){
 
 	showGroupPics();
 	showGrActivity();
+	showGroupComments();
 	showArticle("groupSection", "profile");
 }
 
@@ -502,12 +503,12 @@ function writeComment(){
 /* @param name user who wrotte the comment
 **/
 function buildCommentOwn(text, lat, lng, name){
-	return '<div class="bocadilloR">\
+	return '<li class="bocadilloR">\
                     <div class="textCloudR"><span class= "authorCmntR">'+name+': </span>'+text+'</div>\
                     <div class="miniMapR">\
-                        <img src="http://maps.googleapis.com/maps/api/staticmap?center='+lat+','+lng+'&zoom=14&size=128x128&sensor=false" />\
-                    </div>\
-                </div>';
+						<img src="http://maps.googleapis.com/maps/api/staticmap?center='+lat+','+lng+'&zoom=14&size=128x128&sensor=false" />\
+					</div>\
+                </li>';
 }
 
 /**
@@ -518,12 +519,12 @@ function buildCommentOwn(text, lat, lng, name){
 /* @param name user who wrotte the comment
 **/
 function buildCommentOthers(text, lat, lng, name){
-	return '<div class="bocadillo">\
+	return '<li class="bocadillo">\
                     <div class="textCloud"><span class= "authorCmnt">'+name+': </span>'+text+'</div>\
                     <div class="miniMap">\
                         <img src="http://maps.googleapis.com/maps/api/staticmap?center='+lat+','+lng+'&zoom=14&size=128x128&sensor=false" />\
                     </div>\
-                </div>';
+                </li>';
 }
 
 
@@ -549,41 +550,49 @@ function sendComment(){
 	u = buildCommentOwn(l, Lat, Lon, click.getActiveLogin());	
 
 	click.insertMessage(click.getActiveGroup(), l, FaltaCallback);
-	appendHtml("comments_gr", u, "afterbegin");
+	appendHtml("group-comments-list", u, "afterbegin");
 }
 
 document.getElementById("wComment").addEventListener("click", function(){writeComment();}, false);
 
 
 
+
+
 /**
 /* Load past comments, from the user logged and the other members of the group
 **/
-function loadGroupComments(comments){
-	for(i=0;i<comments.length;i++){
-		console.log("comentario de" + comments[i].uid);
-		if (comments[i].uid == click.getActiveUid()){
-			console.log("coincide con "+click.getActiveUid()+"azul");
-			var messagePos = comments[i].position;
-			var messagePosition = messagePos.split(',');
-			var messageLat = parseFloat(messagePosition[0]);
-			var messageLon = parseFloat(messagePosition[1]);
 
-			u = buildCommentOwn(comments[i].message, messageLat, messageLon, comments[i].login);
-			appendHtml("comments_gr", u, "afterbegin");
+function showGroupComments(){
 
-		}else{
-			console.log("no coincide con "+click.getActiveUid()+"verde");
-			var messagePos = comments[i].position;
-			var messagePosition = messagePos.split(',');
-			var messageLat = parseFloat(messagePosition[0]);
-			var messageLon = parseFloat(messagePosition[1]);
+	//First make sure there are no comments from previous groups loaded
+	commentsGr = document.getElementById("group-comments-list").innerHTML = "";
 
-			u = buildCommentOthers(comments[i].message, messageLat, messageLon, comments[i].login);
-			appendHtml("comments_gr", u, "afterbegin");
+	function loadGroupComments(comments){
+		for(i=0;i<comments.length;i++){
+			console.log("comentario de" + comments[i].uid);
+			if (comments[i].uid == click.getActiveUid()){
+				console.log("coincide con "+click.getActiveUid()+"azul");
+				var messagePos = comments[i].position;
+				var messagePosition = messagePos.split(',');
+				var messageLat = parseFloat(messagePosition[0]);
+				var messageLon = parseFloat(messagePosition[1]);
+
+				u = buildCommentOwn(comments[i].message, messageLat, messageLon, comments[i].login);
+				appendHtml("group-comments-list", u, "afterbegin");
+
+			}else{
+				console.log("no coincide con "+click.getActiveUid()+"verde");
+				var messagePos = comments[i].position;
+				var messagePosition = messagePos.split(',');
+				var messageLat = parseFloat(messagePosition[0]);
+				var messageLon = parseFloat(messagePosition[1]);
+
+				u = buildCommentOthers(comments[i].message, messageLat, messageLon, comments[i].login);
+				appendHtml("group-comments-list", u, "afterbegin");
+			}
 		}
 	}
+	click.getMessages(click.getActiveGroup(), loadGroupComments);
 }
-click.getMessages(click.getActiveGroup(), loadGroupComments);
-
 
