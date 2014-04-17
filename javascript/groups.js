@@ -454,7 +454,6 @@ function buildGroupMember(pircturesNum, commentsNum, memberName, memberPic){
 /* Show all members in members group view
 **/ 
 function showGrMembers(){
-
 	groupMembersList = document.getElementById("group-member-list");
 	groupMembersList.innerHTML = "";
 
@@ -475,11 +474,116 @@ function showGrMembers(){
 document.getElementById("show-group-members").addEventListener("click", function(){showGrMembers()}, false);
 
 
+
+var text = '<textarea id="textareaComnt" placeholder="Write your comment..." rows="4" maxlength="140" value></textarea>';
+var send = '<div id="sendCmnt" onClick="javascript:sendComment()" class="icon comments">Send</div>';
+
+/**
+/* Show the notification with the elements textarea text and button send
+**/
 function writeComment(){
-	var text = '<textarea id="textareaComnt" placeholder="Write your comment..." rows="4" maxlength="140"></textarea>';
-	var send = '<div id="sendCmnt" class="icon comments">Send</div>';
-	Lungo.Notification.html(text, send);
+
+	function showWriteBox(data){
+		click.position = data.coords.latitude+","+data.coords.longitude;
+		Lungo.Notification.html(text, send);
+	}
+	function positionError(){
+		alert("Cannot get user's position");
+	}
+
+	navigator.geolocation.getCurrentPosition(showWriteBox,positionError);	
+}
+
+/**
+/* Build the comment div when written by the user
+/* @param text textare value
+/* @param lat latitude of position where comment is written
+/* @param lng longitude of position where comment is written
+/* @param name user who wrotte the comment
+**/
+function buildCommentOwn(text, lat, lng, name){
+	return '<div class="bocadilloR">\
+                    <div class="textCloudR"><span class= "authorCmntR">'+name+': </span>'+text+'</div>\
+                    <div class="miniMapR">\
+                        <img src="http://maps.googleapis.com/maps/api/staticmap?center='+lat+','+lng+'&zoom=14&size=128x128&sensor=false" />\
+                    </div>\
+                </div>';
+}
+
+/**
+/* Build the comment div when written by the user
+/* @param text textare value
+/* @param lat latitude of position where comment is written
+/* @param lng longitude of position where comment is written
+/* @param name user who wrotte the comment
+**/
+function buildCommentOthers(text, lat, lng, name){
+	return '<div class="bocadillo">\
+                    <div class="textCloud"><span class= "authorCmnt">'+name+': </span>'+text+'</div>\
+                    <div class="miniMap">\
+                        <img src="http://maps.googleapis.com/maps/api/staticmap?center='+lat+','+lng+'&zoom=14&size=128x128&sensor=false" />\
+                    </div>\
+                </div>';
+}
+
+
+
+/**
+/* Falta por hacer, que cuando ha terminado de subirse al servidor se ponga un tick en el comentario
+**/
+function FaltaCallback(){
+
+}
+
+
+
+/**
+/* Send a new comment to the list
+**/
+function sendComment(){
+	l = document.getElementById("textareaComnt").value;	
+	var Pos = click.position;
+	var Position = Pos.split(',');
+	var Lat = parseFloat(Position[0]);
+	var Lon = parseFloat(Position[1]);
+	u = buildCommentOwn(l, Lat, Lon, click.getActiveLogin());	
+
+	click.insertMessage(click.getActiveGroup(), l, FaltaCallback);
+	appendHtml("comments_gr", u, "afterbegin");
 }
 
 document.getElementById("wComment").addEventListener("click", function(){writeComment();}, false);
+
+
+
+/**
+/* Load past comments, from the user logged and the other members of the group
+**/
+function loadGroupComments(comments){
+	for(i=0;i<comments.length;i++){
+		console.log("comentario de" + comments[i].uid);
+		if (comments[i].uid == click.getActiveUid()){
+			console.log("coincide con "+click.getActiveUid()+"azul");
+			var messagePos = comments[i].position;
+			var messagePosition = messagePos.split(',');
+			var messageLat = parseFloat(messagePosition[0]);
+			var messageLon = parseFloat(messagePosition[1]);
+
+			u = buildCommentOwn(comments[i].message, messageLat, messageLon, comments[i].login);
+			appendHtml("comments_gr", u, "afterbegin");
+
+		}else{
+			console.log("no coincide con "+click.getActiveUid()+"verde");
+			var messagePos = comments[i].position;
+			var messagePosition = messagePos.split(',');
+			var messageLat = parseFloat(messagePosition[0]);
+			var messageLon = parseFloat(messagePosition[1]);
+
+			u = buildCommentOthers(comments[i].message, messageLat, messageLon, comments[i].login);
+			appendHtml("comments_gr", u, "afterbegin");
+		}
+	}
+}
+click.getMessages(click.getActiveGroup(), loadGroupComments);
+
 

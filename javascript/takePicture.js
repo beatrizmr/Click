@@ -192,6 +192,7 @@ function loginUser(login, password){
 	var parseResponse = function(result){
 		if(result.status == "200"){
 			click.setToken(result.token);
+			click.setData("surname", result.surname);
 
 			/* Load initial user data */
 			showGroupList();

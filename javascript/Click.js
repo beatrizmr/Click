@@ -74,6 +74,15 @@ function Click (){
 	function setData(key, value){
 		localStorage.setItem(key, value);
 	}
+
+	/**
+	/* Helper para guardar clave-valor en localstorage de HTML5
+	**/
+	this.getData = getData;
+	function getData(key){
+		localStorage.getItem(key);
+	}
+	
 	
 	/**
 	/* Setter para el active group
@@ -91,7 +100,22 @@ function Click (){
 	function getActiveGroup(gid){
 		return localStorage.getItem("activeGroup");
 	}
-	
+
+	/**
+	/* Gets current user's UID
+	**/
+	this.getActiveUid = getActiveUid;
+	function getActiveUid(){
+		return localStorage.getItem("id");
+	}
+
+	/**
+	/* Gets current user's LOGIN
+	**/
+	this.getActiveLogin = getActiveLogin;
+	function getActiveLogin(){
+		return localStorage.getItem("login");
+	}
 
 	/**
 	/* Gets groups that the user logged in is suscribed to.
@@ -173,7 +197,7 @@ function Click (){
 	/* Get group messages
 	/* @param gid group id of the group to get the messages
 	/* @param callBack Callback function to manage results
-	/* @returns returns updates in JSON with fields: id	gid	uid	message position timestamp
+	/* @returns returns updates in JSON with fields: id	gid	uid	message position timestamp login
 	**/
 	this.getMessages = getMessages;
 	function getMessages(gid, callBack){
@@ -185,7 +209,7 @@ function Click (){
 	/* Get group thumbnails and messages
 	/* @param gid group id of the group to get the messages
 	/* @param callBack Callback function to manage results
-	/* @returns returns updates in JSON with fields: id	gid	uid	message position timestamp
+	/* @returns returns updates in JSON with fields: id	gid	uid	message position timestamp login
 	**/
 	this.getThumbnailsAndMessages = getThumbnailsAndMessages;
 	function getThumbnailsAndMessages(gid, callBack){
@@ -205,6 +229,7 @@ function Click (){
 	function insertMessage(gid, message, callBack){		
 			function sendRequest(data){
 				position = data.coords.latitude+","+data.coords.longitude;
+				click.position = position;
 				var postData = {data: JSON.stringify( {"token": click.getToken(), "cod": "insertMessage", "gid": gid, "message": message, "position": position } ) };
 				Lungo.Service.post(click.jsonEndpoint, postData, callBack, "json");
 			}
@@ -506,8 +531,8 @@ function Click (){
 		var postData = {data: JSON.stringify( {"token": this.getToken(), "cod": "getUsersFromGroup", "gid": gid } ) };
 		Lungo.Service.post(this.jsonEndpoint, postData, callBack, "json");
 	}
-		
-	
+
+
 	
 }
 

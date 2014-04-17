@@ -833,3 +833,16 @@ textareaComnt-moz-placeholder {
     font-family: 'Unkempt';
 } 
 
+.authorCmnt{
+	color: #89CD44;
+	margin-right: 1%;
+}
+
+.authorCmntR{
+	color: #009ecc;
+	margin-right: 1%;
+}
+
+aside .list li .icon {
+	color: red;
+}
