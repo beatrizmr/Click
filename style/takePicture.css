@@ -163,6 +163,10 @@ body{
 
 .groupsPart{
 	background-color: #2a2a2a!important;
+	height: 3em;
+	padding-left: 1em;
+	padding-top: 0.7em;
+	margin-bottom: 0.4em;
 }
 
 #usrName{
@@ -253,12 +257,12 @@ header{
 }
 
 #fotoPerfil2{
-	width: 30%;
+	width: 12em;
 }
 
 #fotoPerfil2 img{
-	width: 110%;
-	margin-left: 15%;
+	width: 60%;
+	margin-left: 10%;
 }
 
 #containerPhotoPerfil{
@@ -287,6 +291,11 @@ header{
 	margin-top: 1%;
 }
 
+#aside-login-title{
+	margin-left: 5em;
+	text-transform: uppercase;
+}
+
 .addMember{
 	background-color: transparent!important;
 	margin-top: 9%;
@@ -299,13 +308,14 @@ header{
 }
 
 .Initialform{
-	padding-top: 33%;
+	padding-top: 5%;
 	padding-left: 6%;
 	padding-right: 6%;
 }
 
 #registView fieldset{
-	margin-top:3%;
+	margin-top: 2%;
+	margin-bottom: 2%;
 }
 
 .greenText{
@@ -606,7 +616,7 @@ header{
 }
 
 #ulTimeline{
-	height: 68%;
+	height: 92%;
 }
 
 .divFei{
@@ -629,11 +639,11 @@ header{
 
 
 #logginData{
-	margin-top:20%;
+	margin-top: 2%;
 }
 
 #userData{
-	margin-bottom:20%;
+	margin-bottom: 2%;
 }
 
 #selectedColor {
@@ -663,9 +673,9 @@ header{
 
 .bocadillo {
 	width: 81%;
-	height: 12%;
+	height: 6em;
 	margin-top: 2%;
-	margin-left: 7%;
+	margin-left: 12%;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
@@ -677,7 +687,7 @@ header{
 
 .bocadilloR {
 	width: 81%;
-	height: 12%;
+	height: 6em;
 	margin-top: 2%;
 	margin-left: 7%;
 	-moz-border-radius: 10px;
@@ -695,9 +705,9 @@ header{
 	width: 0;
 	height: 0;
 	border-top: 1.7em solid transparent;
-	border-right: 1.3em solid #89CD44;
-	border-bottom: 1.7em solid transparent;
-	margin: 1% 0 0 -7%;
+	border-right: 1.2em solid #89CD44;
+	border-bottom: 1.5em solid transparent;
+	margin: 1% 0 0 -5.2%;
 }
 
 .bocadilloR:before {
@@ -708,11 +718,11 @@ header{
 	border-top: 1.7em solid transparent;
 	border-left: 1.3em solid #009ecc;
 	border-bottom: 1.7em solid transparent;
-	margin: 1% 0 0 100%;
-}
+	margin: 1% 0 0 80%;
+	}
 
 #group-comments-list{
-	height: 88%;
+	height: 100%;
 }
 
 #locatedComments{
@@ -720,8 +730,22 @@ header{
 	padding-top: 1%;
 }
 
+.dateCloud{
+	position: relative;
+	top: -1.5em;
+	left: 0.5em;
+	font-size: 0.8em;
+}
+
+.dateCloudR{
+	position: relative;
+	top: -1.5em;
+	left: 14em;
+	font-size: 0.8em;
+}
+
 .textCloud{
-	width: 74.547%;
+	width: 62.2%;
 	margin-right: 2%;
 	float: left;
 	font-size: 100%;
@@ -730,7 +754,7 @@ header{
 }
 
 .textCloudR{
-	width: 76%;
+	width: 63%;
 	float: right;
 	font-size: 100%;
 	margin-top: 1%;
@@ -843,6 +867,16 @@ textareaComnt-moz-placeholder {
 .authorCmntR{
 	color: #009ecc;
 	margin-right: 1%;
+}
+
+#scroll-container{
+	height: 62%;
+}
+
+.circular {
+	border-radius: 12em;
+	-webkit-border-radius: 12em;
+	-moz-border-radius: 12em;	
 }
 /*
 aside .list li .icon {

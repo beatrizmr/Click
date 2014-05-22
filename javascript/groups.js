@@ -36,18 +36,31 @@ function insertGroupNew(data){
 /* @return the html to inner in the list
 **/
 function construirGroupAside(id, name){
-	return '<li data-icon="edit" onClick="javascript:loadGroup('+id+',\''+name+'\')"><strong>'+name+'</strong></li>';
+	return '<li onClick="javascript:loadGroup('+id+',\''+name+'\')">\
+	<span class="icon chevron-right"></span>\
+	<strong>'+name+'</strong></li>';
 }
 
-
+/**
+/* Add a add new group in the aside groups list
+/* @return the html to inner in the list
+**/
+function construirAddNewGroup(){
+	return '<li onclick="javascript:showAddNewGroup()" data-icon="sign"><span class="icon sign"></span>\
+	<strong>New group</strong>\
+    </li>';
+}
 
 /**
 /* Build the groups list in the aside
 **/
 function showGroupList(){
-	asideGroupList = document.getElementById("asideGroupList");
-	//asideGroupList.innerHTML = "";
+	asideGroupList = document.getElementById("aside-group-list");
+	asideGroupList.innerHTML = "";
 
+	addNewGroup = construirAddNewGroup();
+	insertGroupAside(addNewGroup);
+	
 	/**
 	/* load all groups in the aside
 	/* @param groups all user groups array
@@ -252,7 +265,7 @@ function selectColor (){
 	groupColor = colorSelected;
 }
 
-document.getElementById("colorinput").addEventListener("change", function(){selectColor()}, false);
+//document.getElementById("colorinput").addEventListener("change", function(){selectColor()}, false);
 
 
 
@@ -475,23 +488,23 @@ function showGrMembers(){
 document.getElementById("show-group-members").addEventListener("click", function(){showGrMembers()}, false);
 
 
-
-var text = '<textarea id="textareaComnt" placeholder="Write your comment..." rows="4" maxlength="140" value></textarea>';
-var send = '<div id="sendCmnt" onClick="javascript:sendComment()" class="icon comments">Send</div>';
-
 /**
 /* Show the notification with the elements textarea text and button send
 **/
 function writeComment(){
-
+	
 	function showWriteBox(data){
+	
+		var text = '<textarea id="textareaComnt" placeholder="Write your comment..." rows="4" maxlength="140" value></textarea>';
+		var send = '<div id="sendCmnt" onClick="javascript:sendComment()" class="icon comments">Send</div>';
+		
 		click.position = data.coords.latitude+","+data.coords.longitude;
 		Lungo.Notification.html(text, send);
 	}
 	function positionError(){
 		alert("Cannot get user's position");
 	}
-
+	console.log("Clicked write comment");
 	navigator.geolocation.getCurrentPosition(showWriteBox,positionError);	
 }
 
@@ -502,11 +515,12 @@ function writeComment(){
 /* @param lng longitude of position where comment is written
 /* @param name user who wrotte the comment
 **/
-function buildCommentOwn(text, lat, lng, name){
+function buildCommentOwn(text, lat, lng, name, date){
 	return '<li class="bocadilloR">\
                     <div class="textCloudR"><span class= "authorCmntR">'+name+': </span>'+text+'</div>\
                     <div class="miniMapR">\
 						<img src="http://maps.googleapis.com/maps/api/staticmap?center='+lat+','+lng+'&zoom=14&size=128x128&sensor=false" />\
+					<p class="dateCloudR">'+date.toDateString()+'</p>\
 					</div>\
                 </li>';
 }
@@ -518,22 +532,15 @@ function buildCommentOwn(text, lat, lng, name){
 /* @param lng longitude of position where comment is written
 /* @param name user who wrotte the comment
 **/
-function buildCommentOthers(text, lat, lng, name){
+function buildCommentOthers(text, lat, lng, name, date){
+	
 	return '<li class="bocadillo">\
                     <div class="textCloud"><span class= "authorCmnt">'+name+': </span>'+text+'</div>\
                     <div class="miniMap">\
                         <img src="http://maps.googleapis.com/maps/api/staticmap?center='+lat+','+lng+'&zoom=14&size=128x128&sensor=false" />\
+						<p class="dateCloud">'+date.toDateString()+'</p>\
                     </div>\
                 </li>';
-}
-
-
-
-/**
-/* Falta por hacer, que cuando ha terminado de subirse al servidor se ponga un tick en el comentario
-**/
-function FaltaCallback(){
-
 }
 
 
@@ -547,9 +554,13 @@ function sendComment(){
 	var Position = Pos.split(',');
 	var Lat = parseFloat(Position[0]);
 	var Lon = parseFloat(Position[1]);
-	u = buildCommentOwn(l, Lat, Lon, click.getActiveLogin());	
+	var date = new Date();
+	u = buildCommentOwn(l, Lat, Lon, click.getActiveLogin(), date);	
 
-	click.insertMessage(click.getActiveGroup(), l, FaltaCallback);
+	var afterInsert = function(data){
+		updateReversePosition();
+	}
+	click.insertMessage(click.getActiveGroup(), l, afterInsert);
 	appendHtml("group-comments-list", u, "afterbegin");
 }
 
@@ -571,6 +582,9 @@ function showGroupComments(){
 	function loadGroupComments(comments){
 		for(i=0;i<comments.length;i++){
 			console.log("comentario de" + comments[i].uid);
+			
+			var date = click.dateFromMysql(comments[i].timestamp);
+			
 			if (comments[i].uid == click.getActiveUid()){
 				console.log("coincide con "+click.getActiveUid()+"azul");
 				var messagePos = comments[i].position;
@@ -578,7 +592,7 @@ function showGroupComments(){
 				var messageLat = parseFloat(messagePosition[0]);
 				var messageLon = parseFloat(messagePosition[1]);
 
-				u = buildCommentOwn(comments[i].message, messageLat, messageLon, comments[i].login);
+				u = buildCommentOwn(comments[i].message, messageLat, messageLon, comments[i].login, date);
 				appendHtml("group-comments-list", u, "afterbegin");
 
 			}else{
@@ -588,7 +602,7 @@ function showGroupComments(){
 				var messageLat = parseFloat(messagePosition[0]);
 				var messageLon = parseFloat(messagePosition[1]);
 
-				u = buildCommentOthers(comments[i].message, messageLat, messageLon, comments[i].login);
+				u = buildCommentOthers(comments[i].message, messageLat, messageLon, comments[i].login, date);
 				appendHtml("group-comments-list", u, "afterbegin");
 			}
 		}
@@ -596,3 +610,42 @@ function showGroupComments(){
 	click.getMessages(click.getActiveGroup(), loadGroupComments);
 }
 
+/**
+/* Patch for Lungo
+/* Rewrited function to change tabs
+*/
+function changeTab(tab){
+	nav = document.getElementById("nav-group");
+	tabs = nav.getElementsByTagName("a");
+	
+	for(i=0; i<tabs.length; i++){		
+		if(tabs[i].getAttribute("click-group-tab") == tab)
+			tabs[i].classList.add("active");
+		else
+			tabs[i].classList.remove("active");		
+	}
+	
+	section = document.getElementById("groupSection");
+	articles = section.getElementsByTagName("article");
+	
+	for(i=0; i<articles.length; i++){
+		if(articles[i].getAttribute("id") == tab)
+			articles[i].classList.add("active");
+		else
+			articles[i].classList.remove("active");
+	}
+	if(tab == "map")
+		navigator.geolocation.getCurrentPosition(initialize,showError);
+}
+
+
+/**
+/* Patch for Lungo
+/* Rewrited function to change tabs, here we add click listeners
+*/
+nav = document.getElementById("nav-group");
+tabs = nav.getElementsByTagName("a");
+
+for(i=0; i<tabs.length; i++){
+	tabs[i].addEventListener("click", function(){changeTab(this.getAttribute("click-group-tab"))}, false);
+}

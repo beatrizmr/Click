@@ -66,12 +66,46 @@ var mVisible = true;
 var userPointer;
 var lat_lng = new Array();
 
+var userMarkers = [];
 
-var merce = new google.maps.LatLng(41.850033, -87.6500523);
+function addUserMarker(Userposition, icon){
+	var marker = new google.maps.Marker({
+		position: Userposition,
+		icon: new google.maps.MarkerImage('img/marcadores/'+icon+'',
+	null, null, null, new google.maps.Size(64,64)),
+		draggable: false,
+		visible: mVisible,
+		map: map    	
+	});
+
+	userMarkers.push(marker);
+	//marker.setMap(map);
+}
+
+// Sets the map on all markers in the array.
+function setAllMap(map) {
+  for (var i = 0; i < userMarkers.length; i++) {
+	userMarkers[i].setMap(map);
+  }
+}
+
+// Removes the markers from the map, but keeps them in the array.
+function clearMarkers() {
+  setAllMap(null);
+}
+
+// Shows any markers currently in the array.
+function showMarkers() {
+  setAllMap(map);
+}
+
+// Deletes all markers in the array by removing references to them.
+function deleteMarkers() {
+  clearMarkers();
+  userMarkers = [];
+}
 
 function initialize(position) {
-	//directionsDisplay = new google.maps.DirectionsRenderer(); //para la ruta
-
 	userPointer = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 	var userPointer2 = new google.maps.LatLng(position.coords.latitude+3, position.coords.longitude);
 
@@ -90,21 +124,22 @@ function initialize(position) {
 
 	var peopleControlDiv = document.createElement('div');
 	var picturesControlDiv = document.createElement('div');
+	var messagesControlDiv = document.createElement('div');
     var peopleControl = new PeopleControl (peopleControlDiv, map);
     var picturesControl = new PicturesControl (picturesControlDiv, map);
+	var messagesControl = new MessagesControl (messagesControlDiv, map);
 
     peopleControlDiv.index = 1;
     picturesControlDiv.index = 2;
 
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(peopleControlDiv);
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(picturesControlDiv);
+	map.controls[google.maps.ControlPosition.TOP_RIGHT].push(messagesControlDiv);
 
     var imgWindowArray = [];
 
     function loadGroupMinPics(pics){
 		for(i=0;i<pics.length;i++){
-			//var picPos = new google.maps.LatLng(pics[i].position);
-			//lat_lng[i] = picPos;
 			var picPos = pics[i].position;
 			var picPosition = picPos.split(',');
 			var picLat = parseFloat(picPosition[0]);
@@ -116,12 +151,9 @@ function initialize(position) {
 				content: contentImg
 			});
 		}
-		//alert("num fotos: "+ lat_lng.length);
 	}
 	click.getThumbnails(click.getActiveGroup(), loadGroupMinPics);
-
-
-
+	
 	function showPictureWindows(){
 		for(i=0;i<imgWindowArray.length;i++){
 			imgWindowArray[i].open(map);
@@ -131,6 +163,38 @@ function initialize(position) {
 	function hidePictureWindows(){
 		for(i=0;i<imgWindowArray.length;i++){
 			imgWindowArray[i].close(map);
+		}
+	}
+	
+	var msgWindowArray = [];
+
+    function loadGroupMsgs(msgs){
+		for(i=0;i<msgs.length;i++){
+			var picPos = msgs[i].position;
+			var picPosition = picPos.split(',');
+			var picLat = parseFloat(picPosition[0]);
+			var picLon = parseFloat(picPosition[1]);
+			lat_lng[i] = new google.maps.LatLng(picLat,picLon);
+			var contentMsg = '<div><b>'+msgs[i].login+': </b>'+msgs[i].message+'</div>';
+			msgWindowArray[i] = new google.maps.InfoWindow({
+				position:  lat_lng[i],
+				content: contentMsg
+			});
+		}
+	}
+	click.getMessages(click.getActiveGroup(), loadGroupMsgs);
+
+
+
+	function showMsgWindows(){
+		for(i=0;i<msgWindowArray.length;i++){
+			msgWindowArray[i].open(map);
+		}
+	}
+
+	function hideMsgWindows(){
+		for(i=0;i<msgWindowArray.length;i++){
+			msgWindowArray[i].close(map);
 		}
 	}
 
@@ -162,10 +226,43 @@ function initialize(position) {
 
 		google.maps.event.addDomListener(controlUI, 'click', function() {
 			mVisible = false,
+			hideMsgWindows(),
 			clearMarkers(),
 			routesPics(),
 			showPictureWindows()
-		  //map.setCenter (merce)
+		});		
+	}
+	
+	function MessagesControl(controlDiv, map){
+		controlDiv.style.marginRight = '4%';
+		controlDiv.style.marginTop = '4%';
+		controlDiv.style.height = '5%';
+		controlDiv.style.width = '25%';
+
+		var controlUI = document.createElement('div');
+		controlUI.style.backgroundColor = '#0095c1';
+		controlUI.style.textAlign = 'center';
+		controlUI.style.height = '100%';
+		controlUI.style.borderRadius = '7%';
+		controlUI.style.opacity = '0.8';
+
+		controlDiv.appendChild(controlUI);
+		var controlText = document.createElement('div');
+		controlText.style.fontFamily = 'Arial,sans-serif';
+		controlText.style.fontSize = '16px';
+		controlText.style.paddingLeft = '12%';
+		controlText.style.paddingRight = '9%';
+		controlUI.style.color = 'white';
+		controlUI.style.paddingTop = '6%';
+		controlText.innerHTML = '<strong>Messages</strong>';
+		controlUI.appendChild(controlText);
+
+		google.maps.event.addDomListener(controlUI, 'click', function() {
+			mVisible = false,
+			hidePictureWindows(),
+			clearMarkers(),
+			routesPics(),
+			showMsgWindows()
 		});		
 	}
 
@@ -196,69 +293,28 @@ function initialize(position) {
 		controlUI.appendChild(controlText);
 
 		google.maps.event.addDomListener(controlUI, 'click', function() {
-			alert("pimchado people");
-			console.log("pinchado people");
 			hidePictureWindows(),
+			hideMsgWindows(),
 			mVisible = true,
 			showMarkers()
-		  //map.setCenter (merce)
 		});	
 	}
 
-	var userMarkers = [];
-
-    function addUserMarker(Userposition, icon){
-    	var marker = new google.maps.Marker({
-	    	position: Userposition,
-	    	icon: new google.maps.MarkerImage('img/marcadores/'+icon+'',
-	    null, null, null, new google.maps.Size(64,64)),
-	    	draggable: false,
-	    	visible: mVisible,
-	    	map: map    	
-	    });
-
-    	userMarkers.push(marker);
-	    //marker.setMap(map);
-    }
-
-    // Sets the map on all markers in the array.
-	function setAllMap(map) {
-	  for (var i = 0; i < userMarkers.length; i++) {
-	    userMarkers[i].setMap(map);
-	  }
-	}
-
-	// Removes the markers from the map, but keeps them in the array.
-	function clearMarkers() {
-	  setAllMap(null);
-	}
-
-	// Shows any markers currently in the array.
-	function showMarkers() {
-	  setAllMap(map);
-	}
-
-	// Deletes all markers in the array by removing references to them.
-	function deleteMarkers() {
-	  clearMarkers();
-	  userMarkers = [];
-	}
+	
 
 
     function marker(groupPeople){
-    	//for(i=0;i<groupPeople.length;i++){
-    		//addUserMarker(groupPeople[i].LatLng, mc.getFileName(groupPeople[i].name));
-    		// var userPointer = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-    		// que haya un groupPeople[i].position y hago groupPeople[i].position.latitude ...
-    	//}
-
-    	//*****************************************************
-    	addUserMarker(userPointer, mc.getFileName("Beatriz"));
-		addUserMarker(userPointer2, mc.getFileName("Peatriz"));
-		addUserMarker(merce, mc.getFileName("Merce"));
-		//****************************************************
+    	for(i=0;i<groupPeople.length;i++){
+			if(position != ""){
+				position = groupPeople[i].position.split(',');
+				latitude = position[0];
+				longitude = position[1];
+				userPointer = new google.maps.LatLng(latitude, longitude);
+				addUserMarker(userPointer, mc.getFileName(groupPeople[i].name));
+			}    		 
+    	}
     }
-    //click.getContacts(click.getActiveGroup(), marker); // en lugar de getContacts sera  un get gente del grupo
+    click.getUsersFromGroup(click.getActiveGroup(), marker);
 
 	
 }
@@ -289,7 +345,7 @@ function routesPics(){
 
 
 
-
+/** Legacy: con la nueva forma de cargar los tabs esto ya no se usa */
 Lungo.dom('#map').on('load', function(event){
 	navigator.geolocation.getCurrentPosition(initialize,showError);
 });

@@ -176,8 +176,19 @@ function Click (){
 	**/
 	this.getKey = getKey;
 	function getKey(key, callBack){
-		var postData = {data: JSON.stringify( {"token": this.getToken(), "cod": "getSimpleKey", "key": key } ) };
-			Lungo.Service.post(this.jsonEndpoint, postData, callBack, "json");
+		var postData = {data: JSON.stringify( {"token": click.getToken(), "cod": "getSimpleKey", "key": key } ) };
+			Lungo.Service.post(click.jsonEndpoint, postData, callBack, "json");
+	}
+	
+	/**
+	/* Get reverse geocoding
+	/* @param position <lat,long>
+	/* @param callBack Callback function to manage results
+	**/
+	this.reversePosition = reversePosition;
+	function reversePosition(position, callBack){
+		var data = {p: position};
+			Lungo.Service.get(click.endpoint+"reverseGeocode.php", data, callBack, "json");
 	}
 	
 	/**
@@ -275,6 +286,21 @@ function Click (){
 		var postData = {data: JSON.stringify( {"token": this.getToken(), "cod": cod} ) };
 		Lungo.Service.post(this.jsonEndpoint, postData, callback, "json");	
 	}
+	
+	/**
+	/* This function reloads user profile photo
+	/* 
+	**/
+	this.reloadProfilePhoto = reloadProfilePhoto;
+	function reloadProfilePhoto(){		
+		var updatePhoto = function(url){
+			var element = document.getElementById("profilePhoto");
+			element.setAttribute("src", "http://moncadaisla.es/click/circular.php?img="+url);
+			click.setData("photo", url);
+		}
+		click.getKey("photo", updatePhoto);
+
+	}
 
 	/**
 	/* Sirve para cargar el valor de una clave de dato de usuario
@@ -365,12 +391,17 @@ function Click (){
 		var postData = {data: JSON.stringify( {"token": this.getToken(), "cod": "new_user", "new_user": {"login": login, "name": name, "surname": surname, "email": email, "password": password} })};
 		var parseResponse = function(result){
 				if(result.status == "200"){
-					Lungo.Router.section("main_section");
+					
+					var afterNotification = function(){
+						setTimeout(function(){Lungo.Notification.hide()},3000);
+						location.reload();
+					};
+					
 					Lungo.Notification.show(
-					"check",                //Icon
-					"User "+login+" created",         //Title
-					3,                      //Seconds
-					null       				//Callback function
+					"check",                			//Icon
+					"User "+login+" created",         	//Title
+					3,                     		 		//Seconds
+					afterNotification					//Callback function
 				);
 				}
 				else
@@ -435,9 +466,9 @@ function Click (){
 	}
 	
 	this.ficheroSeleccionado = ficheroSeleccionado;
-	function ficheroSeleccionado(e) {		
+	function ficheroSeleccionado(e) {
         if (e.target.files.length > 0) {
-            subirFichero(e.target.files[0]);
+            subirFichero(e.target.files[0], e.srcElement.id);
         }
     }
  
@@ -446,14 +477,25 @@ function Click (){
 	/* Subir fichero a DropBox
 	/*
 	*/
-    function subirFichero(file) {
-	
-		if(click.activeGroup() == null){alert("Select a group first"); return;}
+    function subirFichero(file, id) {
+		
+		if(id == "inputPhotoProfile"){
+			console.log("Uploading profile Photo");
+			uploadGroup = 0;
+			cod = "updateProfilePhoto";
+			desc = "Do you want to update your profile photo?";
+		}
+		else{
+			if(click.activeGroup() == null){alert("Select a group first"); return;}
+			uploadGroup = click.activeGroup();
+			cod = "upload";
+			desc = "Do you want to upload the photo and share it with the group?";
+		}
 		
 		Lungo.Notification.confirm({
 			icon: 'user',
 			title: 'Upload photo',
-			description: 'Do you want to upload the photo and share it with the group?',
+			description: desc,
 			accept: {
 				icon: 'checkmark',
 				label: 'Yes',
@@ -472,10 +514,15 @@ function Click (){
 							
 								var afterNotification = function(){
 									setTimeout(function(){Lungo.Notification.hide()},3000);
+									
+									// Action if uploaded photo was for profile
+									if(cod == "updateProfilePhoto"){
+										click.reloadProfilePhoto();
+									}
 								};
 								Lungo.Notification.success(
 									"Success",                  //Title
-									"Photo uploaded succesfully",     //Description
+									"Photo uploaded succesfully",//Description
 									"check",                    //Icon
 									3,                          //Time on screen
 									afterNotification           //Callback function
@@ -496,7 +543,7 @@ function Click (){
 							
 							function sendRequest(data){
 								position = data.coords.latitude+","+data.coords.longitude;
-								xhr.open('POST', "http://moncadaisla.es/click/dropbox.endpoint.php?clickToken="+window.btoa(getToken())+"&cod=upload&gid="+click.getActiveGroup()+"&position="+position, true);
+								xhr.open('POST', "http://moncadaisla.es/click/dropbox.endpoint.php?clickToken="+window.btoa(getToken())+"&cod="+cod+"&gid="+uploadGroup+"&position="+position, true);
 								xhr.send(formData);
 							}
 
@@ -530,6 +577,16 @@ function Click (){
 	function getUsersFromGroup(gid, callBack){
 		var postData = {data: JSON.stringify( {"token": this.getToken(), "cod": "getUsersFromGroup", "gid": gid } ) };
 		Lungo.Service.post(this.jsonEndpoint, postData, callBack, "json");
+	}
+	
+	this.dateFromMysql = function(mysql_string){ 
+	   if(typeof mysql_string === 'string') {
+		  var t = mysql_string.split(/[- :]/);
+
+		  //when t[3], t[4] and t[5] are missing they defaults to zero
+		  return new Date(t[0], t[1] - 1, t[2], t[3] || 0, t[4] || 0, t[5] || 0);          
+	   }
+		return null;   
 	}
 
 

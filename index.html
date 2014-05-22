@@ -63,7 +63,7 @@
     <!--*******************************************      MAIN_SECTION     *******************************************************************-->
     <!--*************************************************************************************************************************************-->    
     <section id="main_section" data-transition="slide" class="show">
-        <article class="active main">
+        <article id="login-page" class="active main">
             <div class="form Initialform">
                 <div class="greenText">
                     <small>You have an account:</small>
@@ -81,7 +81,6 @@
                 </div>
                 <button id="newAccButt" data-view-section="registro" class="secondary anchor" data-icon="ok-sign">Create an account</button>
             </div>
-            <button data-view-section="main" id="trampa" class="secondary anchor" data-icon="chevron-left" data-label="Go perfil (trampa)"></button>
         </article>
     </section>
 
@@ -91,7 +90,10 @@
     <!--*************************************************************************************************************************************-->
     <section id="registro">
         <article class="main">
-            <div class="form Initialform" id="registView">
+            <div class="form Initialform scroll" id="registView">
+				<div class="greenText">
+                    <small>Personal info</small>
+                </div>
                 <div id="userData">
                     <fieldset class="radius-top" data-icon="user">
                         <input type="text" placeholder="Name" id="txt-signupName" value/>
@@ -100,11 +102,16 @@
                         <input type="text" placeholder="Last name" id="txt-signupLastname" value/>
                     </fieldset>
                 </div>
-
+				<div class="greenText">
+                    <small>Contact info</small>
+                </div>
                 <fieldset class="radius-top" data-icon="user">
                     <input type="text" placeholder="mail address" id="txt-signupEmail" value/>
                 </fieldset>
 
+				<div class="greenText">
+                    <small>Login info</small>
+                </div>
                 <div id="logginData">
                     <fieldset class="radius-top" data-icon="user">
                         <input type="text" placeholder="Username" id="txt-signupUserName" value/>
@@ -119,6 +126,7 @@
 
                 <br />
                 <button class="anchor"  id="crearUsuario" data-icon="lock" data-label="Create"></button>
+				
             </div>
         </article>
     </section>
@@ -144,13 +152,19 @@
         <!--************************************************      PROFILE     *******************************************************************-->
         <article id="profile" class="list active">
             <span id="usrUid" style="display: none" data-click="id"></span>
+			<span id="usrUid" style="display: none" data-click="photo"></span>
             <div id="profileUserData">
-                  <div id="usrName" data-click="name">
-                    <p>Beuki</p>
+				<div class="greenText">
+                    <small>User</small>
                 </div>
-                <div id="usrLogin" data-click="login">
-                    <p>Login</p>
+                <div id="usrName"  data-click="name"></div>
+                <div id="usrLogin" data-click="login"></div>
+				<br/>
+				
+				<div class="greenText">
+                    <small>Last position</small>
                 </div>
+				<div id="usrPosition" ></div>
             </div>
             <div id="containerPhotoPerfil">  
               
@@ -168,140 +182,27 @@
                         <small id="iconDown" data-icon="chevron-down">What's new?</small>
                     </li>
                 </ul>
-                <div id="ulTimeline" class="scroll">
-                <ul id="profile-news-list">
-                    <li class="thumb big colorGroup">
-                        <img class="imgTlineComment"/>
-                        <div>
-                            <div class="timeTlineCommet on-right text tiny">Sent at </div>
-                            <strong class="commentPerson">name</strong>
-                            <span class="commentDate text tiny opacity">fecha</span>
-                            <small>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, aliquam, nisi commodi blanditiis.
-                            </small>
-                        </div>
-                    </li>
-                    <li class="thumb big colorGroup">
-                        <img class="imgTlineComment"/>
-                        <div>
-                            <div class="timeTlineCommet on-right text tiny">Sent at </div>
-                            <strong class="commentPerson">name</strong>
-                            <span class="commentDate text tiny opacity">fecha</span>
-                            <small>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, aliquam, nisi commodi blanditiis.
-                            </small>
-                        </div>
-                    </li> 
-                     <li class="thumb big colorGroup">
-                        <img class="imgTlineComment"/>
-                        <div>
-                            <div class="timeTlineCommet on-right text tiny">Sent at </div>
-                            <strong class="commentPerson">name</strong>
-                            <span class="commentDate text tiny opacity">fecha</span>
-                            <small>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, aliquam, nisi commodi blanditiis.
-                            </small>
-                        </div>
-                    </li> 
-                     <li class="thumb big colorGroup">
-                        <img class="imgTlineComment"/>
-                        <div>
-                            <div class="timeTlineCommet on-right text tiny">Sent at </div>
-                            <strong class="commentPerson">name</strong>
-                            <span class="commentDate text tiny opacity">fecha</span>
-                            <small>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, aliquam, nisi commodi blanditiis.
-                            </small>
-                        </div>
-                    </li> 
-                     <li class="thumb big colorGroup">
-                        <img class="imgTlineComment"/>
-                        <div>
-                            <div class="timeTlineCommet on-right text tiny">Sent at </div>
-                            <strong class="commentPerson">name</strong>
-                            <span class="commentDate text tiny opacity">fecha</span>
-                            <small>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, aliquam, nisi commodi blanditiis.
-                            </small>
-                        </div>
-                    </li> 
-                     <li class="thumb big colorGroup">
-                        <img class="imgTlineComment"/>
-                        <div>
-                            <div class="timeTlineCommet on-right text tiny">Sent at </div>
-                            <strong class="commentPerson">name</strong>
-                            <span class="commentDate text tiny opacity">fecha</span>
-                            <small>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, aliquam, nisi commodi blanditiis.
-                            </small>
-                        </div>
-                    </li> 
-                     <li class="thumb big colorGroup">
-                        <img class="imgTlineComment"/>
-                        <div>
-                            <div class="timeTlineCommet on-right text tiny">Sent at </div>
-                            <strong class="commentPerson">name</strong>
-                            <span class="commentDate text tiny opacity">fecha</span>
-                            <small>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, aliquam, nisi commodi blanditiis.
-                            </small>
-                        </div>
-                    </li> 
-                     <li class="thumb big colorGroup">
-                        <img class="imgTlineComment"/>
-                        <div>
-                            <div class="timeTlineCommet on-right text tiny">Sent at </div>
-                            <strong class="commentPerson">name</strong>
-                            <span class="commentDate text tiny opacity">fecha</span>
-                            <small>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque, aliquam, nisi commodi blanditiis.
-                            </small>
-                        </div>
-                    </li>                  
-                </ul> 
-                </div>           
+				
+				<div id="ulTimeline" class="Grupotimeline scroll list indented">
+                    <ul id="all-news-list">
+					
+				
+                                  
+                    </ul> 
+                </div>
+				
+                          
             </div>
+			<!--
             <form id="type">
                 <fieldset id="selectedColor" class="radius-top" data-icon="group">
                     <input type="text" placeholder="" id="txtComment" value/>
                     <input id="colorinput" type="color" value=''/>
                 </fieldset>
             </form>
+			-->
         </article>
 
-        <!--*******************************************      EXIFTEXT-ARTICLE     ***************************************************************-->
-        <article id="exifTest-article" class="list scroll">            
-             <div id="datosSensores" class="list indented scroll">
-                <ul>
-                    <li>
-                        <strong>Localizacion:</strong>
-                    </li>
-                    <li>
-                        Longitude: <span id="outLongitude">0</span>
-                    </li>
-                    <li>
-                        Latitude: <span id="outLatitude">0</span>
-                    </li>
-                    <li>
-                        <strong>Orientacion:</strong>
-                    </li>
-                    <li>
-                        alpha: <span id="doDirection">0</span>
-                    </li>
-                    <li>
-                        <strong>Inclinacion:</strong>
-                    </li>
-                    <li>
-                        beta: <span id="doTiltFB">0</span>
-                    </li>
-                    <li>
-                        gamma: <span id="doTiltLR">0</span>             
-                    </li>
-                </ul>
-            </div>
-            <input type="color"/>
-            <div id="cm-example" style="width:200px;height:200px;border-color:1px solid red;"></div>
-        </article>
 
         <!--*************************************************      EDITGRVIEW     ***************************************************************-->
         <article id="editGrView">
@@ -317,7 +218,7 @@
                     <input id = "createGroup-name" type="text" placeholder="Group Name" value/>
                 </fieldset>
                 <fieldset class="radius shadow picColorGr">
-                    <input class="colorInputGr" id="colorInputGr" type="color" value=''/>
+                    <input id="colorInputGr" class="colorInputGr" id="colorInputGr" type="color" value=''/>
                     <a href="#" class="button anchor margin-bottom hrefcolor" id="hrefcolor">Color</a>
                 </fieldset>
                 <div class="greenText">
@@ -366,7 +267,7 @@
     <!--*************************************************************************************************************************************-->
     <!--*******************************************        GROUPSECTION       ***************************************************************-->
     <!--*************************************************************************************************************************************-->
-    <section id= "groupSection" data-transition="slide">
+    <section id="groupSection" data-transition="slide">
         <header>
             <nav>
                 <a href="#" data-view-aside="features" data-icon="menu"></a>
@@ -380,12 +281,12 @@
                 </div>
             </nav>
         </header>
-        <nav data-control="groupbar" data-article="profile map members pictures">
-            <a href="#" data-view-article="profile" data-icon="checkmark" data-label="Profile" class="active"></a>
-            <a href="#" data-view-article="map" data-icon="checkmark" data-label="Map"></a>            
-            <a href="#" onClick="javascript:showArticle('groupSection','locatedComments')" data-icon="checkmark" data-label="Comment"></a>
-            <a href="#" data-view-article="members" data-icon="checkmark" data-label="Members" id="show-group-members"></a>
-            <a href="#" data-view-article="pictures" data-icon="checkmark" data-label="Pictures"></a>
+        <nav id="nav-group" data-control="groupbar" data-article="profile map members pictures">
+            <a href="#" click-group-tab="profile" data-icon="checkmark" data-label="Profile" class="active"></a>
+            <a href="#" click-group-tab="map" data-icon="checkmark" data-label="Map"></a>            
+            <a href="#" click-group-tab="locatedComments" data-icon="checkmark" data-label="Comment"></a>
+            <a href="#" click-group-tab="members" data-icon="checkmark" data-label="Members" id="show-group-members"></a>
+            <a href="#" click-group-tab="pictures" data-icon="checkmark" data-label="Pictures"></a>
         </nav>
 
         <!--****************************************************      PROFILE     ***************************************************************-->
@@ -424,46 +325,13 @@
         <!--********************************************************      LOCATED COMMENTS     **************************************************-->
         <article id="locatedComments">
              <div class="bocadilloInput">
-                <button data-icon="plus" data-label="Write a comment" id="wComment"></button>
+                <button onClick="writeComment()" data-icon="plus" data-label="Write a comment" id="wComment"></button>
             </div>
-            <ul id="group-comments-list" class="scroll">
-                <li class="bocadilloR">
-                    <div class="textCloudR"><span class= "authorCmntR">Beuki: </span>Es la mas bonita del munod</div>
-                    <div class="miniMapR">
-                        <img src="http://maps.googleapis.com/maps/api/staticmap?center=46.75,11.35&zoom=14&size=128x128&sensor=false" />
-                    </div>
-                </li>
-                <li class="bocadilloR">
-                    <div class="textCloudR"><span class= "authorCmntR">Beuki: </span>Es la mas bonita del munod</div>
-                    <div class="miniMapR">
-                        <img src="http://maps.googleapis.com/maps/api/staticmap?center='+lat+','+lng+'&zoom=14&size=128x128&sensor=false" />
-                    </div>
-                </li>
-                <li class="bocadilloR">
-                    <div class="textCloudR"><span class= "authorCmntR">Beuki: </span>Es la mas bonita del munod</div>
-                    <div class="miniMapR">
-                        <img src="http://maps.googleapis.com/maps/api/staticmap?center='+lat+','+lng+'&zoom=14&size=128x128&sensor=false" />
-                    </div>
-                </li>
-                <li class="bocadilloR">
-                    <div class="textCloudR"><span class= "authorCmntR">Beuki: </span>Es la mas bonita del munod</div>
-                    <div class="miniMapR">
-                        <img src="http://maps.googleapis.com/maps/api/staticmap?center='+lat+','+lng+'&zoom=14&size=128x128&sensor=false" />
-                    </div>
-                </li>
-                <li class="bocadilloR">
-                    <div class="textCloudR"><span class= "authorCmntR">Beuki: </span>Es la mas bonita del munod</div>
-                    <div class="miniMapR">
-                        <img src="http://maps.googleapis.com/maps/api/staticmap?center='+lat+','+lng+'&zoom=14&size=128x128&sensor=false" />
-                    </div>
-                </li>
-                <li class="bocadilloR">
-                    <div class="textCloudR"><span class= "authorCmntR">Beuki: </span>Es la mas bonita del munod</div>
-                    <div class="miniMapR">
-                        <img src="http://maps.googleapis.com/maps/api/staticmap?center='+lat+','+lng+'&zoom=14&size=128x128&sensor=false" />
-                    </div>
-                </li>
+            <div id="scroll-container" class="scroll">
+            <ul id="group-comments-list">
+                
             </ul>
+        </div>
         </article>
 
         <!--****************************************************      MEMBERS     ***************************************************************-->
@@ -484,7 +352,7 @@
 
 
     <aside id="features" data-transition="left">
-        <header data-title="Beuki">
+        <header id="aside-login-title" data-click="name" >
         </header>
 		<nav class="on-right">
 				<a href="#" class="buttons" data-icon="settings"><span class="icon settings"></span></a>
@@ -500,22 +368,20 @@
                 </li>
 				 <li data-view-section="groupSection" data-icon="edit">
                     <strong>Ejemplo grupo</strong>                           
-                </li>
-				<li onClick="javascript:showArticle('main','exifTest-article')" data-icon="edit">
-                    <strong>exif test</strong>                           
-                </li>
-				<li data-view-section="main_section" data-icon="edit">
-                    <strong>loggin</strong>                           
-                </li>              
+                </li>          
             </ul>
             <div onClick="javascript:showArticle('main','profile')" class="groupsPart" data-icon="user">
                 <span class="groupsPartText">PROFILE</span>
             </div>
-            <div onClick="javascript:showContactsArticle()" id="contactsLink" class="groupsPart" data-icon="book">
+            <div onClick="javascript:showContactsArticle()" class="groupsPart" data-icon="book">
                 <span class="groupsPartText">CONTACTOS</span>
             </div>
-            <div onClick="javascript:db.authenticate()" class="groupsPart" data-icon="book">
+            <div onClick="javascript:db.authenticate()" class="groupsPart" data-icon="cloud">
                 <span class="groupsPartText">LINK DROPBOX</span>
+            </div>
+			
+			<div onClick="javascript:logout()" class="groupsPart" data-icon="signout">
+                <span class="groupsPartText">LOGOUT</span>
             </div>
         </article>
     </aside>
@@ -537,20 +403,8 @@
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8y9MpnDOJRiaCwhaG5l70LqiWfAPZGG8&sensor=true">
     </script>
-
-    <script src="javascript/MarkerChooser.js"></script>
-    <script src="javascript/Click.js"></script>
-    <script src="javascript/dropbox.click.js"></script>
-    <script src="javascript/init.js"></script>
-    <script src="javascript/takePicture.js"></script>
-    <script src="javascript/groups.js"></script>
-    <script src="javascript/contacts.js"></script>
-    <script src="javascript/map.js"></script>
-
-    
-     <!-- <script type="text/javascript" src="https://www.google.com/jsapi"></script> -->
-    
-    <!-- Lungo - Sandbox App -->
+	
+	 <!-- Lungo - Sandbox App -->
     <script>
         
         Lungo.init({
@@ -558,6 +412,20 @@
         });
 
     </script>
+
+    <script src="javascript/MarkerChooser.js"></script>
+    <script src="javascript/Click.js"></script>
+    <script src="javascript/dropbox.click.js"></script>
+    <script src="javascript/init.js"></script>    
+    <script src="javascript/groups.js"></script>
+    <script src="javascript/contacts.js"></script>
+    <script src="javascript/map.js"></script>
+	<script src="javascript/takePicture.js"></script>
+
+    
+     <!-- <script type="text/javascript" src="https://www.google.com/jsapi"></script> -->
+    
+   
 
 </body>
 </html>

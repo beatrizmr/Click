@@ -7,7 +7,7 @@
 /* @version 11/11/2013                      *
 *********************************************/
 
-
+loadSession();
 
 
 /**
@@ -154,6 +154,7 @@ document.getElementById('crearUsuario').onclick = function() {
 
 
 
+
 /**
 /* send the values os userName and userPassword when click login button and send them to loginUser function
 /*
@@ -172,13 +173,28 @@ document.getElementById('loginButton').onclick = function() {
 /* This funcion loads user's profile photo
 /*
 */
-function loadProfilePhoto(){	
-	function setProfilePhoto(data){
-		document.getElementById("profilePhoto").setAttribute("src", data);
-	}
-	click.getKey("photo", setProfilePhoto);
+function loadProfilePhoto(){
+	profilePhoto = document.getElementById("profilePhoto");
+	if(localStorage.getItem("photo") != null)
+		profilePhoto.setAttribute("src", "http://moncadaisla.es/click/circular.php?img="+localStorage.getItem("photo"));
+	else{
+		var setPhoto = function(data){
+			profilePhoto.setAttribute("src", "http://moncadaisla.es/click/circular.php?img="+data);
+		}
+		click.getKey("photo", setPhoto);
+	}		
+	
 }
 
+function init(){
+	/* Load initial user data */
+	showGroupList();
+	showAllActivity();
+	click.bindData("data-click");
+	loadProfilePhoto();
+	updateReversePosition();
+	Lungo.Router.section("main");
+}
 
 
 /**
@@ -193,12 +209,10 @@ function loginUser(login, password){
 		if(result.status == "200"){
 			click.setToken(result.token);
 			click.setData("surname", result.surname);
-
-			/* Load initial user data */
-			showGroupList();
-			loadProfilePhoto();
-
-			Lungo.Router.section("main");
+			
+			/* Initilizes application user data*/
+			init();
+			
 			Lungo.Notification.show(
 				"check",                //Icon
 				"Welcome",       		//Title
@@ -219,6 +233,41 @@ function loginUser(login, password){
 	Lungo.Service.post(url, data, parseResponse, "json");
 }
 
+/**
+/* Tries to restore existing session
+*/
+function loadSession(){
+	if(localStorage.token != null){
+		init();
+	}
+		
+}
+
+/**
+/* This funtions updates on screen the position of the using using the reverse positin
+/* of Google Services
+*/
+function updateReversePosition(){
+	element = document.getElementById("usrPosition");
+
+	var doUpdate = function(data){		
+		element.innerHTML = data;
+		click.setData("reversePosition", data);
+	}
+	var setPosition = function(data){
+		click.setData("position", data);
+		click.reversePosition(data, doUpdate);
+	}
+	if(click.getData("reversePosition") != null){
+		click.reversePosition(click.getData("position", doUpdate));
+	}
+	click.getKey("position", setPosition);
+
+}
+
+
+
+
 
 
 /**
@@ -229,7 +278,7 @@ var pull_example = new Lungo.Element.Pull('#lista', {
     onRelease: "Release to get new data",//Text on releasing
     onRefresh: "Refreshing...",          //Text on refreshing
     callback: function() {               //Action on refresh
-        alert("Pull & Refresh completed!");
+        showAllActivity();
         pull_example.hide();
     }
 });
@@ -246,136 +295,9 @@ var pull_example = new Lungo.Element.Pull('#lista', {
 document.getElementById("fotoExif1").addEventListener("change", click.ficheroSeleccionado, false);
 // Input header camera icon in group section
 document.getElementById("fotoExif2").addEventListener("change", click.ficheroSeleccionado, false);
+// Input profile photo
+document.getElementById("inputPhotoProfile").addEventListener("change", click.ficheroSeleccionado, false);
 
-/*
-document.getElementById('fotoExif').onchange = function(e) {
-    EXIF.getData(e.target.files[0], function() {
-    	alert('saco campos con onchange');
-        alert(EXIF.pretty(this));
-    });
-    click.ficheroSeleccionado(e);
-}
-*/
-
-
-
-// /**
-// /* showing sensor data, alpha, beta and gamma______________________________________________________ESTO SOBRA NO SE VA A USAR
-// **/
-// init3();
-// getLocation();
-// var count=0;
-
-// function init3(){
-// 	if(window.DeviceOrientationEvent){
-// 		window.addEventListener('deviceorientation',function(eventData){
-// 			var tiltLR=eventData.gamma;
-// 			var tiltFB=eventData.beta;
-// 			var dir=eventData.alpha
-// 			var motUD=null;
-// 			deviceOrientationHandler(tiltLR,tiltFB,dir,motUD);
-// 		},false);
-// 	}
-// }
-
-// function deviceOrientationHandler(tiltLR,tiltFB,dir,motionUD){
-// 	document.getElementById("doTiltLR").innerHTML=Math.round(tiltLR);
-// 	document.getElementById("doTiltFB").innerHTML=Math.round(tiltFB);
-// 	document.getElementById("doDirection").innerHTML=Math.round(dir);
-
-// }
-
-
-
-// /**
-// /* making elements with same width and height______________________________________________________ESTO SOBRA NO SE VA A USAR
-// **/
-// Element.prototype.getElementWidth = function() {
-// 	if (typeof this.clip !== "undefined") {
-// 		return this.clip.width;
-// 	} else {
-// 		if (this.style.pixelWidth) {
-// 	    	return this.style.pixelWidth;
-// 		} else {
-// 			return this.offsetWidth;
-// 		}
-// 	}
-// };
-
-// window.onload=function() {
-// 	var myBlock = document.getElementById('fotoPerfil');
-// 	myBlock.style.height = myBlock.getElementWidth()+"px";
-// };
-
-
-
-// /**
-// /* Datastore API DROPBOX_____________________________________________________________ no se va a usar
-// **/
-// //var APP_KEY = 'nulhno9puyovgkj';
-// var APP_KEY = 'x6ipo0jmmaxu80s';
-// var client = new Dropbox.Client({key: APP_KEY});
-// var usersTable;
-
-// document.getElementById('linkDropbox').onclick = function() {
-// 	alert("want to link to Dropbox");				
-//     client.authenticate();
-// }
-
-// // Try to finish OAuth authorization.
-// client.authenticate({interactive: false}, function (error) {
-//     if (error) {
-//         alert('Authentication error: ' + error);
-//     }
-// });
-
-// //introduciendo primera fila ID=1, columnas Name y Password.
-// //Cada fila de la tabla, es una var
-// function insertUser(Name, LastName, UserName, UPassword) {
-// 	alert("llamada a insertUser");
-// 	console.log("con nombre="+ Name +" apellido="+LastName+" usuario= "+UserName+"contraseña: "+UPassword);
-// 	usersTable.insert({
-// 		name: Name,
-// 		lastName: LastName,
-// 		userName: UserName,
-// 		uPassword: UPassword,
-// 		created: new Date()
-// 	});
-// }
-
-
-// if (client.isAuthenticated()) {
-// 	alert("cliente autenticado!");
-// 	document.getElementById('newAccButt').removeAttribute("disabled");
-// 	//document.getElementById('newAccButt').disabled = false;
-//     // Client is authenticated. Display UI.
-
-//     //A datastore for the app
-// 	var datastoreManager = client.getDatastoreManager();
-// 	alert("creada datastore manager");
-
-	
-// 	datastoreManager.openDefaultDatastore(function (error, datastore) {
-// 	    if (error) {
-// 	        alert('Error opening default datastore: ' + error);
-// 	    }
-
-// 	    //define a table named users
-// 	    usersTable = datastore.getTable('users');
-// 	    alert("creada tabla usuarios");
-	    
-
-// 		//accediendo a datos del nombre
-// 		//var Name = firstUser.get('Name');
-
-// 		//editando contraseña
-// 		//firstUser.set('UPassword', 'contraseña2');
-
-// 		//remove a record, borrar una fila de la tabla
-// 		//firstUser.deleteRecord();
-// 	});
-
-// }
 
 
 
@@ -429,5 +351,58 @@ function construirComentario(name,text, pic, color){
                         <small>'+text+'</small>\
                     </div>\
                 </li>';
+}
+
+/**
+/* Build news in profile
+/* @param title
+/* @param description
+/* @param photo
+/* @param date
+/* @param time
+/* @return the img html tag
+**/
+function construirAllUpdate(title, description, photo, date, time){
+	return '<li class="thumb big colorGroup">\
+                            <img src="'+photo+'" class="imgTlineComment">\
+                            <div>\
+                                <div class="timeTlineCommet on-right text tiny">'+time+'</div>\
+                                <strong class="commentPerson">'+title+'</strong>\
+                                <span class="commentDate text tiny opacity">'+date+'</span>\
+                                <small>'+description+'</small>\
+                            </div>\
+                        </li> ';
+}
+
+
+/**
+/* Show all news in the group profile view
+**/ 
+function showAllActivity(){
+
+	groupActivityList = document.getElementById("all-news-list");
+	groupActivityList.innerHTML = "";
+
+	/**
+	/* Get all updates of the group
+	/* @param updates all group news array
+	**/
+	function loadAllActivityList(updates){
+		for(i=0;i<updates.length;i++){
+			u = construirAllUpdate(updates[i].title, updates[i].description, "http://moncadaisla.es/click/"+updates[i].photo, updates[i].date, updates[i].time);
+			appendHtml("all-news-list", u, "beforeend");
+		}
+	}
+	click.getUpdates(0, loadAllActivityList);	
+}
+
+
+/**
+/* Use this funciton to logout
+/* It destroys localStorage and redirects to login page
+*/
+function logout(){
+	localStorage.clear();
+	showArticle('main_section','login-page');
 }
 
